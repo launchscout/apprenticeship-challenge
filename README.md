@@ -44,4 +44,4 @@ Think of other things a shopping list might need to be it more useful. Let your 
 
 ## Submitting the finished application
 
-Once you've built your application, submit a pull request to us. If you are new to using git there are many online resources for learning git. It will be necessary to have some basic working knowledge of git to complete this challenge, and it is a core skill you'll be using as an apprentice (and as a developer).
+Once you've built your application, submit a pull request to us. If you are new to using git there are [many](https://try.github.io/) [online](https://git-scm.com/documentation) [resources](http://gitimmersion.com/) for learning git. It will be necessary to have some basic working knowledge of git to complete this challenge, and it is a core skill you'll be using as an apprentice (and as a developer).
