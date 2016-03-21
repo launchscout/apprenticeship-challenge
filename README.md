@@ -19,8 +19,6 @@ This should build all the code in the application an start a server listening on
 
 This will mean your environment is set up correctly and your ready to start coding!
 
-Once you've built your application, submit a pull request to us. If you are new to using git there are many online resources for learning git. It will be necessary to have some basic working knowledge of git to complete this challenge, and it is a core skill you'll be using as an apprentice (and as a developer).
-
 ## The Shopping List
 
 We'd like you go build a basic shopping list application. It should have the following features:
@@ -33,4 +31,17 @@ A shopping list should have a name and list of items.
 
 ## Criteria
 
-Impress us! We value code that is simple and easy to understand.
+Impress us! We value code that is simple and easy to understand. We don't have any expectations that you have a server portion to this application, but if you're able to get these features implemented and want to stretch yourself/impress us more, where are some things you could try:
+
+* Test your code
+If testing isn't something you've seen much of yet, it's one of the first things we'll focus on during your apprenticeship. There's a section in the tutorial we refer to on Testing React. Looking this over and applying it would definitely make you stand out from a crowded field :)
+
+* Store the shopping list
+There are options like [Firebase](https://www.firebase.com/docs/web/libraries/react/) that would allow you to persist the shopping list in the cloud. That might be fun!
+
+* Add features
+Think of other things a shopping list might need to be it more useful. Let your imagination run wild!
+
+## Submitting the finished application
+
+Once you've built your application, submit a pull request to us. If you are new to using git there are many online resources for learning git. It will be necessary to have some basic working knowledge of git to complete this challenge, and it is a core skill you'll be using as an apprentice (and as a developer).
