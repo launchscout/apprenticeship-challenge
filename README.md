@@ -31,7 +31,7 @@ A shopping list should have a name and list of items.
 
 ## Criteria
 
-Impress us! We value code that is simple and easy to understand. We don't have any expectations that you have a server portion to this application, but if you're able to get these features implemented and want to stretch yourself/impress us more, here are some things you could try:
+Impress us! We value code that is simple and easy to understand, as well as an application that works. We don't have any expectations that you have a server portion to this application, but if you're able to get these features implemented and want to stretch yourself/impress us more, here are some things you could try:
 
 ### Test your code
 If testing isn't something you've seen much of yet, it's one of the first things we'll focus on during your apprenticeship. There's a section in the tutorial we refer to on Testing React. Looking this over and applying it would definitely make you stand out from a crowded field :)
@@ -50,9 +50,7 @@ Once you've built your application, submit a pull request to us. If you are new 
 
 **This part is important: I'll be reviewing these starting on Monday, April 4.**
 
-We expect to review and select candidates to do pair with me on adding a feature to this application either in person or remotely using [join.me](https://www.join.me/) or something similar.
-
-We appreciate you taking the time to complete this challenge. Our commitment to you is that if you submit a pull request, it will get a thorough review with specific feedback if you are not selected to pair with us.
+We will review and select candidates to do pairing sessions with me on adding a feature to this application either in person or remotely using [join.me](https://www.join.me/) or something similar. We appreciate you taking the time to complete this challenge. Our commitment to you is that if you submit a pull request, it will get a thorough review and we'll give you specific feedback even if you are not selected to pair with us.
 
 ## Help, I'm stuck.
 
