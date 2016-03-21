@@ -13,6 +13,12 @@ npm install
 npm run start
 ```
 
+This should build all the code in the application an start a server listening on port 8080. If you open your browser to http://localhost:8080 you should see this:
+
+![screenshot](screenshot.jpg)
+
+This will mean your environment is set up correctly and your ready to start coding!
+
 Once you've built your application, submit a pull request to us. If you are new to using git there are many online resources for learning git. It will be necessary to have some basic working knowledge of git to complete this challenge, and it is a core skill you'll be using as an apprentice (and as a developer).
 
 ## The Shopping List
