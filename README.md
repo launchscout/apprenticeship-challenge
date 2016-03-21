@@ -50,6 +50,10 @@ Once you've built your application, submit a pull request to us. If you are new 
 
 **This part is important: I'll be reviewing these starting on Monday, April 4.**
 
+We expect to review and select candidates to do pair with me on adding a feature to this application either in person or remotely using [join.me](https://www.join.me/) or something similar.
+
+We appreciate you taking the time to complete this challenge. Our commitment to you is that if you submit a pull request, it will get a thorough review with specific feedback if you are not selected to pair with us.
+
 ## Help, I'm stuck.
 
 We understand that as an apprentice developer, you're new to development. That's ok, in fact, it's more than ok, it's the whole point! If you get stuck along the way, reach out. I'll be checking email regularly. I've set aside a few times to help you either in person at our office or on the phone, on this Friday, March 25. Here's where to [book a time.](https://gaslight-apprenticeship.youcanbook.me/)
