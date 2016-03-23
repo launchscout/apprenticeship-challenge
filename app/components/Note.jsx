@@ -1,3 +1,12 @@
 import React from 'react';
 
-export default () => <div>Learn React and Webpack!</div>;
+const lang_one = "React"
+const lang_two = "Webpack"
+const name = "Robert"
+
+export default () =>
+<div>
+
+<h1>
+
+</div>;

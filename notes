@@ -1,0 +1,50 @@
+check intro to node.js "nodejs tutorial"
+
+babeljs.io = a compiler
+traceur = also a compiler (compiling JS)
+
+ES6
+destructing = a simplified way to call data
+
+template strings = allows you to make a sentence out of variables using literal
+sentences like such: `hi my name is #{name} and I like to #{thing}`
+
+var not needed most of time. use let when coding ES6
+
+const is similar to let in that it's block scope. const cannot be overwritten.
+
+Use const to everything, you shouldn't need to change but if you do use let
+
+arrow functions are basically functions with the word 'function' removed and replaced
+with a hashrocket(=>). Allows for cleaner code.
+
+When everything is on one line, you can drop the curly braces
+This is known as implicit returns. Arrow functions also help to introduce scope (by eliminating bind)
+
+like so:
+
+var module = {
+  age: 30,
+  foo: function() {
+    setTimeout(() => {
+      console.log(this.age);
+    }, 100);
+  }
+};
+module.foo();
+
+'=>' points to module, it points to the context that you are in.
+
+module.exports.foo = function()
+
+async functions return a promise and subs yield with await
+
+====
+[LIST] Starting a webpack development server:
+1. npm install -s webpack-dev-server
+2. npm install -g webpack-dev-server
+3. webpack-dev-server        //webpack: bundle is now VALID.
+4. type: webpack-dev-server --inline --hot (refreshes browser auto upon save)
+
+State allows for you to inject variables into your dom that can update fast
+so do props
