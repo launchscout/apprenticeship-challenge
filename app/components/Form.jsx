@@ -5,7 +5,9 @@ export default class Form extends React.Component {
 		super(props);
 
 		this.state = {
-			clicked: false
+			clicked: false,
+			name: '',
+			price: ''
 		};
 	}
 
@@ -29,6 +31,20 @@ export default class Form extends React.Component {
 		);
 	};
 
+	renderForm = () => {
+
+		return (
+			<div>
+				<button onClick={this.deactivate}>-</button>
+				<form onSubmit={this.handleSubmit}>
+	 				<input type="text" placeholder="Item Name" value={this.state.name} onChange={this.handleNameChange} />
+	 				<input type="text" placeholder="Item Price" value={this.state.price} onChange={this.handlePriceChange} />
+	 				<input type="submit" value="Create" />
+	 			</form>
+ 			</div>
+		);
+	};
+
 	activate = () => {
 		// Enter edit mode.
 		this.setState({
@@ -43,16 +59,26 @@ export default class Form extends React.Component {
 		});
 	};
 
-	renderForm = () => {
+	handleNameChange = (e) => {
+		this.setState({name: e.target.value});
+	};
 
-		return (
-			<div>
-				<button onClick={this.deactivate}>-</button>
-				<form>
-	 				<input type="text" placeholder="Enter new Item" />
-	 				
-	 			</form>
- 			</div>
-		);
+	handlePriceChange = (e) => {
+		this.setState({price: e.target.value});
+	};
+
+	handleSubmit = (e) => {
+
+		e.preventDefault();
+		var name = this.state.name.trim();
+		var price = this.state.price.trim();
+		
+		if (!name || !price) {
+		  return;
+		}
+
+		this.props.addItem(name, price);
+		// TODO: send request to the server
+		this.setState({name: '', price: ''});
 	};
 }

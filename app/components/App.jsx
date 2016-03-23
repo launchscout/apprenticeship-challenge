@@ -40,6 +40,7 @@ export default class App extends React.Component {
 
 		return (
 			<div>
+
 				<Name name={name} onEdit={this.editName} />
 				<Form addItem={this.addItem}/>
 				<Items items={items} onDelete={this.deleteItem} />
@@ -49,12 +50,12 @@ export default class App extends React.Component {
 		);
 	}
 
-	addItem = (sku, name) => {
+	addItem = (name, price) => {
 		this.setState({
 			items: this.state.items.concat([{
 				sku: uuid.v4(),
-				name: 'New Item',
-				price: '$1.00'
+				name: name,
+				price: price
 			}])
 		});
 	};
