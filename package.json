@@ -28,6 +28,9 @@
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
+    "alt": "^0.18.3",
+    "alt-container": "^1.0.2",
+    "alt-utils": "^1.0.0",
     "firebase": "^2.4.1",
     "node-uuid": "^1.4.7",
     "react": "^0.14.7",
