@@ -1,6 +1,7 @@
 import React from 'react';
 import uuid from 'node-uuid';
-import Notes from './Notes.jsx';
+import Items from './Items.jsx';
+import Name from './Name.jsx';
 
 export default class App extends React.Component {
   
@@ -8,7 +9,8 @@ export default class App extends React.Component {
 		super(props);
 
 		this.state = {
-			notes: [
+			name: 'Shopping List',
+			items: [
 				{
 					id: uuid.v4(),
 					task: 'Learn Webpack'
@@ -27,26 +29,67 @@ export default class App extends React.Component {
 
 	render() {
 
-		const notes = this.state.notes;
+		const items = this.state.items;
+		const name = this.state.name;
 
-		console.log(notes);	
+		console.log(items);	
 
 		return (
 			<div>
+				<Name name={name} onEdit={this.editName} />
+				<button onClick={this.addItem}>+</button>
+				<Items items={items} onEdit={this.editItem} onDelete={this.deleteItem} />
 
-				<button onClick={this.addNote}>+</button>
-				<Notes notes={notes} />
-				
+
 			</div>
 		);
 	}
 
-	addNote = () => {
+	addItem = () => {
 		this.setState({
-			notes: this.state.notes.concat([{
+			notes: this.state.items.concat([{
 				id: uuid.v4(),
 				task: 'New task'
 			}])
 		});
 	};
+
+	editItem = (id, task) => {
+	// Don't modify if trying set an empty value
+		if(!task.trim()) {
+			return;
+		}
+
+		const items = this.state.items.map(item => {
+			if(item.id === id && task) {
+				item.task = task;
+			}
+
+			return item;
+		});
+
+		this.setState({items});
+	};
+
+	editName = (val) => {
+	// Don't modify if trying set an empty value
+		if(!val.trim()) {
+			return;
+		}
+
+		const name = this.state.name;
+		this.setState({name: val});
+	};
+
+	
+
+	deleteItem = (id, e) => {
+	// Avoid bubbling to edit
+		e.stopPropagation();
+
+		this.setState({
+			items: this.state.items.filter(item => item.id !== id)
+		});
+	};
+
 }
