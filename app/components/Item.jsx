@@ -1,21 +1,8 @@
 import React from 'react';
 
 export default class Note extends React.Component {
-	constructor(props) {
-		super(props);
-
-		// Track `editing` state.
-		this.state = {
-			editing: false
-		};
-	}
 
 	render() {
-		// Render the component differently based on state.
-		if(this.state.editing) {
-			return this.renderEdit();
-		}
-
 		return this.renderNote();
 	}
 
@@ -32,10 +19,10 @@ export default class Note extends React.Component {
 		
 		return <input type="text"
 				ref={
-				(e) => e ? e.selectionStart = this.props.task.length : null
+				(e) => e ? e.selectionStart = this.props.name.length : null
 				}
 				autoFocus={true}
-				defaultValue={this.props.task}
+				defaultValue={this.props.name}
 				onBlur={this.finishEdit}	
 				onKeyPress={this.checkEnter} />;
 	};
@@ -45,8 +32,8 @@ export default class Note extends React.Component {
 		const onDelete = this.props.onDelete;
 
 		return (
-			<div onClick={this.edit}>
-				<span>{this.props.task}</span>
+			<div>
+				<span>{this.props.name}</span>
 				{onDelete ? this.renderDelete() : null }
 			</div>
 		);

@@ -2,6 +2,7 @@ import React from 'react';
 import uuid from 'node-uuid';
 import Items from './Items.jsx';
 import Name from './Name.jsx';
+import Form from './Form.jsx';
 
 export default class App extends React.Component {
   
@@ -12,16 +13,19 @@ export default class App extends React.Component {
 			name: 'Shopping List',
 			items: [
 				{
-					id: uuid.v4(),
-					task: 'Learn Webpack'
+					sku: uuid.v4(),
+					name: 'Banana',
+					price: '$1.00'
 				},
 				{
-					id: uuid.v4(),
-					task: 'Learn React'
+					sku: uuid.v4(),
+					name: 'Apple',
+					price: '$1.00'
 				},
 				{
-					id: uuid.v4(),
-					task: 'Do laundry'
+					sku: uuid.v4(),
+					name: 'Cereal',
+					price: '$1.00'
 				}
 			]
 		};
@@ -37,32 +41,33 @@ export default class App extends React.Component {
 		return (
 			<div>
 				<Name name={name} onEdit={this.editName} />
-				<button onClick={this.addItem}>+</button>
-				<Items items={items} onEdit={this.editItem} onDelete={this.deleteItem} />
+				<Form addItem={this.addItem}/>
+				<Items items={items} onDelete={this.deleteItem} />
 
 
 			</div>
 		);
 	}
 
-	addItem = () => {
+	addItem = (sku, name) => {
 		this.setState({
-			notes: this.state.items.concat([{
-				id: uuid.v4(),
-				task: 'New task'
+			items: this.state.items.concat([{
+				sku: uuid.v4(),
+				name: 'New Item',
+				price: '$1.00'
 			}])
 		});
 	};
 
-	editItem = (id, task) => {
+	editItem = (sku, name) => {
 	// Don't modify if trying set an empty value
-		if(!task.trim()) {
+		if(!name.trim()) {
 			return;
 		}
 
 		const items = this.state.items.map(item => {
-			if(item.id === id && task) {
-				item.task = task;
+			if(item.sku === sku && name) {
+				item.name = name;
 			}
 
 			return item;
@@ -83,12 +88,12 @@ export default class App extends React.Component {
 
 	
 
-	deleteItem = (id, e) => {
+	deleteItem = (sku, e) => {
 	// Avoid bubbling to edit
 		e.stopPropagation();
 
 		this.setState({
-			items: this.state.items.filter(item => item.id !== id)
+			items: this.state.items.filter(item => item.sku !== sku)
 		});
 	};
 
