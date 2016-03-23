@@ -33,8 +33,10 @@
     "alt-utils": "^1.0.0",
     "firebase": "^2.4.1",
     "node-uuid": "^1.4.7",
+    "re-base": "^1.5.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "reactfire": "^0.6.0"
+    "reactfire": "^0.6.0",
+    "rebase": "^0.3.0"
   }
 }
