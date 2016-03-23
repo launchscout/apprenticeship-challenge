@@ -8,6 +8,7 @@ export default class Item extends React.Component {
       editing: false
     };
   }
+
   render() {
     if(this.state.editing) {
       return this.renderEdit();
@@ -15,17 +16,23 @@ export default class Item extends React.Component {
 
     return this.renderItem();
   }
+
   renderEdit = () => {
     return (
       <input type="text"
-      ref={
-        (e) => e ? e.selectionStart = this.props.body.length : null
-      }
-      autoFocus={true}
-      defaultValue={this.props.body}
-      onBlur={this.finishEdit}
-      onKeyPress={this.checkEnter} />
+        ref={
+          (e) => e ? e.selectionStart = this.props.body.length : null
+        }
+        autoFocus={true}
+        defaultValue={this.props.body}
+        onBlur={this.finishEdit}
+        onKeyPress={this.checkEnter} 
+      />
     )
+  };
+
+  renderDelete = () => {
+    return <button onClick={this.props.onDelete}>x</button>;
   };
 
   renderItem = () => {
@@ -37,12 +44,6 @@ export default class Item extends React.Component {
         {onDelete ? this.renderDelete() : null }
       </div>
     );
-  };
-
-  renderDelete = () => {
-    return (
-      <button onClick={this.props.onDelete}>x</button>
-    )
   };
 
   edit = () => {

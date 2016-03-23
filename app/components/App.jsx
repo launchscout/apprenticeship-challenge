@@ -37,7 +37,6 @@ export default class App extends React.Component {
           items={items} 
           onEdit={this.editItem}
           onDelete={this.deleteItem}
-          onComplete={this.completeItem}
         />
       </div>
     ); 
@@ -52,13 +51,13 @@ export default class App extends React.Component {
     });
   };
 
-  editItem = (id, item) => {
-    if(!item.trim()) {
+  editItem = (id, itemBody) => {
+    if(!itemBody.trim()) {
       return;
     }
     const items = this.state.items.map(item => {
-      if (item.id === id && body) {
-        item.body = body;
+      if (item.id === id && itemBody) {
+        item.body = itemBody;
       }
       return item;
     });
