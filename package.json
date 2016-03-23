@@ -28,7 +28,10 @@
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
+    "firebase": "^2.4.1",
+    "node-uuid": "^1.4.7",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "reactfire": "^0.6.0"
   }
 }
