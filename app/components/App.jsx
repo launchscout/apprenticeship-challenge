@@ -7,13 +7,13 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: "Welcome Robert",
+      title: "Welcome",
     }
   }
 
   render() {
     setTimeout(() => {
-      this.setState({title: "I mean Will..."});
+      this.setState({title: "How are you?"});
     }, 2000);
 
     return (
