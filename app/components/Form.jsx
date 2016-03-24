@@ -67,6 +67,8 @@ export default class Form extends React.Component {
 		this.setState({price: e.target.value});
 	};
 
+	// handleSubmit: function(e) { (same as writing out what's below except not using ES6 syntax)
+
 	handleSubmit = (e) => {
 
 		e.preventDefault();

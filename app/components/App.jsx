@@ -36,15 +36,12 @@ export default class App extends React.Component {
 		const items = this.state.items;
 		const name = this.state.name;
 
-		console.log(items);	
-
 		return (
 			<div>
 
 				<Name name={name} onEdit={this.editName} />
 				<Form addItem={this.addItem}/>
 				<Items items={items} onDelete={this.deleteItem} />
-
 
 			</div>
 		);
@@ -60,21 +57,13 @@ export default class App extends React.Component {
 		});
 	};
 
-	editItem = (sku, name) => {
-	// Don't modify if trying set an empty value
-		if(!name.trim()) {
-			return;
-		}
+	deleteItem = (sku, e) => {
+	// Avoid bubbling to edit
+		e.stopPropagation();
 
-		const items = this.state.items.map(item => {
-			if(item.sku === sku && name) {
-				item.name = name;
-			}
-
-			return item;
+		this.setState({
+			items: this.state.items.filter(item => item.sku !== sku)
 		});
-
-		this.setState({items});
 	};
 
 	editName = (val) => {
@@ -85,17 +74,6 @@ export default class App extends React.Component {
 
 		const name = this.state.name;
 		this.setState({name: val});
-	};
-
-	
-
-	deleteItem = (sku, e) => {
-	// Avoid bubbling to edit
-		e.stopPropagation();
-
-		this.setState({
-			items: this.state.items.filter(item => item.sku !== sku)
-		});
-	};
+	};	
 
 }
