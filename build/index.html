@@ -7,6 +7,24 @@
   <body>
     <div id="app"></div>
 
+    <script>
+      var cart = [];
+      var Item = function(name, price, count) {
+        this.name = name
+        this.price = price
+        this.count = count
+      };
+
+      var brush = new Item("Brush", 1.99, 1);
+      var apple = new Item("Apple", 2.13, 1);
+
+      cart.push( apple );
+      cart.push( brush );
+
+      console.log(cart);
+
+    </script>
+
     <script src="./bundle.js"></script>
   </body>
 </html>
