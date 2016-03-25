@@ -15,13 +15,47 @@
         this.count = count
       };
 
-      var brush = new Item("Brush", 1.99, 1);
-      var apple = new Item("Apple", 2.13, 1);
+      function addItemToCart(name, price, count) {
+        for (var i in cart) { //loop through each existing (i)tem in cart
+          if (cart[i].name === name) { //for each (i)tem in cart compare to name of user input
+              cart[i].count += count; //if names are identical, add users count to existing item's count
+              return; //ends functions
+          }
+        }
+        var item = new Item(name, price, count); //creates users item
+        cart.push(item); //add users item to cart
+      }
 
-      cart.push( apple );
-      cart.push( brush );
+      // tests addItemToCart function by invoking
+      addItemToCart("Apple", 1.22, 1);
+      addItemToCart("Pear", 1.72, 3);
+      addItemToCart("Apple", 1.22, 1);
+      addItemToCart("Apple", 1.22, 3); //when users adds apples that exist already, add to existing amount
+
+      // in running addItemToCart test, I learned that count++ would not work because user may specify that
+      // he or she may want to add 4 or 5 more apples. With count++, it only ever adds one at a time. 'count += count' adds
+      // the amount the user specifies with the existing amount in the cart.
 
       console.log(cart);
+      console.log( cart[0] );
+      console.log( cart[0].name );
+
+      //removeItemFromCart(name) -> removes one Item
+
+      //removeItemFromCartAll(name) -> removes all item name
+
+      //clearCart()
+
+      //countCart() -> return total count
+
+      //totalCart() -> return total cost
+
+      //listCart() -> array of Item
+
+      //saveCart()
+
+      //loadCart()
+
 
     </script>
 
