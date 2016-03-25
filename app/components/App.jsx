@@ -3,6 +3,7 @@ import uuid from 'node-uuid';
 import Items from './Items.jsx';
 import Name from './Name.jsx';
 import Form from './Form.jsx';
+import Firebase from "firebase";
 
 export default class App extends React.Component {
   
@@ -11,24 +12,31 @@ export default class App extends React.Component {
 
 		this.state = {
 			name: 'Shopping List',
-			items: [
-				{
-					sku: uuid.v4(),
-					name: 'Banana',
-					price: '$1.00'
-				},
-				{
-					sku: uuid.v4(),
-					name: 'Apple',
-					price: '$1.00'
-				},
-				{
-					sku: uuid.v4(),
-					name: 'Cereal',
-					price: '$1.00'
-				}
-			]
+			items: []
 		};
+	}
+
+	componentWillMount() {
+
+	  this.myFirebaseRef = new Firebase("https://crackling-inferno-2914.firebaseio.com/items");
+	  var that = this;
+	  this.myFirebaseRef.once("value", function(snapshot) {
+
+	  	var items = [];
+
+	  	snapshot.forEach(function(data){
+	  		var item = {
+	  			sku: data.val().sku,
+	  			name: data.val().name,
+	  			price: data.val().price
+	  		}
+
+	  		items.push(item);
+	  		that.setState({items: items});
+	  	});
+
+	  });
+
 	}
 
 	render() {
@@ -45,25 +53,41 @@ export default class App extends React.Component {
 
 			</div>
 		);
+
 	}
 
+	// addItem = (name, price) => {
+	// 	this.setState({
+	// 		items: this.state.items.concat([{
+	// 			sku: uuid.v4(),
+	// 			name: name,
+	// 			price: price
+	// 		}])
+	// 	});
+	// };
+
 	addItem = (name, price) => {
-		this.setState({
-			items: this.state.items.concat([{
-				sku: uuid.v4(),
-				name: name,
-				price: price
-			}])
-		});
+		
+		var newItem = {
+			sku: uuid.v4(),
+			name: name,
+			price: price
+		}
+
+		this.myFirebaseRef.push(newItem);
+
+		this.setState({items: this.state.items.concat(newItem)});
+
 	};
 
 	deleteItem = (sku, e) => {
-	// Avoid bubbling to edit
+	
 		e.stopPropagation();
 
 		this.setState({
 			items: this.state.items.filter(item => item.sku !== sku)
 		});
+
 	};
 
 	editName = (val) => {
@@ -74,6 +98,7 @@ export default class App extends React.Component {
 
 		const name = this.state.name;
 		this.setState({name: val});
+
 	};	
 
 }
