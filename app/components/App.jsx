@@ -84,6 +84,20 @@ export default class App extends React.Component {
 	
 		e.stopPropagation();
 
+		var that = this;
+
+		this.myFirebaseRef.orderByChild("sku").equalTo(sku).on("value", function(snapshot) {
+
+			snapshot.forEach(function(data) {
+
+				var record = data.val(); 
+
+				that.myFirebaseRef.child(data.key()).remove();
+				
+			});
+
+		});
+
 		this.setState({
 			items: this.state.items.filter(item => item.sku !== sku)
 		});
