@@ -48,3 +48,6 @@ async functions return a promise and subs yield with await
 
 State allows for you to inject variables into your dom that can update fast
 so do props
+
+
+When passing functions or methods around, you always want to bind them using 'this'
