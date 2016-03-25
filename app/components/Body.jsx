@@ -4,7 +4,13 @@ export default class Body extends React.Component {
 
   render() {
     return (
-        <body><h3>Body</h3></body>
+        <body>
+          <ol>
+            <li>Cabbage</li>
+            <li>Tomatoes</li>
+            <li>Bread</li>
+          </ol>
+        </body>
     );
   }
 }

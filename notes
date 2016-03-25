@@ -51,3 +51,5 @@ so do props
 
 
 When passing functions or methods around, you always want to bind them using 'this'
+
+when binding a value, also set up change listener for that
