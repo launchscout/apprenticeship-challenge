@@ -26,38 +26,22 @@
         cart.push(item); //add users item to cart
       }
 
-      //tests addItemToCart function by invoking
-      addItemToCart("Apple", 1.22, 1);
-      // addItemToCart("Pear", 1.72, 3);
-      // addItemToCart("Apple", 1.22, 1);
-      // addItemToCart("Apple", 1.22, 3); //when users adds apples that exist already, add to existing amount
-      // console.log( cart[0].name );
-
       //in running addItemToCart test, I learned that count++ would not work because user may specify that
       //he or she may want to add 4 or 5 more apples. With count++, it only ever adds one at a time. 'count += count' adds
       //the amount the user specifies with the existing amount in the cart.
-
-
 
       function removeItemFromCart(name) {
         for (var i in cart) { //loop through each existing item in the cart
           if (cart[i].name === name) { //for each item in cart, compare to name of user's input
             cart[i].count -=1; //if identical, subtract one from exising count in cart
             if (cart[i].count <= 0) { //if the existing count is less or equal to 0,
-              cart[i].count = 0; //reassign that count to 0.
-              break; //ends function
+              cart.splice(i, 1); //remove one item at the array (so it doesn't show at all)
             }
+            break; //ends function
           }
         }
       }
 
-      //tests removeItemFromCart
-      // console.log(cart[0].count);
-      // removeItemFromCart("Apple");
-      // removeItemFromCart("Apple");
-      // removeItemFromCart("Apple");
-      // removeItemFromCart("Apple"); //At this point, a negative count is definetly achieved but value is reassigned to 0
-      // console.log(cart[0].count);
 
       //in running removeItemFromCart test, I learned that a user could delete so many
       //as to have a negative amount. I tested against this by reassigning any negative values back to 0.
@@ -66,37 +50,54 @@
       function removeItemFromCartAll(name) {
         for (var i in cart) { //loop through each existing item in the cart
           if (cart[i].name === name) { //for each item in cart, compare to name of user's input
-            cart[i].count = 0;// if identical, change count number to 0
+            cart.splice(i, 1);// if identical, remove the one item at the array
             break;  //ends function
           }
         }
       }
 
-      // test removeItemFromCartAll
-      // addItemToCart("Pear", 1.72, 2);
-      // console.log(cart[1].count); //count is 2
-      // removeItemFromCartAll("Pear");
-      // console.log(cart[1].count); //count is 0
+      addItemToCart("Pear", 1.72, 3);
+      addItemToCart("Pear", 1.72, 3);
+      addItemToCart("Apple", 1.22, 1);
+      addItemToCart("Apple", 1.22, 1);
+      addItemToCart("Banana", 1.00, 1);
+      addItemToCart("Car", 34.00, 1);
+      addItemToCart("Plush Toy", 5.82, 1);
+      addItemToCart("Sticky Notes", 4.00, 1);
+
+      console.log(cart.length);
+      console.log(cart);
+
+      removeItemFromCartAll("Car");
+
+      console.log(cart.length);
+      console.log(cart);
 
 
-      function updateItemFromCart(currentItemName, updatedItemName) {
-        for (var i in cart) {
-          if (cart[i].name === currentItemName) {
-            cart[i].name = updateItemFromCart
-            console.log(cart[i].name);
-          } else {
-            console.log('That item does not currently exist');
-          }
-        }
+      function clearCart() {
+        cart = [];
+        console.log('All items have been removed');
       }
 
-      console.log(cart[0].name);
-      updateItemFromCart("Apple", "Cherry");
-      console.log(cart[0].name);
 
-      //countCart() -> return total count
+      function countCart() {
+        var totalCount = 0;  //setting an initial value of 0...
+        for (var i in cart) {//loop through each existing item
+          totalCount += cart[i].count; //and add one for each existing item
+        }
+        return totalCount; //end function
+      }
 
-      //totalCart() -> return total cost
+
+      function totalCart() {
+        var totalCost = 0;
+        for (var i in cart) {
+            totalCost += cart[i].price;
+        }
+        return totalCost;
+      }
+
+
 
       //listCart() -> array of Item
 
