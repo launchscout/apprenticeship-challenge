@@ -60,22 +60,22 @@
         saveCart();
       }
 
-      addItemToCart("Pear", 1.72, 3);
-      addItemToCart("Pear", 1.72, 3);
-      addItemToCart("Apple", 1.22, 1);
-      addItemToCart("Apple", 1.22, 1);
-      addItemToCart("Banana", 1.00, 1);
-      addItemToCart("Car", 34.00, 1);
-      addItemToCart("Plush Toy", 5.82, 1);
-      addItemToCart("Sticky Notes", 4.00, 1);
-
-      console.log(cart.length);
-      console.log(cart);
-
-      removeItemFromCartAll("Car");
-
-      console.log(cart.length);
-      console.log(cart);
+      // addItemToCart("Pear", 1.72, 3);
+      // addItemToCart("Pear", 1.72, 3);
+      // addItemToCart("Apple", 1.22, 1);
+      // addItemToCart("Apple", 1.22, 1);
+      // addItemToCart("Banana", 1.00, 1);
+      // addItemToCart("Car", 34.00, 1);
+      // addItemToCart("Plush Toy", 5.82, 1);
+      // addItemToCart("Sticky Notes", 4.00, 1);
+      //
+      // console.log(cart.length);
+      // console.log(cart);
+      //
+      // removeItemFromCartAll("Car");
+      //
+      // console.log(cart.length);
+      // console.log(cart);
 
 
       function clearCart() {
@@ -102,7 +102,7 @@
         return totalCost;
       }
 
-
+      //revist
       function listCart() {
         var cartCopy = [];
         for (var i in cart) {
@@ -116,20 +116,29 @@
         return cartCopy;
       }
 
-      // Revisit video 12
+      // Revisit 12
       // **********************************
-      var array = listCart();
-      array[0].name = "Mistake";
-      console.log( array )
+      // var array = listCart();
+      // array[0].name = "Mistake";
+      // console.log( array );
 
 
 
+      //JSON converts JS objects and arrays into strings. These strings are saved
+      // to the users browsers (local storage) for them ro reference if they leave site and return to shop more
       function saveCart() {
         localStorage.setItem("shoppingCart", JSON.stringify(cart));
       }
 
+      // json parse opposite of stringify
+      function loadCart() {
+        cart = JSON.parse(localStorage.getItem("shoppingCart"));
+      }
 
-      //loadCart()
+      loadCart();
+
+      var array = listCart();
+      console.log(array);
 
 
     </script>
