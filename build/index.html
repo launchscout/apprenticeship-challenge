@@ -28,17 +28,16 @@
 
       //tests addItemToCart function by invoking
       addItemToCart("Apple", 1.22, 1);
-      addItemToCart("Pear", 1.72, 3);
-      addItemToCart("Apple", 1.22, 1);
-      addItemToCart("Apple", 1.22, 3); //when users adds apples that exist already, add to existing amount
+      // addItemToCart("Pear", 1.72, 3);
+      // addItemToCart("Apple", 1.22, 1);
+      // addItemToCart("Apple", 1.22, 3); //when users adds apples that exist already, add to existing amount
+      // console.log( cart[0].name );
 
       //in running addItemToCart test, I learned that count++ would not work because user may specify that
       //he or she may want to add 4 or 5 more apples. With count++, it only ever adds one at a time. 'count += count' adds
       //the amount the user specifies with the existing amount in the cart.
 
-      console.log(cart);
-      console.log( cart[0] );
-      console.log( cart[0].name );
+
 
       function removeItemFromCart(name) {
         for (var i in cart) { //loop through each existing item in the cart
@@ -53,17 +52,12 @@
       }
 
       //tests removeItemFromCart
-      console.log(cart[0].count);
-      removeItemFromCart("Apple");
-      removeItemFromCart("Apple");
-      removeItemFromCart("Apple");
-      removeItemFromCart("Apple");
-      removeItemFromCart("Apple");
-      removeItemFromCart("Apple");
-      removeItemFromCart("Apple");
-      removeItemFromCart("Apple");
-      removeItemFromCart("Apple"); //At this point, a negative count is definetly achieved but value is reassigned to 0
-      console.log(cart[0].count);
+      // console.log(cart[0].count);
+      // removeItemFromCart("Apple");
+      // removeItemFromCart("Apple");
+      // removeItemFromCart("Apple");
+      // removeItemFromCart("Apple"); //At this point, a negative count is definetly achieved but value is reassigned to 0
+      // console.log(cart[0].count);
 
       //in running removeItemFromCart test, I learned that a user could delete so many
       //as to have a negative amount. I tested against this by reassigning any negative values back to 0.
@@ -79,12 +73,26 @@
       }
 
       // test removeItemFromCartAll
-      addItemToCart("Pear", 1.72, 2);
-      console.log(cart[1].count); //count is 2
-      removeItemFromCartAll("Pear");
-      console.log(cart[1].count); //count is 0
+      // addItemToCart("Pear", 1.72, 2);
+      // console.log(cart[1].count); //count is 2
+      // removeItemFromCartAll("Pear");
+      // console.log(cart[1].count); //count is 0
 
-      //clearCart()
+
+      function updateItemFromCart(currentItemName, updatedItemName) {
+        for (var i in cart) {
+          if (cart[i].name === currentItemName) {
+            cart[i].name = updateItemFromCart
+            console.log(cart[i].name);
+          } else {
+            console.log('That item does not currently exist');
+          }
+        }
+      }
+
+      console.log(cart[0].name);
+      updateItemFromCart("Apple", "Cherry");
+      console.log(cart[0].name);
 
       //countCart() -> return total count
 
