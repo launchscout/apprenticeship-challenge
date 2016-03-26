@@ -17,7 +17,7 @@
 
       function addItemToCart(name, price, count) {
         for (var i in cart) { //loop through each existing (i)tem in cart
-          if (cart[i].name === name) { //for each (i)tem in cart compare to name of user input
+          if (cart[i].name === name) { //for each (i)tem in cart, compare to name of users input
               cart[i].count += count; //if names are identical, add users count to existing item's count
               return; //ends functions
           }
@@ -40,7 +40,33 @@
       console.log( cart[0] );
       console.log( cart[0].name );
 
-      //removeItemFromCart(name) -> removes one Item
+      function removeItemFromCart(name) {
+        for (var i in cart) { //loop through each existing item in the cart
+          if (cart[i].name === name) { // for each item in cart, compare to name of users input
+            cart[i].count -=1; //if identical, subtract one from exising count in cart
+            if (cart[i].count <= 0) { //if the existing count is less or equal to 0,
+              cart[i].count = 0; //reassign that count to 0.
+            }
+          }
+        }
+      }
+
+      // tests removeItemFromCart
+      console.log(cart[0].count);
+      removeItemFromCart("Apple");
+      removeItemFromCart("Apple");
+      removeItemFromCart("Apple");
+      removeItemFromCart("Apple");
+      removeItemFromCart("Apple");
+      removeItemFromCart("Apple");
+      removeItemFromCart("Apple");
+      removeItemFromCart("Apple");
+      removeItemFromCart("Apple");
+      console.log(cart[0].count);
+
+      // in running removeItemFromCart test, I learned that a user could delete so many
+      // as to have a negative amount. I tested against this by reassigning any negative values back to 0.
+
 
       //removeItemFromCartAll(name) -> removes all item name
 
