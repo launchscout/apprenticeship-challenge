@@ -24,11 +24,13 @@
         }
         var item = new Item(name, price, count); //creates users item
         cart.push(item); //add users item to cart
+        saveCart();
       }
 
       //in running addItemToCart test, I learned that count++ would not work because user may specify that
       //he or she may want to add 4 or 5 more apples. With count++, it only ever adds one at a time. 'count += count' adds
       //the amount the user specifies with the existing amount in the cart.
+
 
       function removeItemFromCart(name) {
         for (var i in cart) { //loop through each existing item in the cart
@@ -40,6 +42,7 @@
             break; //ends function
           }
         }
+        saveCart()
       }
 
 
@@ -54,6 +57,7 @@
             break;  //ends function
           }
         }
+        saveCart();
       }
 
       addItemToCart("Pear", 1.72, 3);
@@ -77,6 +81,7 @@
       function clearCart() {
         cart = [];
         console.log('All items have been removed');
+        saveCart();
       }
 
 
@@ -111,11 +116,18 @@
         return cartCopy;
       }
 
-      console.log( listCart() );
+      // Revisit video 12
+      // **********************************
+      var array = listCart();
+      array[0].name = "Mistake";
+      console.log( array )
 
 
 
-      //saveCart()
+      function saveCart() {
+        localStorage.setItem("shoppingCart", JSON.stringify(cart));
+      }
+
 
       //loadCart()
 
