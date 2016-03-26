@@ -11,7 +11,7 @@ export default class App extends React.Component {
 		super(props);
 
 		this.state = {
-			name: 'Shopping List',
+			name: '',
 			items: []
 		};
 	}
@@ -19,6 +19,10 @@ export default class App extends React.Component {
 	componentWillMount() {
 
 	  this.myFirebaseRef = new Firebase("https://crackling-inferno-2914.firebaseio.com/items");
+	  var shopListName = new Firebase("https://crackling-inferno-2914.firebaseio.com/shop_list")
+
+	  //ITEMS
+	  
 	  var that = this;
 	  this.myFirebaseRef.once("value", function(snapshot) {
 
@@ -35,6 +39,16 @@ export default class App extends React.Component {
 	  		that.setState({items: items});
 	  	});
 
+	  });
+
+	  //NAME
+
+	  shopListName.once("value", function(snapshot) {
+	  	snapshot.forEach(function(data){
+	  		var name = data.val();
+	  		
+	  		that.setState({name: name});
+  		});
 	  });
 
 	}
@@ -56,23 +70,13 @@ export default class App extends React.Component {
 
 	}
 
-	// addItem = (name, price) => {
-	// 	this.setState({
-	// 		items: this.state.items.concat([{
-	// 			sku: uuid.v4(),
-	// 			name: name,
-	// 			price: price
-	// 		}])
-	// 	});
-	// };
-
 	addItem = (name, price) => {
 		
 		var newItem = {
 			sku: uuid.v4(),
 			name: name,
 			price: price
-		}
+		}      
 
 		this.myFirebaseRef.push(newItem);
 
@@ -111,6 +115,7 @@ export default class App extends React.Component {
 		}
 
 		const name = this.state.name;
+
 		this.setState({name: val});
 
 	};	
