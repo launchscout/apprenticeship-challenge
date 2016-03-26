@@ -19,10 +19,10 @@ export default class App extends React.Component {
 	componentWillMount() {
 
 	  this.myFirebaseRef = new Firebase("https://crackling-inferno-2914.firebaseio.com/items");
-	  var shopListName = new Firebase("https://crackling-inferno-2914.firebaseio.com/shop_list")
+	  this.shopListName = new Firebase("https://crackling-inferno-2914.firebaseio.com/shop_list/name")
 
 	  //ITEMS
-	  
+
 	  var that = this;
 	  this.myFirebaseRef.once("value", function(snapshot) {
 
@@ -41,14 +41,14 @@ export default class App extends React.Component {
 
 	  });
 
-	  //NAME
+	  //LIST NAME
 
-	  shopListName.once("value", function(snapshot) {
-	  	snapshot.forEach(function(data){
-	  		var name = data.val();
+	  this.shopListName.once("value", function(snapshot) {
+	  	
+	  		var name = snapshot.val().name;
 	  		
 	  		that.setState({name: name});
-  		});
+  		
 	  });
 
 	}
@@ -115,6 +115,8 @@ export default class App extends React.Component {
 		}
 
 		const name = this.state.name;
+
+		this.shopListName.update({ name: val });
 
 		this.setState({name: val});
 
