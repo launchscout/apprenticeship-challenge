@@ -30,14 +30,14 @@ export default class List extends React.Component {
 	// this.refs.input. This can be useful when combined with
 	// React lifecycle hooks.
 		
-		return <input type="text"
+		return <h1><input type="text"
 				ref={
 				(e) => e ? e.selectionStart = this.props.name.length : null
 				}
 				autoFocus={true}
 				defaultValue={this.props.name}
 				onBlur={this.finishEdit}	
-				onKeyPress={this.checkEnter} />;
+				onKeyPress={this.checkEnter} /></h1>;
 	};
 
 	renderNote = () => {
@@ -45,7 +45,7 @@ export default class List extends React.Component {
 
 		return (
 			<div onClick={this.edit}>
-				<span>{this.props.name}</span>				
+				<h1>{this.props.name}</h1>				
 			</div>
 		);
 	};

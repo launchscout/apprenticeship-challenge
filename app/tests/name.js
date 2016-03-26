@@ -22,12 +22,12 @@ test('----- React Component Tests: Name -----', (t) => {
 	//Initial Render
 	renderer.render(<Name name="shopping" />);
 	let actualElement = renderer.getRenderOutput();
-	let expectedElement = <div onClick={function noRefCheck() {}}><span>shopping</span></div>;
+	let expectedElement = <div onClick={function noRefCheck() {}}><h1>shopping</h1></div>;
 
 	// Simulate Click
 	renderer.getRenderOutput().props.onClick();	
 	let clickedElement = renderer.getRenderOutput();
-	let clickedExpectedElement = <input  ref={function noRefCheck() {}}  autoFocus={true}  defaultValue="shopping"  onBlur={function noRefCheck() {}}  onKeyPress={function noRefCheck() {}}  type="text"/>;
+	let clickedExpectedElement = <h1><input  ref={function noRefCheck() {}}  autoFocus={true}  defaultValue="shopping"  onBlur={function noRefCheck() {}}  onKeyPress={function noRefCheck() {}}  type="text"/></h1>;
 
 
 	t.jsxEquals(actualElement, expectedElement);

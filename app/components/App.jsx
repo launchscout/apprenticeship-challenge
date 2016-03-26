@@ -5,6 +5,9 @@ import Name from './Name.jsx';
 import Form from './Form.jsx';
 import Firebase from "firebase";
 
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+
 export default class App extends React.Component {
   
 	constructor(props) {
@@ -60,11 +63,14 @@ export default class App extends React.Component {
 
 		return (
 			<div>
+				<Row>
+					<Col md={6} xsOffset={3}>
 
-				<Name name={name} onEdit={this.editName} />
-				<Form addItem={this.addItem}/>
-				<Items items={items} onDelete={this.deleteItem} />
-
+						<Name name={name} onEdit={this.editName} />
+						<Items items={items} onDelete={this.deleteItem} />
+						<Form addItem={this.addItem}/>
+					</Col>
+				</Row>
 			</div>
 		);
 
