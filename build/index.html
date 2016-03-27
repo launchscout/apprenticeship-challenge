@@ -60,23 +60,6 @@
         saveCart();
       }
 
-      // addItemToCart("Pear", 1.72, 3);
-      // addItemToCart("Pear", 1.72, 3);
-      // addItemToCart("Apple", 1.22, 1);
-      // addItemToCart("Apple", 1.22, 1);
-      // addItemToCart("Banana", 1.00, 1);
-      // addItemToCart("Car", 34.00, 1);
-      // addItemToCart("Plush Toy", 5.82, 1);
-      // addItemToCart("Sticky Notes", 4.00, 1);
-      //
-      // console.log(cart.length);
-      // console.log(cart);
-      //
-      // removeItemFromCartAll("Car");
-      //
-      // console.log(cart.length);
-      // console.log(cart);
-
 
       function clearCart() {
         cart = [];
@@ -95,9 +78,9 @@
 
 
       function totalCart() {
-        var totalCost = 0;
-        for (var i in cart) {
-            totalCost += cart[i].price;
+        var totalCost = 0;//starting at 0...
+        for (var i in cart) {//loop through each existing item
+            totalCost += cart[i].price;//and add price of exisiting item for each iteration
         }
         return totalCost;
       }
@@ -125,18 +108,19 @@
 
 
       //JSON converts JS objects and arrays into strings. These strings are saved
-      // to the users browsers (local storage) for them ro reference if they leave site and return to shop more
+      // to the users browsers (local storage) for them to reference if they leave
+      // site and return to shop more
       function saveCart() {
         localStorage.setItem("shoppingCart", JSON.stringify(cart));
       }
 
-      // json parse opposite of stringify
+      // JSON parse reverts the string of data saved on users browsers (local storage)
+      // back into JS object and arrays for the functions to read
       function loadCart() {
         cart = JSON.parse(localStorage.getItem("shoppingCart"));
       }
 
       loadCart();
-
       var array = listCart();
       console.log(array);
 
