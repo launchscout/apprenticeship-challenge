@@ -12,6 +12,7 @@
     <li><a class="add-to-cart" href="#" data-name="Apple" data-price="1.22">Apple $1.22</a></li>
     <li><a class="add-to-cart" href="#" data-name="Banana" data-price="22.33">Banana $1.33</a></li>
     <li><a class="add-to-cart" href="#" data-name="Shoe" data-price="5.22">Shoe $22.33</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Frisbee" data-price="5.22">Frisbee $5.22</a></li>
     <button id="clear-cart">Clear Cart</button>
 
 
@@ -24,6 +25,7 @@
 
     <script>
 
+      //when user clicks on class, it runs addItemToCart function
       $(".add-to-cart").click(function(event) {
           event.preventDefault(); //Prevents links from doing default behavior, in this case page refreshing
           const name = $(this).attr("data-name"); //this represents link you just clicked on, attr tells it to access an attribute in the a tag
@@ -34,7 +36,11 @@
       });
 
       function displayCart() {  //will fill show-cart with each item in car
+        console.log('*** Display Cart ***');
+
         var cartArray = listCart(); //get array from list cart
+        console.log("*** Count Cart:"+cartArray.length);
+        
         var output = "";
         for (var i in cartArray) { //loop through existing items in cart
           output += "<li>"+cartArray[i].name+" "+cartArray[i].count+" </li>" //for each existing item, return that particular name and count as a list html
@@ -162,8 +168,14 @@
       }
 
       loadCart();
+      displayCart(); //cart must load before you can display, therefore displayCart goes after loadCart
+
+
       var array = listCart();
+      console.log('-----');
       console.log(array);
+
+      // clearCart();
 
 
     </script>
