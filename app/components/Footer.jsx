@@ -4,7 +4,9 @@ export default class Footer extends React.Component {
 
   render() {
     return (
-        <footer><h4>Where shopping is a joy!</h4></footer>
+        <div><ul id="show-cart">
+        Where shopping is a joy!
+        </ul></div>
     );
   }
 }
