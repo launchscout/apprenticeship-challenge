@@ -18,12 +18,14 @@
 
     <div>
       <ul id="show-cart">
+
       </ul>
+      <div>Total Cart: $<span id="total-cart"></span></div>
     </div>
 
 
-
     <script>
+
 
       //when user clicks on class, it runs addItemToCart function
       $(".add-to-cart").click(function(event) {
@@ -35,19 +37,24 @@
           displayCart();
       });
 
-      function displayCart() {  //will fill show-cart with each item in car
-        console.log('*** Display Cart ***');
+      $("#clear-cart").click(function(event){
+        clearCart();
+        displayCart();
 
+      });
+
+      function displayCart() {  //will fill show-cart with each item in cart
         var cartArray = listCart(); //get array from list cart
-        console.log("*** Count Cart:"+cartArray.length);
-        
-        var output = "";
+        var output = ""; //defining what output is before loop so result can be appended with each loop
         for (var i in cartArray) { //loop through existing items in cart
-          output += "<li>"+cartArray[i].name+" "+cartArray[i].count+" </li>" //for each existing item, return that particular name and count as a list html
+          output += "<li>"+cartArray[i].name+" "+cartArray[i].count+" </li>" //for each existing item,
+          // append that particular name and count as a list into output variable which appended inside of #show-cart
         }
         $('#show-cart').html(output);
+        $('#total-cart').html( totalCart() );
 
       }
+
 
       // ************************************************************
 
@@ -64,6 +71,7 @@
         for (var i in cart) { //loop through each existing (i)tem in cart
           if (cart[i].name === name) { //for each (i)tem in cart, compare to name of users input
               cart[i].count += count; //if names are identical, add users count to existing item's count
+              saveCart();
               return; //ends functions
           }
         }
@@ -108,7 +116,6 @@
 
       function clearCart() {
         cart = [];
-        console.log('All items have been removed');
         saveCart();
       }
 
@@ -125,13 +132,13 @@
       function totalCart() {
         var totalCost = 0;//starting at 0...
         for (var i in cart) {//loop through each existing item
-            totalCost += cart[i].price;//and add price of exisiting item for each iteration
+            totalCost += cart[i].price * cart[i].count;//and add price of exisiting item for each iteration
         }
         return totalCost;
       }
 
 
-      //revist
+      // Revist 12
       function listCart() {
         var cartCopy = [];
         for (var i in cart) {
@@ -169,11 +176,6 @@
 
       loadCart();
       displayCart(); //cart must load before you can display, therefore displayCart goes after loadCart
-
-
-      var array = listCart();
-      console.log('-----');
-      console.log(array);
 
       // clearCart();
 
