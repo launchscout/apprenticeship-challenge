@@ -47,13 +47,33 @@
         var cartArray = listCart(); //get array from list cart
         var output = ""; //defining what output is before loop so result can be appended with each loop
         for (var i in cartArray) { //loop through existing items in cart
-          output += "<li>"+cartArray[i].name+" "+cartArray[i].count+" </li>" //for each existing item,
+          output += "<li>"+cartArray[i].name
+          +" "+cartArray[i].count
+          +" x "+cartArray[i].price
+          +" = "+cartArray[i].total
+          +" <button class='delete-item' data-name='"
+          +cartArray[i].name+"'>Remove one</button>"
+          +" <button class='delete-item-all' data-name='"
+          +cartArray[i].name+"'>Remove all</button>"
+          +"</li>" //for each existing item,
           // append that particular name and count as a list into output variable which appended inside of #show-cart
         }
         $('#show-cart').html(output);
         $('#total-cart').html( totalCart() );
 
       }
+
+      $("#show-cart").on("click", ".delete-item-all",function(event) { //when show-cart is clicked and a delete-item-all data-name is present, execute function
+          var name = $(this).attr("data-name");
+          removeItemFromCartAll(name);
+          displayCart();
+      });
+
+      $("#show-cart").on("click", ".delete-item",function(event) { //when show-cart is clicked and a delete-item-all data-name is present, execute function
+          var name = $(this).attr("data-name");
+          removeItemFromCart(name);
+          displayCart();
+      });
 
 
       // ************************************************************
@@ -132,9 +152,9 @@
       function totalCart() {
         var totalCost = 0;//starting at 0...
         for (var i in cart) {//loop through each existing item
-            totalCost += cart[i].price * cart[i].count;//and add price of exisiting item for each iteration
+            totalCost += cart[i].price * cart[i].count;//and add price of new item for each iteration to existing items
         }
-        return totalCost;
+        return totalCost.toFixed(2); // coverts output to string and rounds two decmials places, great for prices
       }
 
 
@@ -147,6 +167,9 @@
           for (var p in item) {
             itemCopy[p] = item[p];
           }
+
+          //Revisit 19
+          itemCopy.total = (item.price * item.count).toFixed(2); //will give subtotal for a count of items in cart (just total for that count of items)
           cartCopy.push(itemCopy);
         }
         return cartCopy;
