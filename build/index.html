@@ -31,8 +31,8 @@
       //when user clicks on class, it runs addItemToCart function
       $(".add-to-cart").click(function(event) {
           event.preventDefault(); //Prevents links from doing default behavior, in this case page refreshing
-          const name = $(this).attr("data-name"); //this represents link you just clicked on, attr tells it to access an attribute in the a tag
-          const price = Number ($(this).attr("data-price")); //Number converts string into integer
+          var name = $(this).attr("data-name"); //this represents link you just clicked on, attr tells it to access an attribute in the a tag
+          var price = Number ($(this).attr("data-price")); //Number converts string into integer
 
           shoppingCart.addItemToCart(name, price, 1);
           shoppingCart.displayCart();
@@ -100,13 +100,15 @@
         for (var i in cart) { //loop through each existing (i)tem in cart
           if (cart[i].name === name) { //for each (i)tem in cart, compare to name of users input
               cart[i].count += count; //if names are identical, add users count to existing item's count
-              shoppingCart.saveCart();
+              this.saveCart(); //whenever you call a method that's inside an oject, you can call it by
+              //typing 'this' (as opposed to shoppingCart - this refers to owner of method)
+              //using this is preferred because it's less hardcoding incase you ever decide to change object name
               return; //ends functions
           }
         }
-        var item = new shoppingCart.Item(name, price, count); //creates users item
+        var item = new this.Item(name, price, count); //creates users item
         cart.push(item); //add users item to cart
-        shoppingCart.saveCart();
+        this.saveCart();
       };
 
       //in running addItemToCart test, I learned that count++ would not work because user may specify that
@@ -123,7 +125,7 @@
             break; //ends function
           }
         }
-        shoppingCart.saveCart()
+        this.saveCart()
       };
 
       //in running removeItemFromCart test, I learned that a user could delete so many
@@ -136,13 +138,13 @@
             break;  //ends function
           }
         }
-        shoppingCart.saveCart();
+        this.saveCart();
       };
 
 
       shoppingCart.clearCart = function() {
         cart = [];
-        shoppingCart.saveCart();
+        this.saveCart();
       };
 
 
