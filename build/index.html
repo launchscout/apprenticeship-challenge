@@ -35,7 +35,7 @@
           const price = Number ($(this).attr("data-price")); //Number converts string into integer
 
           shoppingCart.addItemToCart(name, price, 1);
-          displayCart();
+          shoppingCart.displayCart();
       });
 
       $("#clear-cart").click(function(event){
@@ -104,7 +104,7 @@
               return; //ends functions
           }
         }
-        var item = new Item(name, price, count); //creates users item
+        var item = new shoppingCart.Item(name, price, count); //creates users item
         cart.push(item); //add users item to cart
         shoppingCart.saveCart();
       };
