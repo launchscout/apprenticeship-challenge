@@ -9,10 +9,10 @@
     <!-- <div id="app"></div> -->
 
 
-    <li><a class="add-to-cart" href="#" data-name="Apple" data-price="1.22">Apple $1.22</a></li>
-    <li><a class="add-to-cart" href="#" data-name="Banana" data-price="22.33">Banana $1.33</a></li>
-    <li><a class="add-to-cart" href="#" data-name="Shoe" data-price="5.22">Shoe $22.33</a></li>
-    <li><a class="add-to-cart" href="#" data-name="Frisbee" data-price="5.22">Frisbee $5.22</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Apple" data-price="2.50">Apple $2.50</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Banana" data-price="3.50">Banana $3.50</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Shoe" data-price="6.00">Shoe $6.00</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Frisbee" data-price="10.00">Frisbee $10.00</a></li>
     <button id="clear-cart">Clear Cart</button>
 
 
@@ -51,10 +51,12 @@
           +" "+cartArray[i].count
           +" x "+cartArray[i].price
           +" = "+cartArray[i].total
+          +" <button class='add-item' data-name='"
+          +cartArray[i].name+"'>Add one</button>"
           +" <button class='delete-item' data-name='"
-          +cartArray[i].name+"'>Remove one</button>"
+          +cartArray[i].name+"'>Remove one</button>" //button that is created with list that removes one item based on name
           +" <button class='delete-item-all' data-name='"
-          +cartArray[i].name+"'>Remove all</button>"
+          +cartArray[i].name+"'>Remove all</button>" //button that is created with list that removes all items based on name
           +"</li>" //for each existing item,
           // append that particular name and count as a list into output variable which appended inside of #show-cart
         }
@@ -63,15 +65,21 @@
 
       }
 
-      $("#show-cart").on("click", ".delete-item-all",function(event) { //when show-cart is clicked and a delete-item-all data-name is present, execute function
+      $("#show-cart").on("click", ".delete-item-all", function(event) { //when show-cart is clicked and a delete-item-all data-name is present, execute function
           var name = $(this).attr("data-name");
           removeItemFromCartAll(name);
           displayCart();
       });
 
-      $("#show-cart").on("click", ".delete-item",function(event) { //when show-cart is clicked and a delete-item-all data-name is present, execute function
+      $("#show-cart").on("click", ".delete-item", function(event) { //when show-cart is clicked and a delete-item data-name is present, execute function
           var name = $(this).attr("data-name");
           removeItemFromCart(name);
+          displayCart();
+      });
+
+      $("#show-cart").on("click", ".add-item", function(event) { //when show-cart is clicked and a add-item data-name is present, execute function
+          var name = $(this).attr("data-name");
+          addItemToCart(name, 0, 1);
           displayCart();
       });
 
