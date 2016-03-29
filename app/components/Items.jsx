@@ -1,12 +1,14 @@
 import React from 'react';
 import Item from './Item.jsx';
+import { connect } from 'react-redux'
 
-export default ({items, onEdit, onDelete}) => {
+// export default ({}) syntax === function parameter
+const Items = ({items, onEdit, onDelete}) => {
   return (
     <ul>{items.map(item =>
       <li key={item.id}>
         <Item 
-          body={item.body} 
+          text={item.text}
           onEdit={onEdit.bind(null, item.id)}
           onDelete={onDelete.bind(null, item.id)}
         />
@@ -14,3 +16,9 @@ export default ({items, onEdit, onDelete}) => {
     )}</ul>
   );
 }
+
+export default connect(
+  state => ({
+    items: state.items
+  })
+)(Items)
