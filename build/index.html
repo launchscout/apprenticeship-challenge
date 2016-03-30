@@ -2,31 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Kanban app</title>
   </head>
   <body>
-    <!-- <div id="app"></div> -->
+    <div id="app"></div>
 
-
-    <li><a class="add-to-cart" href="#" data-name="Apple" data-price="2.50">Apples</a></li>
-    <li><a class="add-to-cart" href="#" data-name="Banana" data-price="3.50">Bananas</a></li>
-    <li><a class="add-to-cart" href="#" data-name="Shoe" data-price="6.00">Shoes</a></li>
-    <li><a class="add-to-cart" href="#" data-name="Frisbee" data-price="10.00">Frisbees</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Apple" data-price="2.50" stock-keeping-unit="10101">Apples</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Banana" data-price="3.50" stock-keeping-unit="20202">Bananas</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Pear" data-price="4.00" stock-keeping-unit="30303">Pears</a></li>
+    <li><a class="add-to-cart" href="#" data-name="Orange" data-price="2.00" stock-keeping-unit="40404">Oranges</a></li>
     <button id="clear-cart">Clear Cart</button>
 
 
-    <div>
       <ul id="show-cart">
-
       </ul>
-      <div>Total Item(s): <span id="total-item"></span></div>
+      <div>Total Item(s): <span id="count-cart"></span></div>
       <div>Total Cost: $<span id="total-cart"></span></div>
-    </div>
 
-
-    <script>
-
+      <script>
       const shoppingCart = {};
 
       //when user clicks on class, it runs addItemToCart function
@@ -34,6 +30,8 @@
           event.preventDefault(); //Prevents links from doing default behavior, in this case page refreshing
           var name = $(this).attr("data-name"); //this represents link you just clicked on, attr tells it to access an attribute in the a tag
           var price = Number ($(this).attr("data-price")); //Number converts string into integer
+          var sku = Number ($(this).attr("stock-keeping-unit"));
+          console.log(price);
 
           shoppingCart.addItemToCart(name, price, 1);
           shoppingCart.displayCart();
@@ -49,7 +47,8 @@
         var cartArray = shoppingCart.listCart(); //get array from list cart
         var output = ""; //defining what output is before loop so result can be appended with each loop
         for (var i in cartArray) { //loop through existing items in cart
-          output += "<li>"+cartArray[i].name
+          output
+          +="<li>"+cartArray[i].name
           +" "+cartArray[i].count
           +" x "+cartArray[i].price
           +" = "+cartArray[i].total
@@ -64,7 +63,7 @@
         }
         $('#show-cart').html(output);
         $('#total-cart').html( shoppingCart.totalCart() );
-        $('#total-item').html( shoppingCart.countCart() );
+        $('#count-cart').html( shoppingCart.countCart() );
 
       }
 
@@ -153,7 +152,7 @@
       shoppingCart.countCart = function() {
         var totalCount = 0;  //setting an initial value of 0...
         for (var i in this.cart) {//loop through each existing item
-          totalCount += this.cart[i].count; //and add one for each existing item
+          totalCount += this.cart[i].count; //and add one for each existing item ('this refers to parent object')
         }
         return totalCount; //end function
       };
@@ -210,14 +209,7 @@
       shoppingCart.loadCart();
       shoppingCart.displayCart(); //cart must load before you can display, therefore displayCart goes after loadCart
 
-      console.log('Shopping Cart:');
-      console.log(shoppingCart.cart);
-      console.log('Global Cart:');
-      console.log(this.cart);
-
-
     </script>
-
-    <script src="./bundle.js"></script>
+    <!-- <script src="./bundle.js"></script> -->
   </body>
 </html>
