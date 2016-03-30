@@ -13,8 +13,11 @@ export default function lists(state = initialState, action) {
           return Object.assign({}, list, action)
         }
 
-        return list;
+        return list
       })
+    case types.DELETE_LIST:
+      return []
+
     default:
       return state;
   }

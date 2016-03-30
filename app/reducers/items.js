@@ -1,10 +1,9 @@
 import * as types from '../actions/items'
-import uuid from 'node-uuid'
+// import uuid from 'node-uuid'
 
 const initialState = []
 
-const items = (state = initialState, action) => {
-  console.log("Action.Type", action.type, "State", state)
+export default function items(state = initialState, action) {
   switch (action.type) {
     case types.CREATE_ITEM:
       //
@@ -17,16 +16,15 @@ const items = (state = initialState, action) => {
       //
       console.log("Inside Reducer", types.CREATE_ITEM, "<<< CREATE ITEM")
       return [
-        {
-          id: uuid.v4(),
-          text: action.text,
-          checked: false
-        }
-      ];
+        ...state,
+          {
+            id: action.id,
+            text: action.text,
+            complete: false
+          }
+        ]
 
     default:
       return state;
   }
  }
-
- export default items

@@ -1,10 +1,15 @@
-import React from 'react'
-import List from './List.jsx'
+// import React from 'react'
+// import List from './List.jsx'
 
-export default ({lists}) => {
-  return (
-    <div>{lists.map((list) =>
-      <List key={list.id} list={list}/>
-    )}</div>
-  )
-}
+// export default class Lists extends React.Componenet {
+  // renderList(list) {
+    // return <List key={`list${list}`}{...list} />
+  // }
+  // render() {
+    // const { lists, items, listActions, itemActions } = this.props.items
+
+    // return (
+      // <div key={list.id}>{lists.map(this.renderList)}</div>
+      // )
+  // }
+// }

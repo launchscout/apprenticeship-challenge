@@ -1,11 +1,11 @@
-import React from 'react'
-import uuid from 'node-uuid'
+// import React from 'react'
 // import Lists from './Lists.jsx';
-// import { createList } from '../actions/lists.js'
-import Items from './Items.jsx'
-import * as actions from '../actions/items'
-import { connect } from 'react-redux'
-import store from '../stores/store' 
+// import Items from './Items.jsx'
+// import { bindActionCreators } from 'react-redux'
+// import { connect } from 'react-redux'
+// import * as actions from '../actions/items'
+// import * as ListActions from '../actions/lists'
+// import * as ItemActions from '../actions/items'
 // import Rebase from 're-base';
 
 // const base = new Rebase.createClass('https://appshoppinglist.firebaseio.com/items/');
@@ -22,50 +22,58 @@ import store from '../stores/store'
   // } 
 // }
 
-export default class App extends React.Component { 
+// class App extends React.Component { 
+  // handleClick = () => {
+    // this.props.dispatch(actions.createItem())
+  // }
+
+  // render() {
+    // const { items, lists, dispatch } = this.props
+
+    // const listActions = bindActionCreators(ListActions, dispatch);
+    // const itemActions = bindActionCreators(ItemActions, dispatch);
+
+    // return (
+      // <div>
+        // <button onClick={listActions.createList.bind(null, { title: "New Shopping List" })}>+</button>
+        // <Lists lists={lists} items={items}
+          // listActions={listActions} itemActions={itemActions}
+        // />
+        // {[><Items items={items}/><]}
+      // </div>
+    // ); 
+  // }
+// }
+
+// function mapStateToProps(state) {
+  // return {
+    // lists: state.lists,
+    // items: state.items
+  // }
+// }
+
+// export default connect(mapStateToProps)(App)
+
+import React from 'react'
+import Items from './Items.jsx'
+import * as actions from '../actions/items'
+import { connect } from 'react-redux'
+
+class App extends React.Component { 
+  handleClick = () => {
+    this.props.dispatch(actions.createItem({text: "New Shopping Item"}))
+  }
+
   render() {
-    const { items } = this.props
+    
+    const { items, createItem, dispatch } = this.props
     return (
       <div>
-        <button onClick={store.dispatch({type: "CREATE_ITEM"})}>+</button>
-        <Items items={items}/>
+        <button onClick={this.handleClick}>+</button>
+        <Items items={items} />
       </div>
     ); 
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    craeteItem: () => {
-      console.log("Clicked")
-      // dispatch({type: CREATE_ITEM})
-    }
-  }
-}
-
-// export default connect(
-  // state => ({
-    // items: state.items
-  // }), { createItem })(App)
-
-// export default class App extends React.Component { 
-  // componentDidMount() {
-    // let { dispatch } = this.props
-
-    // let action = ItemsActionsCreators.createItem({text: "New Stuff"})
-    // dispatch(action)
-  // }
-  // render() {
-    // let { items, dispatch } = this.props
-
-    // let boundActionCreators = bindActionCreators(ItemsActionCreators, dispatch)
-    // console.log(boundActionCreators)
-    // return (
-      // <div>
-        // <button onClick={boundActionCreators}>+</button>
-        // <Items/>
-      // </div>
-    // ) 
-  // }
-// }
+export default connect(state => ({items: state.items}))(App)
 

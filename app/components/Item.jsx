@@ -82,13 +82,4 @@ export default class Item extends React.Component {
       })
     }
   }
-
-  addItem = () => {
-    this.setState({
-      items: this.state.items.concat([{
-        id: uuid.v4(),
-        text: "New Item"
-      }])
-    })
-  }
 }
