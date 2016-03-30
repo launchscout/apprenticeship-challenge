@@ -4,16 +4,15 @@ import { connect } from 'react-redux'
 
 // export default ({}) syntax === function parameter
 const Items = ({items, onEdit, onDelete}) => {
+  console.log(items, "<<<items")
   return (
     <ul>{items.map(item =>
-      <li key={item.id}>
-        <Item 
-          text={item.text}
-          onEdit={onEdit.bind(null, item.id)}
-          onDelete={onDelete.bind(null, item.id)}
-        />
-      </li>
-    )}</ul>
+     <li key={item.id}>
+       <Item 
+         text={item.text}
+       />
+     </li>
+   )}</ul>
   );
 }
 

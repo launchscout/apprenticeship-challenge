@@ -3,10 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App.jsx'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import ShoppingList from './reducers'
-
-let store = createStore(ShoppingList)
+import store from './stores/store'
 
 ReactDOM.render(
   <Provider store={store}>

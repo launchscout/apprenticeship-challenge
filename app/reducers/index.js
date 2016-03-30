@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import items from './reducer'
+import items from './items'
+import lists from './lists'
 
-const ShoppingList = combineReducers({
-  items
+const ShoppingListReducers = combineReducers({
+  items,
+  lists
 })
 
-export default ShoppingList
+export default ShoppingListReducers
