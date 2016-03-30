@@ -1,24 +1,80 @@
-// import React from 'react';
-// import {connect} from 'react-redux';
-// import Items from './Items.jsx';
+// import React from 'react'
+// import {connect} from 'react-redux'
+// import Items from './Items'
+// import Editor from './Editor'
 // import * as listActions from '../actions/lists';
-// import createItem from '../actions/items';
+// import * as itemActions from '../actions/items';
 
-// export default class List extends React.Component {
-  // render() {
-    // return (
-      // <div>
-        // <button onClick={this.addItem.bind(this, listId)}>+</button>
-        // <Items />
-      // </div>
-    // )
+// class List extends React.Component {
+  // handleUpdateClick = () => {
+    // this.props.updateLit({id: listId, isEditing: true})
   // }
-  // addItem(listId, event) {
-    // event.stopPropagation()
+  
+  // handleAddItem = () => {
+    // this.props.addItem(listId)
+  // }
 
-    // const stuff = this.props.createItem({
-      // text: "New Shopping Item"
-    // })
-    // this.props.joinToList(listId, stuff.item.id);
+  // handleDeleteList = () => {
+    // this.props.deleteList(listId)
+  // }
+
+  // deleteList(listId, e) {
+    // e.stopPropagation();
+
+    // this.props.deleteList(listId);
+  // }
+
+  // addItem(listId, e) {
+    // e.stopPropagation();
+
+    // const o = this.props.createItem({
+      // task: 'New Shopping Item'
+    // });
+    // this.props.connectToList(listId, o.item.id);
+  // }
+
+  // deleteItem(listId, itemId) {
+    // this.props.disconnectFromList(listId, itemId);
+    // this.props.deleteItem(itemId);
+  // }
+
+  // render() {
+    // const {list, listItems, ...props} = this.props
+    // const listId = list.id
+
+    // console.log("listItem>>>>", listItem)
+    // return (
+      // <div {...props}>
+        // <div
+          // onClick={this.handleUpdateClick}>
+          // <div>
+            // <button onClick={this.handleAddItem}>+</button>
+          // </div>
+          // <Editor isEditing={list.isEditing}
+            // value={list.title}
+            // onEdit={title => props.updateList({id: listId, title, isEditing: false})} 
+          // />
+          // <div>
+            // <button onClick={this.handleDeleteList}>x</button>
+          // </div>
+        // </div>
+        // <Items
+          // items={listItems}
+          // onValueClick={id => props.updateItem({id, isEditing: true})}
+          // onEdit={(id, task) => props.updateItem({id, task, isEditing: false})}
+          // onDelete={id => this.deleteItem(listId, id)}
+        // />
+      // </div>
+    // );
   // }
 // }
+
+// function mapStateToProps(state) {
+  // return {
+    // lists: state.lists,
+    // items: state.items
+  // }
+// }
+
+// export default connect(mapStateToProps)(App)
+

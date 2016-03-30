@@ -1,7 +1,6 @@
 import uuid from 'node-uuid'
 
 export const CREATE_ITEM = 'CREATE_ITEM'
-
 export function createItem(item) {
   return {
     type: CREATE_ITEM,
@@ -10,17 +9,19 @@ export function createItem(item) {
   }
 }
 
-// export function updateItem(id, text) {
-  // return {
-    // type: UPDATE_ITEM,
-    // id,
-    // text
-  // }
-// }
+export const UPDATE_ITEM = 'UPDATE_ITEM'
+export function updateItem(id, text) {
+  return {
+    type: UPDATE_ITEM,
+    id,
+    text
+  }
+}
 
-// export function deleteItem(id) {
-  // return {
-    // type: DELETE_ITEM,
-    // id
-  // }
-// }
+export const DELETE_ITEM = "DELETE_ITEM"
+export function deleteItem(id) {
+  return {
+    type: DELETE_ITEM,
+    id
+  }
+}

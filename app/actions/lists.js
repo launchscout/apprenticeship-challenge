@@ -2,7 +2,7 @@
 // export function createList(list) {
   // return {
     // type: CREATE_LIST,
-    // lane
+    // list
   // }
 // }
 

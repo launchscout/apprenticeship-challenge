@@ -6,15 +6,6 @@ const initialState = []
 export default function items(state = initialState, action) {
   switch (action.type) {
     case types.CREATE_ITEM:
-      //
-      // http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html
-      // https://github.com/sebmarkbage/ecmascript-rest-spread
-      // spread operator
-      //
-      // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-      // we could potentially use this syntax as well
-      //
-      console.log("Inside Reducer", types.CREATE_ITEM, "<<< CREATE ITEM")
       return [
         ...state,
           {
@@ -23,6 +14,18 @@ export default function items(state = initialState, action) {
             complete: false
           }
         ]
+
+    case types.UPDATE_ITEM:
+      return state.map((item) => {
+        if(item.id === action.id) {
+          return Object.assign({}, item, action);
+        }
+
+        return item;
+      });
+
+    case types.DELETE_ITEM:
+      return state.filter((item) => item.id !== action.id);
 
     default:
       return state;
