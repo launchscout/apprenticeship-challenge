@@ -53,3 +53,19 @@ so do props
 When passing functions or methods around, you always want to bind them using 'this'
 
 when binding a value, also set up change listener for that
+
+Austen Notes:
+Every component must have a render
+This refers to component name
+Props are not changed within that component - only states are. Props
+  can be changed from outisde tho. It's a read only property
+getinitialstate is the initial state function of a component before anything
+  happens on page
+
+  getInitialState: function() {
+  return {items: [], text: ''};
+},
+
+componentdidmount runs once you add information to the component
+
+setState forces your component to re-render

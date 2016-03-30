@@ -1,0 +1,200 @@
+{/*<li><a class="add-to-cart" href="#" data-name="Apple" data-price="2.50" stock-keeping-unit="10101">Apples</a></li>
+ <li><a class="add-to-cart" href="#" data-name="Banana" data-price="3.50" stock-keeping-unit="20202">Bananas</a></li>
+ <li><a class="add-to-cart" href="#" data-name="Pear" data-price="4.00" stock-keeping-unit="30303">Pears</a></li>
+ <li><a class="add-to-cart" href="#" data-name="Orange" data-price="2.00" stock-keeping-unit="40404">Oranges</a></li>
+ <button id="clear-cart">Clear Cart</button>
+
+
+   <ul id="show-cart">
+   </ul>
+   <div>Total Item(s): <span id="count-cart"></span></div>
+   <div>Total Cost: $<span id="total-cart"></span></div>*/}
+
+  {/*<script>
+   const shoppingCart = {};
+
+   //when user clicks on class, it runs addItemToCart function
+   $(".add-to-cart").click(function(event) {
+       event.preventDefault(); //Prevents links from doing default behavior, in this case page refreshing
+       var name = $(this).attr("data-name"); //this represents link you just clicked on, attr tells it to access an attribute in the a tag
+       var price = Number ($(this).attr("data-price")); //Number converts string into integer
+       var sku = Number ($(this).attr("stock-keeping-unit"));
+       console.log(price);
+
+       shoppingCart.addItemToCart(name, price, 1);
+       shoppingCart.displayCart();
+   });
+
+   $("#clear-cart").click(function(event){
+     shoppingCart.clearCart();
+     shoppingCart.displayCart();
+
+   });
+
+   shoppingCart.displayCart = function() {  //will fill show-cart with each item in cart
+     var cartArray = shoppingCart.listCart(); //get array from list cart
+     var output = ""; //defining what output is before loop so result can be appended with each loop
+     for (var i in cartArray) { //loop through existing items in cart
+       output
+       +="<li>"+cartArray[i].name
+       +" "+cartArray[i].count
+       +" x "+cartArray[i].price
+       +" = "+cartArray[i].total
+       +" <button class='add-item' data-name='"
+       +cartArray[i].name+"'>Add one</button>"
+       +" <button class='delete-item' data-name='"
+       +cartArray[i].name+"'>Remove one</button>" //button that is created with list that removes one item based on name
+       +" <button class='delete-item-all' data-name='"
+       +cartArray[i].name+"'>Remove all</button>" //button that is created with list that removes all items based on name
+       +"</li>" //for each existing item,
+       // append that particular name and count as a list into output variable which appended inside of #show-cart
+     }
+     $('#show-cart').html(output);
+     $('#total-cart').html( shoppingCart.totalCart() );
+     $('#count-cart').html( shoppingCart.countCart() );
+
+   }
+
+   $("#show-cart").on("click", ".delete-item-all", function(event) { //when show-cart is clicked and a delete-item-all data-name is present, execute function
+       var name = $(this).attr("data-name");
+       shoppingCart.removeItemFromCartAll(name);
+       shoppingCart.displayCart();
+   });
+
+   $("#show-cart").on("click", ".delete-item", function(event) { //when show-cart is clicked and a delete-item data-name is present, execute function
+       var name = $(this).attr("data-name");
+       shoppingCart.removeItemFromCart(name);
+       shoppingCart.displayCart();
+   });
+
+   $("#show-cart").on("click", ".add-item", function(event) { //when show-cart is clicked and a add-item data-name is present, execute function
+       var name = $(this).attr("data-name");
+       shoppingCart.addItemToCart(name, 0, 1);
+       shoppingCart.displayCart();
+   });
+
+
+   // ************************************************************
+   // Shopping Cart Functions
+
+   shoppingCart.cart = [];
+
+   shoppingCart.Item = function(name, price, count) {
+     this.name = name
+     this.price = price
+     this.count = count
+   };
+
+   shoppingCart.addItemToCart = function(name, price, count) {
+     for (var i in this.cart) { //loop through each existing (i)tem in cart
+       if (this.cart[i].name === name) { //for each (i)tem in cart, compare to name of users input
+           this.cart[i].count += count; //if names are identical, add users count to existing item's count
+           this.saveCart(); //whenever you call a method that's inside an oject, you can call it by
+           //typing 'this' (as opposed to shoppingCart - this refers to owner of method)
+           //using this is preferred because it's less hardcoding incase you ever decide to change object name
+           return; //ends functions
+       }
+     }
+     var item = new this.Item(name, price, count); //creates users item
+     this.cart.push(item); //add users item to cart
+     this.saveCart();
+   };
+
+   //in running addItemToCart test, I learned that count++ would not work because user may specify that
+   //he or she may want to add 4 or 5 more apples. With count++, it only ever adds one at a time. 'count += count' adds
+   //the amount the user specifies with the existing amount in the cart.
+
+   shoppingCart.removeItemFromCart = function(name) {
+     for (var i in this.cart) { //loop through each existing item in the cart
+       if (this.cart[i].name === name) { //for each item in cart, compare to name of user's input
+         this.cart[i].count -=1; //if identical, subtract one from exising count in cart
+         if (this.cart[i].count <= 0) { //if the existing count is less or equal to 0,
+           this.cart.splice(i, 1); //remove one item at the array (so it doesn't show at all)
+         }
+         break; //ends function
+       }
+     }
+     this.saveCart()
+   };
+
+   //in running removeItemFromCart test, I learned that a user could delete so many
+   //as to have a negative amount. I tested against this by reassigning any negative values back to 0.
+
+   shoppingCart.removeItemFromCartAll = function(name) {
+     for (var i in this.cart) { //loop through each existing item in the cart
+       if (this.cart[i].name === name) { //for each item in cart, compare to name of user's input
+         this.cart.splice(i, 1);// if identical, remove the one item at the array
+         break;  //ends function
+       }
+     }
+     this.saveCart();
+   };
+
+
+   shoppingCart.clearCart = function() {
+     this.cart = [];
+     this.saveCart();
+   };
+
+
+   shoppingCart.countCart = function() {
+     var totalCount = 0;  //setting an initial value of 0...
+     for (var i in this.cart) {//loop through each existing item
+       totalCount += this.cart[i].count; //and add one for each existing item ('this refers to parent object')
+     }
+     return totalCount; //end function
+   };
+
+
+   shoppingCart.totalCart = function() {
+     var totalCost = 0;//starting at 0...
+     for (var i in this.cart) {//loop through each existing item
+         totalCost += this.cart[i].price * this.cart[i].count;//and add price of new item for each iteration to existing items
+     }
+     return totalCost.toFixed(2); // coverts output to string and rounds two decmials places, great for prices
+   };
+
+
+   // Revist 12
+   shoppingCart.listCart = function() {
+     var cartCopy = [];
+     for (var i in this.cart) {
+       var item = this.cart[i];
+       var itemCopy = {};
+       for (var p in item) {
+         itemCopy[p] = item[p];
+       }
+
+       //Revisit 19
+       itemCopy.total = (item.price * item.count).toFixed(2); //will give subtotal for a count of items in cart (just total for that count of items)
+       cartCopy.push(itemCopy);
+     }
+     return cartCopy;
+   }
+
+
+   // Revisit 12
+   // **********************************
+   // var array = listCart();
+   // array[0].name = "Mistake";
+   // console.log( array );
+
+
+
+   //JSON converts JS objects and arrays into strings. These strings are saved
+   // to the users browsers (local storage) for them to reference if they leave
+   // site and return to shop more
+    shoppingCart.saveCart = function() {
+     localStorage.setItem("shoppingCart", JSON.stringify(this.cart));
+   }
+
+   // JSON parse reverts the string of data saved on users browsers (local storage)
+   // back into JS object and arrays for the functions to read
+    shoppingCart.loadCart = function() {
+     this.cart = JSON.parse(localStorage.getItem("shoppingCart"));
+   }
+
+   shoppingCart.loadCart();
+   shoppingCart.displayCart(); //cart must load before you can display, therefore displayCart goes after loadCart
+
+ </script>*/}
