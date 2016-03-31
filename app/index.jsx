@@ -2,6 +2,7 @@ import './main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Navigation } from 'react-router';
+import { History } from 'react-router'; // allows for push state for routes
 import { browserHistory } from 'react-router'; //loads code to do push state
 import helpers from './helpers';
 
@@ -54,10 +55,19 @@ var Inventory = React.createClass({
 });
 
 var StorePicker = React.createClass({
-
+  goToStore : function(event) {
+    // prevents submit button from going into post and changing pages. note 'event' in function parameter also necessary
+    event.preventDefault();
+    // get data from input
+    var storeId = this.refs.storeId.value; //ref refers to reference input in input html.
+  },
+ // ADDRESS THIS BUG!!!! WHY DOESN'T ROUTES RENDER GO TO STORE
+  handleSubmit() {
+  browserHistory.push(null, '/store/' + storeId);
+  },
   render : function() {
       return (
-        <form className= "store-selector">
+        <form className= "store-selector" onSubmit={this.goToStore}>
         {/*creating the store*/}
           <h2>Please Enter a Store</h2>
           <input type='text' ref='storeId' defaultValue={helpers.getFunName()} required/>
