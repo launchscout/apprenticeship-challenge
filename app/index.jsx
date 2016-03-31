@@ -2,7 +2,6 @@ import './main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Navigation } from 'react-router';
-import { History } from 'react-router'; // allows for push state for routes
 import { browserHistory } from 'react-router'; //loads code to do push state
 import helpers from './helpers';
 
@@ -60,10 +59,11 @@ var StorePicker = React.createClass({
     event.preventDefault();
     // get data from input
     var storeId = this.refs.storeId.value; //ref refers to reference input in input html.
+    browserHistory.push('/store/' + storeId);
   },
- // ADDRESS THIS BUG!!!! WHY DOESN'T ROUTES RENDER GO TO STORE
   handleSubmit() {
-  browserHistory.push(null, '/store/' + storeId);
+    console.log('This is happening');
+
   },
   render : function() {
       return (
