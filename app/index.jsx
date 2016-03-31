@@ -3,8 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Navigation } from 'react-router';
 import { browserHistory } from 'react-router'; //loads code to do push state
-import './helpers';
-
+import helpers from './helpers';
 
 
 var App = React.createClass({
@@ -57,12 +56,11 @@ var Inventory = React.createClass({
 var StorePicker = React.createClass({
 
   render : function() {
-    var name = "Robert";
       return (
         <form className= "store-selector">
         {/*creating the store*/}
-          <h2>Please Enter a Store, {name}</h2>
-          <input type='text' ref='storeID' value='' required/>
+          <h2>Please Enter a Store</h2>
+          <input type='text' ref='storeId' defaultValue={helpers.getFunName()} required/>
           <input type='Submit'/>
         </form>
       )
