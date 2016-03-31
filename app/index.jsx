@@ -7,7 +7,20 @@ import helpers from './helpers';
 
 
 var App = React.createClass({
-
+  //react lifescycle. Before anything populates, what is it's initial state:
+  getInitialState : function() {
+    return {
+      fishes : {},
+      order : {}
+    }
+  },
+  addFish : function(fish) {
+    var timestamp = (new Date()).getTime();
+    //update state object
+    this.state.fishes['fish-' + timestamp] = fish;
+    //set the state
+    this.setState({ fishes : this.state.fishes });
+  },
   render : function() {
     var name = "Robert";
       return (
@@ -16,16 +29,17 @@ var App = React.createClass({
             <Header tagline="Fresh Seafood Market" />
           </div>
             <Order/>
-            <Inventory/>
+            {/*to have access to addFish, we must travel across methods/components*/}
+            <Inventory addFish={this.addFish}/>
         </div>
       )
   }
 });
-
 var AddFishForm = React.createClass({
-
   createFish : function(event) {
+    // 1. stop the form from submitting defaultly
     event.preventDefault();
+    // 2. Take the data from the form and create an object
     var fish = {
       name : this.refs.name.value,
       price : this.refs.status.value,
@@ -33,10 +47,9 @@ var AddFishForm = React.createClass({
       desc : this.refs.desc.value,
       image : this.refs.image.value
     }
-    console.log(fish);
-
+    // 3. add the fish to the app state
+    this.props.addFish(fish);
   },
-
   render : function() {
     return (
       <form className="fish-edit" onSubmit={this.createFish}>
@@ -48,7 +61,7 @@ var AddFishForm = React.createClass({
         </select>
         <textarea type="text" ref="desc" placeholder="Desc"></textarea>
         <input type="text" ref="image" placeholder="URL to Image" />
-        <button type="submit"> Add Item</button>
+        <button type="submit">Add Item</button>
       </form>
     )
   }
@@ -82,7 +95,9 @@ var Inventory = React.createClass({
     return (
       <div>
       <h2>Inventory!</h2>
-      <AddFishForm/>
+      {/*to have access to addFish, we must travel across methods/components*/}
+      <AddFishForm addFish={this.props.children} />
+      {/*... this spread adds all of the props from the current component to child components*/}
       </div>
     )
   }
@@ -95,10 +110,6 @@ var StorePicker = React.createClass({
     // get data from input
     var storeId = this.refs.storeId.value; //ref refers to reference input in input html.
     browserHistory.push('/store/' + storeId);
-  },
-  handleSubmit() {
-    console.log('This is happening');
-
   },
   render : function() {
       return (
