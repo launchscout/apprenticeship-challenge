@@ -1,6 +1,9 @@
 import './main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, Navigation } from 'react-router';
+import { browserHistory } from 'react-router'; //loads code to do push state
+
 
 
 var App = React.createClass({
@@ -10,7 +13,7 @@ var App = React.createClass({
       return (
         <div className="catch-of-the-day">
           <div className="menu">
-            <Header />
+            <Header tagline="Fresh Seafood Market" />
           </div>
             <Order/>
             <Inventory/>
@@ -22,8 +25,12 @@ var App = React.createClass({
 var Header = React.createClass({
 
   render : function() {
+
     return (
-      <p>Header!</p>
+      <header className="top">
+        <h1>Catch of the Day</h1>
+        <h3 className="tagline">{this.props.tagline}</h3>
+      </header>
     )
   }
 });
@@ -53,7 +60,7 @@ var StorePicker = React.createClass({
       return (
         <form className= "store-selector">
         {/*creating the store*/}
-          <h2>Please Enter a Store {name}</h2>
+          <h2>Please Enter a Store, {name}</h2>
           <input type='text' ref='storeID' required/>
           <input type='Submit'/>
         </form>
@@ -61,4 +68,26 @@ var StorePicker = React.createClass({
   }
 });
 
-ReactDOM.render(<App />, document.getElementById('app'));
+
+var NotFound = React.createClass({
+
+  render : function() {
+    return (
+      <p> 404 not found</p>
+    )
+  }
+});
+
+/*
+Routes
+*/
+
+var routes = (
+  <Router history={browserHistory} >
+    <Route path="/" component={StorePicker}/>
+    <Route path="/store/:storeId" component={App}/>
+    <Route path="*" component={NotFound}/>
+  </Router>
+)
+
+ReactDOM.render(routes, document.getElementById('app'));
