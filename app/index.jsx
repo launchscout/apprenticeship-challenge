@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router'; //loads code to do push state
 import helpers from './helpers';
 
 
+
 var App = React.createClass({
   //react lifescycle. Before anything populates, what is it's initial state:
   getInitialState : function() {
@@ -21,15 +22,26 @@ var App = React.createClass({
     //set the state
     this.setState({ fishes : this.state.fishes });
   },
+  loadSamples : function() {
+    this.setState({
+      fishes : require('./sample-fishes')
+    });
+  },
+  renderFish : function(key) {
+    return <li>Welcome {key}</li>
+  },
   render : function() {
       return (
         <div className="catch-of-the-day">
           <div className="menu">
             <Header tagline="Fresh Seafood Market" />
+              <ul className="list-of-fishes">
+                {Object.keys(this.state.fishes).map(this.renderFish)}
+              </ul>
           </div>
             <Order/>
             {/*to have access to addFish, we must travel across methods/components*/}
-            <Inventory addFish={this.addFish}/>
+            <Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
         </div>
       )
   }
@@ -99,6 +111,7 @@ var Inventory = React.createClass({
       {/*to have access to addFish, we must travel across methods/components*/}
       <AddFishForm {...this.props}/>
       {/*... this spread adds all of the props from the current component to child components*/}
+      <button onClick={this.props.loadSamples}>Load Sample Fishes</button>
       </div>
     )
   }
