@@ -1,9 +1,9 @@
-import React from 'react'
-// import Lists from './Lists';
-import Items from './Items'
-import { connect } from 'react-redux'
-// import * as actions from '../actions/lists'
-import * as actions from '../actions/items'
+// import React from 'react'
+// // import Lists from './Lists';
+// import Items from './Items'
+// import { connect } from 'react-redux'
+// // import * as actions from '../actions/lists'
+// import * as actions from '../actions/items'
 // import Rebase from 're-base';
 
 // const base = new Rebase.createClass('https://appshoppinglist.firebaseio.com/items/');
@@ -26,24 +26,48 @@ import * as actions from '../actions/items'
 
 // export default connect(state => ({ lists: state.lists }))(App)
 
-class App extends React.Component {
-  handleClick = () => {
-    this.props.dispatch(actions.createItem({text: "New Shopping Item"}))
-  }
+///////////////////////////////////////////////////////////////////////////////////////
+// Hand click stuff here?
+///////////////////////////////////////////////////////////////////////////////////////
+// class App extends React.Component {
+  // handleClick = () => {
+    // this.props.dispatch(actions.createItem({text: "New Shopping Item"}))
+  // }
 
-  render() {
-    const items = this.props
+  // onValueClick = () => {
 
-    return (
-      <div>
-        <button onClick={this.handleClick}>+</button>
-        <Items items={items}/>
-      </div>
-    ); 
-  } 
-}
+    // console.log("Inside app onValueClick")
+  // }
 
-export default connect(state => ({ items: state.items }))(App)
+  // onEdit = () => {
+    // this.props.dispatch(actions.updateItem(this.state.text))
+    // console.log("text>>>",this.state.text)
+    // console.log("Inside app onEdit")
+  // }
+
+  // onDelete = () => {
+    // console.log("Inside app onDelete")
+  // }
+
+
+  // render() {
+    // const items = this.props
+
+    // return (
+      // <div>
+        // <button onClick={this.handleClick}>+</button>
+        // <Items 
+          // items={items}
+          // onValueClick={this.onValueClick}
+          // onEdit={this.onEdit} 
+          // onDelete={this.onDelete}
+        // />
+      // </div>
+    // ); 
+  // } 
+// }
+
+// export default connect(state => ({ items: state.items }))(App)
 
 // class App extends React.Component { 
   // handleClick = () => {
@@ -77,25 +101,25 @@ export default connect(state => ({ items: state.items }))(App)
 
 // export default connect(mapStateToProps)(App)
 
-// import React from 'react'
-// import Items from './Items.jsx'
-// import * as actions from '../actions/items'
-// import { connect } from 'react-redux'
+import React from 'react'
+import Items from './Items.jsx'
+import * as actions from '../actions/items'
+import { connect } from 'react-redux'
 
-// class App extends React.Component { 
-  // handleClick = () => {
-    // this.props.dispatch(actions.createItem({text: "New Shopping Item"}))
-  // }
+class App extends React.Component { 
+  handleClick = () => {
+    this.props.dispatch(actions.createItem({text: "New Shopping Item"}))
+  }
 
-  // render() {
-    
-    // const { items, createItem, dispatch } = this.props
-    // return (
-      // <div>
-        // <button onClick={this.handleClick}>+</button>
-        // <Items items={items} />
-      // </div>
-    // ); 
-  // }
-// }
-// export default connect(state => ({items: state.items}))(App)
+  render() {
+    const { items, createItem, dispatch } = this.props
+
+    return (
+      <div>
+        <button onClick={this.handleClick}>+</button>
+        <Items items={items} />
+      </div>
+    ); 
+  }
+}
+export default connect(state => ({items: state.items}))(App)

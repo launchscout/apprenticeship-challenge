@@ -1,20 +1,36 @@
 import React from 'react';
 import Item from './Item.jsx';
 import { connect } from 'react-redux'
-import Editor from './Editor'
+import * as actions from '../actions/items'
 
-// export default ({}) syntax === function parameter
-const Items = ({items, onEdit, onDelete}) => {
-  return (
-    <ul>{items.map(item =>
-      <li key={item.id}>
-        <Item
-          text={item.text}
-        />
-      </li>
-   )}</ul>
-  );
+export default class Items extends React.Component {
+
+  handleOnEdit = (id, text) => {
+    this.props.dispatch(actions.updateItem(id, text))
+  }
+
+  handleOnDelete = () => {
+    console.log("")
+  }
+
+  render() {
+    const {items, onEdit, onDelete } = this.props
+
+    return (
+      <ul>{items.map(item =>
+        <li key={item.id}>
+          <Item
+            id={item.id}
+            text={item.text}
+            onEdit={this.handleOnEdit}
+            onDelete={this.handleOnDelete}
+          />
+        </li>
+      )}</ul>
+    );
+  }
 }
+
 
 export default connect(
   state => ({
@@ -30,11 +46,10 @@ export default connect(
 // import { connect } from 'react-redux'
 // import Editor from './Editor'
 // import Item from './Item';
-// import { store } from '../stores/store'
 
 // export default class Items extends React.Component {
   // render () {
-    // const {items, onEdit, onDelete, onValueClick} = this.props
+    // const {items, onEdit, onDelete, onValueClick, isEditing} = this.props
 
     // return (
       // <ul>{items.map(item =>
@@ -45,9 +60,7 @@ export default connect(
           // <Editor
             // isEditing={item.isEditing}
             // value={item.text}
-            // onValueClick={onValueClick.bind(null, item.id)}
-            // onEdit={onEdit.bind(null, item.id)}
-            // onDelete={onDelete.bind(null, item.id)}
+            // onValueClick={id => updateItem({id, editing: true})}
           // />
         // </Item>
       // )}</ul>

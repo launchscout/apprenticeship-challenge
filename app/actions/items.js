@@ -11,6 +11,7 @@ export function createItem(item) {
 
 export const UPDATE_ITEM = 'UPDATE_ITEM'
 export function updateItem(id, text) {
+  // debugger
   return {
     type: UPDATE_ITEM,
     id,
