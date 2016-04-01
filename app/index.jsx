@@ -49,8 +49,8 @@ var AddFishForm = React.createClass({
       image : this.refs.image.value
     }
     // 3. add the fish to the app state
+    this.props.addFish(fish);
     // this.refs.fishForm.reset();
-    console.log(this.props);
   },
   render : function() {
     return (
