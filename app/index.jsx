@@ -28,7 +28,7 @@ var App = React.createClass({
     });
   },
   renderFish : function(key) {
-    return <li>Welcome {key}</li>
+    return <Fish key={key} index={key} details={this.state.fishes[key]} />
   },
   render : function() {
       return (
@@ -46,6 +46,22 @@ var App = React.createClass({
       )
   }
 
+});
+
+var Fish = React.createClass({
+  render : function() {
+    var details = this.props.details;
+    return (
+      <li className="menu-fish">
+        <img src={this.props.details.image} alt={details.name}></img>
+        <h3 className="fish-name">
+          {details.name}
+          <span className="price">{details.price}</span>
+        </h3>
+        <p>{details.desc}</p>
+      </li>
+    )
+  }
 });
 
 var AddFishForm = React.createClass({
