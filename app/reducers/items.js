@@ -15,18 +15,18 @@ export default function items(state = initialState, action) {
         ]
 
     case types.UPDATE_ITEM:
-      return state.map((item => {
+      return state.map((item) => {
         if(item.id === action.id) {
-          return Object.assign({}, item, action);
+          return Object.assign({}, item, action)
         }
 
-        return item;
-      }));
+        return item
+      });
 
     case types.DELETE_ITEM:
-      return state.filter((item) => item.id !== action.id);
+      return state.filter((item) => item.id !== action.id )
 
     default:
-      return state;
+      return state
   }
  }

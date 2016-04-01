@@ -9,8 +9,8 @@ export default class Items extends React.Component {
     this.props.dispatch(actions.updateItem(id, text))
   }
 
-  handleOnDelete = () => {
-    console.log("")
+  handleOnDelete = (id) => {
+    this.props.dispatch(actions.deleteItem(id))
   }
 
   render() {
@@ -23,14 +23,13 @@ export default class Items extends React.Component {
             id={item.id}
             text={item.text}
             onEdit={this.handleOnEdit}
-            onDelete={this.handleOnDelete}
+            onDelete={this.handleOnDelete.bind(null, item.id)}
           />
         </li>
       )}</ul>
     );
   }
 }
-
 
 export default connect(
   state => ({

@@ -112,7 +112,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { items, createItem, dispatch } = this.props
+    const { items, createItem } = this.props
 
     return (
       <div>

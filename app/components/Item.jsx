@@ -46,8 +46,7 @@ export default class Item extends React.Component {
 
     return (
       <div onClick={this.edit}>
-        <span>{this.props.text}</span>
-        {onDelete ? this.renderDelete() : null }
+        <span>{this.props.text}</span> {onDelete ? this.renderDelete() : null}
       </div>
     )
   }
@@ -72,10 +71,10 @@ export default class Item extends React.Component {
   // leave editing state
   finishEdit = (e) => {
     const value = e.target.value
-    let id = this.props.id
+    const id = this.props.id
 
     if(this.props.onEdit) {
-      this.props.onEdit(id, value) // need to get the proper id from here?
+      this.props.onEdit(id, value)
 
       this.setState({
         isEditing: false
