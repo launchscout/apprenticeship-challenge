@@ -97,7 +97,7 @@ var Inventory = React.createClass({
       <div>
       <h2>Inventory!</h2>
       {/*to have access to addFish, we must travel across methods/components*/}
-      <AddFishForm addFish={this.addFish}/>
+      <AddFishForm {...this.props}/>
       {/*... this spread adds all of the props from the current component to child components*/}
       </div>
     )
