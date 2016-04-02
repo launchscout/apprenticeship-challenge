@@ -1,13 +1,14 @@
 import React from 'react';
 import Item from './Item.jsx';
 
-  export default ({items, onEdit}) => {
+  export default ({items, onEdit, onDelete}) => {
     return (
-      <ul>{items.map(item =>
-        <li key={item.id}>
+      <ul className="items">{items.map(item =>
+        <li className="item" key={item.id}>
           <Item
             name={item.name}
-            onEdit={onEdit.bind(null, item.id)} />
+            onEdit={onEdit.bind(null, item.id)}
+            onDelete={onDelete.bind(null, item.id)}/>
         </li>
       )}</ul>
     );

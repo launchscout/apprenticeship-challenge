@@ -30,11 +30,22 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <button onClick={this.addItem}>Add Item</button>
-        <Items items={items} onEdit={this.editItem} />
+        <button className="add-item" onClick={this.addItem}>Add Item</button>
+        <Items items={items}
+          onEdit={this.editItem}
+          onDelete={this.deleteItem} />
       </div>
     );
   }
+
+  deleteItem = (id, e) => {
+    // Avoid bubbling to edit
+    e.stopPropagation();
+
+    this.setState({
+      items: this.state.items.filter(item => item.id !== id)
+    });
+  };
 
   addItem = () => {
     this.setState({

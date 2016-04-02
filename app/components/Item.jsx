@@ -30,7 +30,20 @@ export default class Note extends React.Component {
 
    renderItem = () => {
       // If the user clicks a normal note, trigger editing logic.
-      return <div onClick={this.edit}>{this.props.name}</div>;
+      const onDelete = this.props.onDelete;
+
+      return (
+        <div onClick={this.edit}>
+          <span className="name">{this.props.name}</span>
+          {onDelete ? this.renderDelete() : null}
+        </div>
+        )
+    };
+    renderDelete = () => {
+      // attach a delete button to each Note and then trigger onDelete
+      return <button
+        className="delete-item"
+        onClick={this.props.onDelete}>x</button>;
     };
 
     edit = () => {
