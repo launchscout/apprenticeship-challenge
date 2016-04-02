@@ -6,13 +6,9 @@ import Editor from './Editor'
 import * as listActionCreators from '../actions/lists'
 import * as itemActionCreators from '../actions/items'
 
-//////////////////////////////////////////////////////////////////////////
-// Start on list
-//////////////////////////////////////////////////////////////////////////
-
 export default class List extends React.Component {
   render() {
-    const { list, listItems, updateList, ...props } = this.props
+    const { list, updateList, ...props } = this.props
     const listId = list.id
 
     return (
@@ -30,14 +26,20 @@ export default class List extends React.Component {
           </div>
         </div>
         <Items
-          items={listItems}
-          onValueClick={id => props.updateItem({id, isEditing: true})}
-          onEdit={(id, text) => props.updateItem({id, text, isEditing: false})}
-          onDelete={id => this.deleteItem(listId, id)}
+          {/*}items={this.listItems} NOT WORKING */}
+          onValueClick={id => props.itemActions.updateItem({id, isEditing: true})}
+          onEdit={(id, text) => props.itemActions.updateItem({id, text, isEditing: false})}
+          onDelete={itemId => this.deleteItem(listId, itemId)}
         />
       </div>
     )
   }
+
+  // listItems() {
+    // props.list.items.map(id => state.items[
+      // state.items.findIndex(item => item.id === id)
+    // ]).filter(item => item)
+  // }
 
   deleteList(listId, e) {
     e.stopPropagation()
@@ -56,8 +58,8 @@ export default class List extends React.Component {
   }
 
   deleteItem(listId, itemId) {
-    this.props.disconnectFromList(listId, itemId)
-    this.props.deleteItem(listId)
+    this.props.listActions.disconnectFromList(listId, itemId)
+    this.props.itemActions.deleteItem(itemId)
   }
 }
 

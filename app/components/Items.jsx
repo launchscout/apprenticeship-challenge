@@ -1,5 +1,5 @@
-// import React from 'react';
-// import Item from './Item.jsx';
+// import React from 'react'
+// import Item from './Item.jsx'
 // import { connect } from 'react-redux'
 // import * as actions from '../actions/items'
 
@@ -30,7 +30,7 @@
           // />
         // </li>
       // )}</ul>
-    // );
+    // )
   // }
 // }
 
@@ -44,10 +44,10 @@
 //  Items-list stuff
 ///////////////////////////////////////////////////////////////////
 
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import Editor from './Editor'
-import Item from './Item';
+import Item from './Item'
 
 export default class Items extends React.Component {
   render () {

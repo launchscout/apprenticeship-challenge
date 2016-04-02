@@ -2,9 +2,8 @@ import React from 'react'
 
 export default class Item extends React.Component {
   render() {
-
     const { id, isEditing, ...props } = this.props
-    console.log("ID", id, "PROPS", props)
+
     return (
       <li {...props}>{props.children}</li>
     )
@@ -46,11 +45,11 @@ export default class Item extends React.Component {
         // />
       // </div>
     // )
-  // };
+  // }
 
   // renderDelete = () => {
     // return <button onClick={this.props.onDelete}>deleteItem</button>
-  // };
+  // }
 
   // // called in render()
   // // normal state without editing
