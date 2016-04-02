@@ -1,5 +1,7 @@
-import React from 'react';
 import uuid from 'node-uuid';
+import React from 'react';
+import Item from './Item.jsx';
+import Items from './Items.jsx';
 
 
 export default class App extends React.Component {
@@ -9,15 +11,15 @@ export default class App extends React.Component {
       items: [
         {
           id: uuid.v4(),
-          selection: 'dog food'
+          name: 'dog food'
         },
         {
           id: uuid.v4(),
-          selection: 'apples'
+          name: 'apples'
         },
         {
           id: uuid.v4(),
-          selection: 'work on pj'
+          name: 'work on pj'
         }
       ]
     };
@@ -29,9 +31,7 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.addItem}>Add Item</button>
-        <ul>{items.map(item =>
-          <li key={item.id}>{item.selection}</li>
-        )}</ul>
+        <Items items={items} />
       </div>
     );
   }
@@ -40,7 +40,7 @@ export default class App extends React.Component {
     this.setState({
       items: this.state.items.concat([{
         id: uuid.v4(),
-        selection: "New Item"
+        name: "New Item"
       }])
     });
   }

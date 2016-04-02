@@ -1,3 +1,4 @@
 import React from 'react';
 
-export default () => <div>Learn React and Webpack!</div>;
+  //component definition
+  export default ({name}) => <div>{name}</div>;
