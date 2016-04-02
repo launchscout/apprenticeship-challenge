@@ -1,6 +1,6 @@
 import uuid from 'node-uuid';
 import React from 'react';
-import Item from './Item.jsx';
+// import Item from './Item.jsx';
 import Items from './Items.jsx';
 
 
@@ -31,7 +31,7 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.addItem}>Add Item</button>
-        <Items items={items} />
+        <Items items={items} onEdit={this.editItem} />
       </div>
     );
   }
@@ -43,7 +43,23 @@ export default class App extends React.Component {
         name: "New Item"
       }])
     });
-  }
+  };
+
+  editItem = (id, name) => {
+    if(!name.trim()) {
+      return;
+    }
+
+    const items = this.state.items.map(item => {
+      if(item.id === id && name) {
+        item.name = name
+      }
+      return item;
+    });
+
+    this.setState({items});
+  };
+
 
 
 }

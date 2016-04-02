@@ -1,11 +1,13 @@
 import React from 'react';
 import Item from './Item.jsx';
 
-  export default ({items}) => {
+  export default ({items, onEdit}) => {
     return (
       <ul>{items.map(item =>
         <li key={item.id}>
-          <Item name={item.name} />
+          <Item
+            name={item.name}
+            onEdit={onEdit.bind(null, item.id)} />
         </li>
       )}</ul>
     );
