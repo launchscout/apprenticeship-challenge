@@ -5,6 +5,10 @@ import { Router, Route, Navigation } from 'react-router';
 import { browserHistory } from 'react-router'; //loads code to do push state
 import helpers from './helpers';
 
+// Firebase
+import Rebase from 're-base';
+var base = Rebase.createClass('https://shining-heat-8806.firebaseio.com/');
+
 
 
 var App = React.createClass({
@@ -15,8 +19,19 @@ var App = React.createClass({
       order : {}
     }
   },
+  componentDidMount : function() {
+    base.syncState(this.props.params.storeId + '/fishes', {
+      context : this,
+      state : 'fishes'
+    }); // takes your state in React and synce with Firebase
+  },
   addToOrder : function(key) {
     this.state.order[key] = this.state.order[key] + 1 || 1; //neat logic trick that avoids having to write is statements
+    //if the above exists, simply add 1. If if doesn't, make the value to be one
+    this.setState({ order : this.state.order }); //remember: state does not PASS until it says setState
+  },
+  removeFromOrder : function(key) {
+    this.state.order[key] = this.state.order[key] - 1 || 0; //neat logic trick that avoids having to write is statements
     //if the above exists, simply add 1. If if doesn't, make the value to be one
     this.setState({ order : this.state.order }); //remember: state does not PASS until it says setState
   },
