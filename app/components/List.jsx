@@ -36,28 +36,28 @@ export default class List extends React.Component {
           onDelete={id => this.deleteItem(listId, id)}
         />
       </div>
-    );
+    )
   }
 
   deleteList(listId, e) {
-    e.stopPropagation();
+    e.stopPropagation()
 
-    this.props.deleteList(listId);
+    this.props.listActions.deleteList(listId)
   } 
 
   addItem(listId, event) {
-    event.stopPropagation();
+    event.stopPropagation()
 
-    const item = this.props.createItem({
-      task: 'New Shopping Item'
-    });
+    const item = this.props.itemActions.createItem({
+      text: 'New Shopping Item'
+    })
 
-    this.props.connectToList(listId, item.id);
+    this.props.listActions.connectToList(listId, item.id)
   }
 
   deleteItem(listId, itemId) {
-    this.props.disconnectFromList(listId, itemId);
-    this.props.deleteItem(listId);
+    this.props.disconnectFromList(listId, itemId)
+    this.props.deleteItem(listId)
   }
 }
 

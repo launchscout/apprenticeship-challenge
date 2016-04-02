@@ -15,10 +15,8 @@ export default function lists(state = initialState, action) {
       ]
 
     case types.UPDATE_LIST:
-      // debugger
       return state.map((list) => {
         if(list.id === action.id) {
-          console.log("LIST>>>>", list)
           return Object.assign({}, list, action)
         }
 
@@ -26,43 +24,42 @@ export default function lists(state = initialState, action) {
       })
 
     case types.DELETE_LIST:
-      return []
+      return state.filter((list) => list.id !== action.id)
 
     case types.CONNECT_TO_LIST:
-      const listId = action.listId;
-      const itemId = action.itemId;
+      const listId = action.listId
+      const itemId = action.itemId
 
       return state.map((list) => {
-        const index = list.items.indexOf(itemId);
+        const index = list.items.indexOf(itemId)
 
         if(index >= 0) {
           return Object.assign({}, list, {
             items: list.items.length > 1 ? list.items.slice(0, index).concat(
-              list.items.slice(index + 1)
-            ): []
-          });
+              list.items.slice(index + 1)): []
+          })
         }
         if(list.id === listId) {
           return Object.assign({}, list, {
             items: [...list.items, itemId]
-          });
+          })
         }
 
-        return list;
-      });
+        return list
+      })
 
     case types.DISCONNECT_FROM_LIST:
       return state.map((list) => {
         if(list.id === action.listId) {
           return Object.assign({}, list, {
             items: list.items.filter((id) => id !== action.itemId)
-          });
+          })
         }
 
-        return list;
-      });
+        return list
+      })
 
     default:
-      return state;
+      return state
   }
 }
