@@ -1,59 +1,68 @@
-// import * as types from '../actions/lists'
+import * as types from '../actions/lists'
 
-// const initialState = []
+const initialState = []
 
-// export default function lists(state = initialState, action) {
-  // switch (action.type) {
-    // case types.CREATE_LIST:
-      // return [...state, action.list]
+export default function lists(state = initialState, action) {
+  switch (action.type) {
+    case types.CREATE_LIST:
+      return [
+        ...state,
+        {
+          id: action.id,
+          title: action.title,
+          items: action.items || []
+        }
+      ]
 
-    // case types.UPDATE_LIST:
-      // return state.map((list) => {
-        // if(list.id === action.id) {
-          // return Object.assign({}, list, action)
-        // }
+    case types.UPDATE_LIST:
+      // debugger
+      return state.map((list) => {
+        if(list.id === action.id) {
+          console.log("LIST>>>>", list)
+          return Object.assign({}, list, action)
+        }
 
-        // return list
-      // })
+        return list
+      })
 
-    // case types.DELETE_LIST:
-      // return []
+    case types.DELETE_LIST:
+      return []
 
-    // case types.CONNECT_TO_LIST:
-      // const listId = action.listId;
-      // const itemId = action.itemId;
+    case types.CONNECT_TO_LIST:
+      const listId = action.listId;
+      const itemId = action.itemId;
 
-      // return state.map((list) => {
-        // const index = list.items.indexOf(itemId);
+      return state.map((list) => {
+        const index = list.items.indexOf(itemId);
 
-        // if(index >= 0) {
-          // return Object.assign({}, list, {
-            // items: list.items.length > 1 ? list.items.slice(0, index).concat(
-              // list.items.slice(index + 1)
-            // ): []
-          // });
-        // }
-        // if(list.id === listId) {
-          // return Object.assign({}, list, {
-            // items: [...list.items, itemId]
-          // });
-        // }
+        if(index >= 0) {
+          return Object.assign({}, list, {
+            items: list.items.length > 1 ? list.items.slice(0, index).concat(
+              list.items.slice(index + 1)
+            ): []
+          });
+        }
+        if(list.id === listId) {
+          return Object.assign({}, list, {
+            items: [...list.items, itemId]
+          });
+        }
 
-        // return list;
-      // });
+        return list;
+      });
 
-    // case types.DISCONNECT_FROM_LIST:
-      // return state.map((list) => {
-        // if(list.id === action.listId) {
-          // return Object.assign({}, list, {
-            // items: list.items.filter((id) => id !== action.itemId)
-          // });
-        // }
+    case types.DISCONNECT_FROM_LIST:
+      return state.map((list) => {
+        if(list.id === action.listId) {
+          return Object.assign({}, list, {
+            items: list.items.filter((id) => id !== action.itemId)
+          });
+        }
 
-        // return list;
-      // });
+        return list;
+      });
 
-    // default:
-      // return state;
-  // }
-// }
+    default:
+      return state;
+  }
+}

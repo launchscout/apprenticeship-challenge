@@ -1,80 +1,78 @@
-// import React from 'react'
-// import {connect} from 'react-redux'
-// import Items from './Items'
-// import Editor from './Editor'
-// import * as listActions from '../actions/lists';
-// import * as itemActions from '../actions/items';
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import Items from './Items'
+import Editor from './Editor'
+import * as listActionCreators from '../actions/lists'
+import * as itemActionCreators from '../actions/items'
 
-// class List extends React.Component {
-  // handleUpdateClick = () => {
-    // this.props.updateLit({id: listId, isEditing: true})
-  // }
-  
-  // handleAddItem = () => {
-    // this.props.addItem(listId)
-  // }
+//////////////////////////////////////////////////////////////////////////
+// Start on list
+//////////////////////////////////////////////////////////////////////////
 
-  // handleDeleteList = () => {
-    // this.props.deleteList(listId)
-  // }
+export default class List extends React.Component {
+  render() {
+    const { list, listItems, updateList, ...props } = this.props
+    const listId = list.id
 
-  // deleteList(listId, e) {
-    // e.stopPropagation();
+    return (
+      <div {...props}>
+        <div onClick={() => props.listActions.updateList({id: listId, isEditing: true})}>
+          <div>
+            <button onClick={this.addItem.bind(this, listId)}>AddItem</button>
+          </div>
+          <Editor isEditing={list.isEditing}
+            value={list.title}
+            onEdit={title => props.listActions.updateList({id: listId, title, isEditing: false})} 
+          />
+          <div>
+            <button onClick={this.deleteList.bind(this, listId)}>DeleteList</button>
+          </div>
+        </div>
+        <Items
+          items={listItems}
+          onValueClick={id => props.updateItem({id, isEditing: true})}
+          onEdit={(id, text) => props.updateItem({id, text, isEditing: false})}
+          onDelete={id => this.deleteItem(listId, id)}
+        />
+      </div>
+    );
+  }
 
-    // this.props.deleteList(listId);
-  // }
+  deleteList(listId, e) {
+    e.stopPropagation();
 
-  // addItem(listId, e) {
-    // e.stopPropagation();
+    this.props.deleteList(listId);
+  } 
 
-    // const o = this.props.createItem({
-      // task: 'New Shopping Item'
-    // });
-    // this.props.connectToList(listId, o.item.id);
-  // }
+  addItem(listId, event) {
+    event.stopPropagation();
 
-  // deleteItem(listId, itemId) {
-    // this.props.disconnectFromList(listId, itemId);
-    // this.props.deleteItem(itemId);
-  // }
+    const item = this.props.createItem({
+      task: 'New Shopping Item'
+    });
 
-  // render() {
-    // const {list, listItems, ...props} = this.props
-    // const listId = list.id
+    this.props.connectToList(listId, item.id);
+  }
 
-    // console.log("listItem>>>>", listItem)
-    // return (
-      // <div {...props}>
-        // <div
-          // onClick={this.handleUpdateClick}>
-          // <div>
-            // <button onClick={this.handleAddItem}>+</button>
-          // </div>
-          // <Editor isEditing={list.isEditing}
-            // value={list.title}
-            // onEdit={title => props.updateList({id: listId, title, isEditing: false})} 
-          // />
-          // <div>
-            // <button onClick={this.handleDeleteList}>x</button>
-          // </div>
-        // </div>
-        // <Items
-          // items={listItems}
-          // onValueClick={id => props.updateItem({id, isEditing: true})}
-          // onEdit={(id, task) => props.updateItem({id, task, isEditing: false})}
-          // onDelete={id => this.deleteItem(listId, id)}
-        // />
-      // </div>
-    // );
-  // }
-// }
+  deleteItem(listId, itemId) {
+    this.props.disconnectFromList(listId, itemId);
+    this.props.deleteItem(listId);
+  }
+}
 
-// function mapStateToProps(state) {
-  // return {
-    // lists: state.lists,
-    // items: state.items
-  // }
-// }
+function mapStateToProps(state) {
+  return {
+    lists: state.lists,
+    items: state.items
+  }
+}
 
-// export default connect(mapStateToProps)(App)
+function mapDispatchToProps(dispatch) {
+  return {
+    listActions: bindActionCreators(listActionCreators, dispatch),
+    itemActions: bindActionCreators(itemActionCreators, dispatch)
+  }
+}
 
+export default connect(mapStateToProps, mapDispatchToProps)(List)
