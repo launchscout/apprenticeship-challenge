@@ -4,7 +4,6 @@
   "description": "Webpack demo app",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
     "start": "node index.js",
     "dev": "webpack-dev-server --inline --hot"
   },

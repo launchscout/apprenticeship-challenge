@@ -27,17 +27,16 @@ var App = React.createClass({
       state : 'fishes'
     }); // takes your state in React and syncs with Firebase
 
-    var localStorageRef = localStorage.getItem('order-' + this.props.
-      params.storeId);
-
-      if(localStorage) {
+    var localStorageRef = localStorage.getItem('order-' + this.props.params.storeId);
+      if(localStorageRef) {
         this.setState ({
-          order : JSON.parse(localStorageRef)
+          order: JSON.parse(localStorageRef)
         });
       }
 
   },
   componentWillUpdate : function(nextProps, nextState) {
+    console.log(nextState);
     localStorage.setItem('order-' + this.props.params.storeId, JSON.stringify(nextState.order));
   },
   addToOrder : function(key) {
