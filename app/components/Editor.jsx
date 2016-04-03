@@ -13,7 +13,8 @@ export default class Editor extends React.Component {
 
   renderEdit = () => {
     return (
-      <input type="text"
+      <input 
+        type="text"
         ref={(event) => event ? event.selectionStart = this.props.value.length : null}
         autoFocus={true}
         defaultValue={this.props.value}
@@ -28,14 +29,14 @@ export default class Editor extends React.Component {
 
     return (
       <div onClick={this.props.onValueClick}>
-        <span>{this.props.value}</span>
+        <span className="value">{this.props.value}</span>
         {onDelete ? this.renderDelete() : null }
       </div>
     )
   }
 
   renderDelete = () => {
-    return <button onClick={this.props.onDelete}>x</button>
+    return <button className="delete" onClick={this.props.onDelete}>x</button>
   }
 
   checkEnter = (event) => {

@@ -1,0 +1,89 @@
+///////////////////////////////////////////
+// Base
+///////////////////////////////////////////
+
+body
+  background: cornsilk
+  // margin: 1em
+
+///////////////////////////////////////////
+// List
+///////////////////////////////////////////
+
+.list
+  display: inline-block
+  margin: 1em
+  border: 1px solid #ccc
+  border-radius: 0.5em
+  min-width: 10em
+  vertical-align: top
+
+.list-header
+  overflow: auto
+  padding: 1em
+  color: #efefef
+  background-color: #333
+  border-top-left-radius: 0.5em
+  border-top-right-radius: 0.5em
+
+.list-title
+  float: left
+
+.list-add-item
+  float: left
+  margin-right: 0.5em
+
+.list-delete
+  float: right
+  margin-left: 0.5em
+  visibility: hidden
+
+.list-header:hover .list-delete
+  visibility: visible
+
+///////////////////////////////////////////
+// Item
+///////////////////////////////////////////
+
+.items
+  margin: 0.5em 0em 0.5em 1.2em
+  padding-left: 0
+  max-width: 10em
+  list-style: none
+
+.item
+  margin-bottom: 0.5em
+  padding: 0.5em
+  background-color: #fdfdfd
+  box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.3)
+  &:hover
+    box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.7)
+    transition: .6s
+  .value
+    display: inline-block
+  .delete
+    float: right
+    padding: 0
+    background-color: #fdfdfd
+    border: none
+    cursor: pointer
+    visibility: hidden
+  &:hover .delete
+    visibility: visible
+
+///////////////////////////////////////////
+// Button
+///////////////////////////////////////////
+
+.add-list, .list-add-item button
+  cursor: pointer
+  background-color: #fdfdfd
+  border: 1px solid #ccc
+
+.list-delete button
+  padding: 0
+  cursor: pointer
+  color: white
+  background-color: rgba(0, 0, 0, 0)
+  border: 0
+

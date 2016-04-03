@@ -54,8 +54,9 @@ export default class Items extends React.Component {
     const {items, onEdit, onDelete, onValueClick, isEditing} = this.props
 
     return (
-      <ul>{items.map(item =>
+      <ul className="items">{items.map(item =>
         <Item 
+          className="item"
           key={item.id}
           id={item.id}
           isEditing={item.isEditing}>
