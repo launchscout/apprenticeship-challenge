@@ -1,29 +1,29 @@
-import uuid from 'node-uuid';
+// import uuid from 'node-uuid';
 import React from 'react';
 // import Item from './Item.jsx';
 import Items from './Items.jsx';
 
 
+import ItemActions from '../actions/ItemActions';
+import ItemStore from '../stores/ItemStore';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: [
-        {
-          id: uuid.v4(),
-          name: 'dog food'
-        },
-        {
-          id: uuid.v4(),
-          name: 'apples'
-        },
-        {
-          id: uuid.v4(),
-          name: 'work on pj'
-        }
-      ]
-    };
+    this.state = ItemStore.getState();
   }
+
+  componentDidMount() {
+    ItemStore.listen(this.storeChanged);
+  }
+
+  componentWillUnmount() {
+    ItemStore.unlisten(this.storeChanged);
+  }
+
+  storeChanged = (state) => {
+    this.setState(state);
+  };
 
   render() {
     const items = this.state.items;
@@ -39,38 +39,21 @@ export default class App extends React.Component {
   }
 
   deleteItem = (id, e) => {
-    // Avoid bubbling to edit
     e.stopPropagation();
 
-    this.setState({
-      items: this.state.items.filter(item => item.id !== id)
-    });
-  };
+    ItemActions.delete(id)
+  }
 
   addItem = () => {
-    this.setState({
-      items: this.state.items.concat([{
-        id: uuid.v4(),
-        name: "New Item"
-      }])
-    });
-  };
+    ItemActions.create({name: 'New Name'});
+  }
 
   editItem = (id, name) => {
     if(!name.trim()) {
       return;
     }
 
-    const items = this.state.items.map(item => {
-      if(item.id === id && name) {
-        item.name = name
-      }
-      return item;
-    });
-
-    this.setState({items});
+   ItemActions.update({id, name})
   };
-
-
 
 }
