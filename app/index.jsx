@@ -1,9 +1,10 @@
-import './main.css';
+import './css/main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Navigation } from 'react-router';
 import { browserHistory } from 'react-router'; //loads code to do push state
 import helpers from './helpers';
+import Catalyst from 'react-catalyst';
 
 // Firebase
 import Rebase from 're-base';
@@ -12,6 +13,7 @@ var base = Rebase.createClass('https://shining-heat-8806.firebaseio.com/');
 
 
 var App = React.createClass({
+  mixins: [Catalyst.LinkedStateMixin],
   //react lifescycle. Before anything populates, what is it's initial state:
   getInitialState : function() {
     return {
@@ -24,14 +26,22 @@ var App = React.createClass({
       context : this,
       state : 'fishes'
     }); // takes your state in React and synce with Firebase
+
+    var localStorageRef = localStorage.getItem('order-' + this.props.
+      params.storeId);
+
+      if(localStorage) {
+        this.setState ({
+          order : JSON.parse(localStorageRef)
+        });
+      }
+
+  },
+  componentWillUpdate : function(nextProps, nextState) {
+    localStorage.setItem('order-' + this.props.params.storeId, JSON.stringify(nextState.order));
   },
   addToOrder : function(key) {
     this.state.order[key] = this.state.order[key] + 1 || 1; //neat logic trick that avoids having to write is statements
-    //if the above exists, simply add 1. If if doesn't, make the value to be one
-    this.setState({ order : this.state.order }); //remember: state does not PASS until it says setState
-  },
-  removeFromOrder : function(key) {
-    this.state.order[key] = this.state.order[key] - 1 || 0; //neat logic trick that avoids having to write is statements
     //if the above exists, simply add 1. If if doesn't, make the value to be one
     this.setState({ order : this.state.order }); //remember: state does not PASS until it says setState
   },
@@ -61,7 +71,7 @@ var App = React.createClass({
           </div>
             <Order fishes={this.state.fishes} order={this.state.order}/>
             {/*to have access to addFish, we must travel across methods/components*/}
-            <Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
+            <Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} linkState={this.linkState}/>
         </div>
       )
   }
@@ -148,7 +158,7 @@ var Order = React.createClass({
     }
 
     return (
-      <li>
+      <li key={key}>
         <span>{count}</span>lbs
         {fish.name}
         <span className="price">{helpers.formatPrice(count * fish.price)}</span>
@@ -184,11 +194,28 @@ var Order = React.createClass({
 });
 
 var Inventory = React.createClass({
+  renderInventory : function(key) {
+    var linkState = this.props.linkState;
+    return (
+      <div className="fish-edit" key={key}>
+        <input type="text" valueLink={linkState('fishes.'+key+'.name')}></input>
+        <input type="text" valueLink={linkState('fishes.'+key+'.price')}></input>
+        <select valueLink={linkState('fishes.'+key+'.status')}>
+          <option value="unavailable">Sold Out!</option>
+          <option value="available">Fresh!</option>
+        </select>
+        <textarea valueLink={linkState('fishes.'+key+'.desc')}></textarea>
+        <input type="text" valueLink={linkState('fishes.'+key+'.image')}></input>
+        <button>Remove Fish</button>
+      </div>
+    )
+  },
 
   render : function() {
     return (
       <div>
       <h2>Inventory!</h2>
+      {Object.keys(this.props.fishes).map(this.renderInventory)}
       {/*to have access to addFish, we must travel across methods/components*/}
       <AddFishForm {...this.props}/>
       {/*... this spread adds all of the props from the current component to child components*/}

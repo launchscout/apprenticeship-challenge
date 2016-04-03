@@ -25,6 +25,7 @@
     "npm-install-webpack-plugin": "^2.0.2",
     "re-base": "^1.5.1",
     "react": "^0.14.8",
+    "react-catalyst": "^0.3.0",
     "react-router": "^2.0.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
