@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { createList } from '../actions/lists'
 import { bindActionCreators } from 'redux'
 
-// import Rebase from 're-base';
+// import Rebase from 're-base'
 
 // const base = new Rebase.createClass('https://appshoppinglist.firebaseio.com/items/');
 
@@ -18,10 +18,12 @@ class App extends React.Component {
 
     return (
       <div>
-        <button onClick={this.handleClick}>+</button>
+        <button 
+          className="add-list"
+          onClick={this.handleClick}>Add Shopping List</button>
         <Lists lists={lists}/>
       </div>
-    ); 
+    )
   } 
 }
 
@@ -49,7 +51,7 @@ export default connect(state => ({ lists: state.lists }))(App)
         // <button onClick={this.handleClick}>+</button>
         // <Items items={items} />
       // </div>
-    // ); 
+    // ) 
   // }
 // }
 // export default connect(state => ({items: state.items}))(App)
