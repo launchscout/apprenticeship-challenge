@@ -38,5 +38,12 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "webpack-dev-server": "^1.14.1"
+  },
+  "name": "myapp",
+  "description": "a really cool app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "5.9.0",
+    "npm": "3.7.3"
   }
 }
