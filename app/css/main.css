@@ -28,7 +28,7 @@ html {
 }
 
 body {
-  background: #D4D4D4;
+  background: cornsilk;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Open Sans', sans-serif;
@@ -93,7 +93,7 @@ h3 {
 }
 
 span {
-  background: white;
+  background: cornsilk;
   position: relative;
   z-index: 2;
   padding-left: 0em;
@@ -132,7 +132,7 @@ span:after {
  padding: 2em;
  border: 1rem double lighten(black,10%);
  position: relative;
- background: white;
+ background: cornsilk;
  transition: all 0.3s;
  box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
  overflow: scroll;
@@ -242,12 +242,14 @@ background: white;
 }
 
 .fish-edit >   input {
+  border-top: .5px black solid;
   width: 100%;
 }
 
 .fish-edit >  textarea {
   width: 100%;
   border: 0;
+  height: 50px;
 }
 
 .list-of-fish {

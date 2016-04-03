@@ -36,7 +36,6 @@ var App = React.createClass({
 
   },
   componentWillUpdate : function(nextProps, nextState) {
-    console.log(nextState);
     localStorage.setItem('order-' + this.props.params.storeId, JSON.stringify(nextState.order));
   },
   addToOrder : function(key) {
@@ -93,14 +92,13 @@ var App = React.createClass({
 
 var Fish = React.createClass({
   onButtonClick : function() {
-    // console.log('Going to add the first:', this.props.index);
     var key = this.props.index;
     this.props.addToOrder(key);
   },
   render : function() {
     var details = this.props.details;
     var isAvailable = (details.status == 'available' ? true : false);
-    var buttonText = (isAvailable? 'Add To Order' : 'Sold Out');
+    var buttonText = (isAvailable? 'Add To Order' : 'Add To Order');
     return (
       <li className="menu-fish">
         <img src={this.props.details.image} alt={details.name}></img>
@@ -122,8 +120,8 @@ var AddFishForm = React.createClass({
     // 2. Take the data from the form and create an object
     var fish = {
       name : this.refs.name.value,
-      price : this.refs.status.value,
-      status : this.refs.status.value,
+      price : this.refs.price.value,
+      // status : this.refs.status.value,
       desc : this.refs.desc.value,
       image : this.refs.image.value
     }
@@ -134,14 +132,14 @@ var AddFishForm = React.createClass({
   render : function() {
     return (
       <form className="fish-edit" ref="fishForm" onSubmit={this.createFish}>
-        <input type="text" ref="name" placeholder="Fish Name" ></input>
-        <input type="text" ref="price" placeholder="Fish Price" ></input>
-        <select ref="status">
+        <input type="text" ref="name" placeholder="Item Name" ></input>
+        <input type="text" ref="price" placeholder="Item Price" ></input>
+        {/*<select ref="status">
           <option value="available">Fresh</option>
           <option value="unavailable">Sold Out!</option>
-        </select>
-        <textarea type="text" ref="desc" placeholder="Desc"></textarea>
-        <input type="text" ref="image" placeholder="URL to Image" />
+        </select>*/}
+        <textarea type="text" ref="desc" placeholder="Short description"></textarea>
+        <input type="text" ref="image" placeholder="Stock inventory number" />
         <button type="submit">Add Item</button>
       </form>
     )
@@ -168,7 +166,7 @@ var Order = React.createClass({
     var removeButton = <button onClick={this.props.removeFromOrder.bind(null, key)}>&times;</button>
 
     if(!fish) {
-      return <li key={key}> Sorry, fish no longer available! {removeButton}</li>
+      return <li key={key}> Sorry, item no longer available! {removeButton}</li>
     }
 
     return (
@@ -215,10 +213,10 @@ var Inventory = React.createClass({
       <div className="fish-edit" key={key}>
         <input type="text" valueLink={linkState('fishes.'+key+'.name')}></input>
         <input type="text" valueLink={linkState('fishes.'+key+'.price')}></input>
-        <select valueLink={linkState('fishes.'+key+'.status')}>
+        {/*<select valueLink={linkState('fishes.'+key+'.status')}>
           <option value="unavailable">Sold Out!</option>
           <option value="available">Fresh!</option>
-        </select>
+        </select>*/}
         <textarea valueLink={linkState('fishes.'+key+'.desc')}></textarea>
         <input type="text" valueLink={linkState('fishes.'+key+'.image')}></input>
         <button onClick={this.props.removeFish.bind(null, key)}>Remove Item</button>
@@ -240,7 +238,7 @@ var Inventory = React.createClass({
   }
 });
 
-var StorePicker = React.createClass({
+var ShoppingList = React.createClass({
   goToStore : function(event) {
     // prevents submit button from going into post and changing pages. note 'event' in function parameter also necessary
     event.preventDefault();
@@ -275,7 +273,7 @@ Routes
 
 var routes = (
   <Router history={browserHistory} >
-    <Route path="/" component={StorePicker}/>
+    <Route path="/" component={ShoppingList}/>
     <Route path="/store/:storeId" component={App}/>
     <Route path="*" component={NotFound}/>
   </Router>

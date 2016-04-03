@@ -2,10 +2,11 @@
   "name": "kanban_app",
   "version": "0.0.0",
   "description": "Webpack demo app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "webpack-dev-server --inline --hot"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "webpack-dev-server --inline --hot",
+    "postinstall": "webpack -p --config webpack.prod.config.js --profile --progress --colors"
   },
   "keywords": [
     "webpack",
