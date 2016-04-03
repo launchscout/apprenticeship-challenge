@@ -2,7 +2,6 @@ import React from 'react'
 import Lists from './Lists';
 import { connect } from 'react-redux'
 import { createList } from '../actions/lists'
-import { bindActionCreators } from 'redux'
 
 // import Rebase from 're-base'
 
