@@ -3,10 +3,33 @@ import React from 'react';
 import Items from './Items.jsx';
 import ItemActions from '../actions/ItemActions';
 import ItemStore from '../stores/ItemStore';
+import LaneActions from '../actions/LaneActions';
+
 
 export default class Lane extends React.Component {
   render() {
     const {lane, ...props} = this.props;
+
+  //   return (
+  //     <div {...props}>
+  //       <div className="lane-header">
+  //         <div className="lane-add-item">
+  //           <button onClick={this.addItem}>+</button>
+  //         </div>
+  //         <div className="lane-name">{lane.name}</div>
+  //       </div>
+  //       <AltContainer
+  //         stores={[ItemStore]}
+  //         inject={{
+  //           items: () => ItemStore.getItemsByIds(lane.items)
+  //         }}
+  //       >
+  //         <Items onEdit={this.editItem} onDelete={this.deleteItem} />
+  //       </AltContainer>
+  //     </div>
+  //   );
+  // }
+
 
     return (
       <div {...props}>
@@ -19,7 +42,9 @@ export default class Lane extends React.Component {
         <AltContainer
           stores={[ItemStore]}
           inject={{
-            items: () => ItemStore.getState().items || []
+
+            items: () => ItemStore.getItemsByIds(lane.items)
+
           }}
         >
           <Items onEdit={this.editItem} onDelete={this.deleteItem} />
@@ -35,13 +60,43 @@ export default class Lane extends React.Component {
     }
 
     ItemActions.update({id, name});
-  }
-  addItem() {
-    ItemActions.create({name: 'New name'});
-  }
-  deleteItem(id, e) {
+  };
+
+  addItem = (e) => {
+    const laneId = this.props.lane.id;
+    const item = ItemActions.create({name: 'New task'});
+
+    LaneActions.attachToLane({
+      itemId: item.id,
+      laneId
+    });
+  };
+
+  deleteItem = (itemId, e) => {
     e.stopPropagation();
 
-    ItemActions.delete(id);
-  }
+    const laneId = this.props.lane.id;
+
+    LaneActions.detachFromLane({laneId, itemId});
+    ItemActions.delete(itemId);
+  };
+
+
+  // addItem = (e) => {
+  //   const laneId = this.props.lane.id;
+  //   const item = ItemActions.create({name: 'New name'});
+
+  //    LaneActions.attachToLane({
+  //     itemId: item.id,
+  //     laneId
+  //   });
+  // };
+  //  deleteItem = (itemId, e) => {
+  //   e.stopPropagation();
+
+  //   const laneId = this.props.lane.id;
+
+  //   LaneActions.detachFromLane({laneId, itemId});
+  //   ItemActions.delete(noteId);
+  // };
 }
