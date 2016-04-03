@@ -25,7 +25,7 @@ var App = React.createClass({
     base.syncState(this.props.params.storeId + '/fishes', {
       context : this,
       state : 'fishes'
-    }); // takes your state in React and synce with Firebase
+    }); // takes your state in React and syncs with Firebase
 
     var localStorageRef = localStorage.getItem('order-' + this.props.
       params.storeId);
@@ -174,7 +174,7 @@ var Order = React.createClass({
 
     return (
       <li key={key}>
-        <span>{count}</span>lbs
+        <span>{count}</span>lb(s)
         {fish.name}
         <span className="price">{helpers.formatPrice(count * fish.price)}</span>
         {removeButton}
@@ -196,7 +196,7 @@ var Order = React.createClass({
     }, 0);
     return (
       <div className="order-wrap">
-        <h2 className="order-title">Your Order</h2>
+        <h2 className="order-title">Shopping List</h2>
         <ul className="order">
           {orderIds.map(this.renderOrder)}
           <li className="total">
@@ -222,20 +222,20 @@ var Inventory = React.createClass({
         </select>
         <textarea valueLink={linkState('fishes.'+key+'.desc')}></textarea>
         <input type="text" valueLink={linkState('fishes.'+key+'.image')}></input>
-        <button onClick={this.props.removeFish.bind(null, key)}>Remove Fish</button>
+        <button onClick={this.props.removeFish.bind(null, key)}>Remove Item</button>
       </div>
     )
   },
 
   render : function() {
     return (
-      <div>
-      <h2>Inventory!</h2>
+      <div className='inventory-wrap'>
+      <h2>Inventory</h2>
       {Object.keys(this.props.fishes).map(this.renderInventory)}
       {/*to have access to addFish, we must travel across methods/components*/}
       <AddFishForm {...this.props}/>
       {/*... this spread adds all of the props from the current component to child components*/}
-      <button onClick={this.props.loadSamples}>Load Sample Fishes</button>
+      <button onClick={this.props.loadSamples}>Load Inventory</button>
       </div>
     )
   }
@@ -253,7 +253,7 @@ var StorePicker = React.createClass({
       return (
         <form className= "store-selector" onSubmit={this.goToStore}>
         {/*creating the store*/}
-          <h2>Please Enter a Store</h2>
+          <h2>Name Your Shopping List</h2>
           <input type='text' ref='storeId' defaultValue={helpers.getFunName()} required/>
           <input type='Submit'/>
         </form>

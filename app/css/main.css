@@ -1,4 +1,10 @@
+.order-wrap {
+  width:450px;
+}
 
+.inventory-wrap {
+  width: 700px;
+}
 
 .clearfix:after {
   visibility: hidden;
@@ -56,10 +62,11 @@ header.top {
 }
 
 header.top > h1 {
-  font-size: 8rem;
-  line-height: 0.7;
+  font-size: 7rem;
+  line-height: 0.8;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .ofThe {
@@ -122,7 +129,7 @@ span:after {
 
 .catch-of-the-day > * {
   flex: 1 4 auto;
- padding: 2rem;
+ padding: 2em;
  border: 1rem double lighten(black,10%);
  position: relative;
  background: white;
@@ -210,6 +217,7 @@ ul.order {
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
+  margin-right: 35px;
 }
 
 .fish-edit > input, textarea, select {
@@ -223,6 +231,10 @@ border-right: 1px solid black;
 appearance: none;
 border-radius: 0;
 background: white;
+}
+
+.fish-edit > button {
+  width: 100%;
 }
 
 .fish-edit >   textarea {
@@ -258,7 +270,7 @@ background: white;
 
 .menu-fish > p {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.1rem;
 }
 
 .menu-fish > .fish-name {
