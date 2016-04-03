@@ -1,8 +1,9 @@
 import AltContainer from 'alt-container';
 import React from 'react';
-import Items from './Items.jsx';
-import ItemActions from '../actions/ItemActions';
-import ItemStore from '../stores/ItemStore';
+import Lanes from './Lanes.jsx';
+import LaneActions from '../actions/LaneActions';
+import LaneStore from '../stores/LaneStore';
+
 
 export default class App extends React.Component {
 
@@ -10,36 +11,23 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <button className="add-item" onClick={this.addItem}>Add Item</button>
+        <button className="add-lane" onClick={this.addLane}>Add List</button>
 
         <AltContainer
-          stores={[ItemStore]}
+          stores={[LaneStore]}
           inject={{
-            items: () => ItemStore.getState().items
+            lanes: () => LaneStore.getState().lanes || []
           }}
          >
-          <Items onEdit={this.editItem}onDelete={this.deleteItem} />
-      </AltContainer>
+          <Lanes />
+
+        </AltContainer>
       </div>
     );
   }
 
-  deleteItem = (id, e) => {
-    e.stopPropagation();
-
-    ItemActions.delete(id)
+  addLane() {
+    LaneActions.create({name: 'New lane'});
   }
-
-  addItem = () => {
-    ItemActions.create({name: 'New Name'});
-  }
-
-  editItem = (id, name) => {
-    if(!name.trim()) {
-      return;
-    }
-
-   ItemActions.update({id, name})
-  };
 
 }
