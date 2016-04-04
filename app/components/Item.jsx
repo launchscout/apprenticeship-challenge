@@ -2,7 +2,8 @@ import React from 'react'
 
 export default class Item extends React.Component {
   render() {
-    const { id, isEditing, ...props } = this.props
+    // const { id, isEditing, ...props } = this.props
+    const { ...props } = this.props
 
     return (
       <li {...props}>{props.children}</li>

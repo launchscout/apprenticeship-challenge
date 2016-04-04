@@ -19,7 +19,7 @@ class App extends React.Component {
       <div>
         <button 
           className="add-list"
-          onClick={this.handleClick}>Add Shopping List</button>
+          onClick={this.handleClick}>New Shopping List</button>
         <Lists lists={lists}/>
       </div>
     )

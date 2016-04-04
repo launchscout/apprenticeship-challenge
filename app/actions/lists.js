@@ -4,9 +4,11 @@ export const CREATE_LIST = 'CREATE_LIST'
 export function createList(list) {
   return {
     type: CREATE_LIST,
-    id: uuid.v4(),
-    items: list.items || [],
-    ...list
+    list: {
+      id: uuid.v4(),
+      items: list.items || [],
+      ...list
+    }
   }
 }
 

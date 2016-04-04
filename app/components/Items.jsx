@@ -72,9 +72,3 @@ export default class Items extends React.Component {
     )
   }
 }
-
-export default connect(
-  state => ({
-    items: state.items
-  })
-)(Items)
