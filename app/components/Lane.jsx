@@ -5,39 +5,25 @@ import ItemActions from '../actions/ItemActions';
 import ItemStore from '../stores/ItemStore';
 import LaneActions from '../actions/LaneActions';
 
+import Editable from './Editable.jsx';
+
+
 
 export default class Lane extends React.Component {
   render() {
     const {lane, ...props} = this.props;
 
-  //   return (
-  //     <div {...props}>
-  //       <div className="lane-header">
-  //         <div className="lane-add-item">
-  //           <button onClick={this.addItem}>+</button>
-  //         </div>
-  //         <div className="lane-name">{lane.name}</div>
-  //       </div>
-  //       <AltContainer
-  //         stores={[ItemStore]}
-  //         inject={{
-  //           items: () => ItemStore.getItemsByIds(lane.items)
-  //         }}
-  //       >
-  //         <Items onEdit={this.editItem} onDelete={this.deleteItem} />
-  //       </AltContainer>
-  //     </div>
-  //   );
-  // }
-
-
     return (
       <div {...props}>
-        <div className="lane-header">
+        <div className="lane-header" onClick={this.activateLaneEdit}>
           <div className="lane-add-item">
             <button onClick={this.addItem}>+</button>
           </div>
-          <div className="lane-name">{lane.name}</div>
+          <Editable className="lane-name" editing={lane.editing}
+            value={lane.name} onEdit={this.editName} />
+          <div className="lane-delete">
+            <button onClick={this.deleteLane}>x</button>
+          </div>
         </div>
         <AltContainer
           stores={[ItemStore]}
@@ -47,7 +33,10 @@ export default class Lane extends React.Component {
 
           }}
         >
-          <Items onEdit={this.editItem} onDelete={this.deleteItem} />
+          <Items
+          onValueClick={this.activateItemEdit}
+          onEdit={this.editItem}
+          onDelete={this.deleteItem} />
         </AltContainer>
       </div>
     );
@@ -56,13 +45,16 @@ export default class Lane extends React.Component {
   editItem(id, name) {
     // Don't modify if trying set an empty value
     if(!name.trim()) {
+      ItemActions.update({id, editing: false});
       return;
     }
 
-    ItemActions.update({id, name});
+    ItemActions.update({id, name, editing: false});
   };
 
   addItem = (e) => {
+    e.stopPropagation();
+
     const laneId = this.props.lane.id;
     const item = ItemActions.create({name: 'New task'});
 
@@ -81,22 +73,28 @@ export default class Lane extends React.Component {
     ItemActions.delete(itemId);
   };
 
+ editName = (name) => {
+    const laneId = this.props.lane.id;
+     if(!name.trim()) {
+      LaneActions.update({id: laneId, editing: false});
 
-  // addItem = (e) => {
-  //   const laneId = this.props.lane.id;
-  //   const item = ItemActions.create({name: 'New name'});
+      return;
+      }
+    LaneActions.update({id: laneId, name, editing: false});
+  };
 
-  //    LaneActions.attachToLane({
-  //     itemId: item.id,
-  //     laneId
-  //   });
-  // };
-  //  deleteItem = (itemId, e) => {
-  //   e.stopPropagation();
 
-  //   const laneId = this.props.lane.id;
+ deleteLane = () => {
+    const laneId = this.props.lane.id;
 
-  //   LaneActions.detachFromLane({laneId, itemId});
-  //   ItemActions.delete(noteId);
-  // };
+    LaneActions.delete(laneId);
+  };
+  activateLaneEdit = () => {
+    const laneId = this.props.lane.id;
+
+    LaneActions.update({id: laneId, editing: true});
+  };
+  activateItemEdit(id) {
+    NoteActions.update({id, editing: true});
+  }
 }
