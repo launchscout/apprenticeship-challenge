@@ -1,3 +1,160 @@
 body {
-  background: cornsilk;
+  background: #fff;
+  font-family: 'Muli', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+[id=app] {
+  width: 80%;
+  max-width: 1280px;
+  border: 1px solid #131515;
+  margin: 2rem auto;
+  padding-bottom: 1rem;
+}
+
+.shopping-title {
+  font-size: 2.6rem;
+  text-align: center;
+  font-family: 'Ovo', serif;
+  background-color: #2B2C28;
+  color: #fff;
+  padding: .7rem;
+  margin-top: 0;
+}
+
+.add-cat-container {
+  width: 70%;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 1rem auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  min-width: 10em;
+  vertical-align: top;
+}
+
+.cat-header {
+  overflow: auto;
+  padding: 1em;
+  color: #fff;
+  background-color: #2C8C99;
+  display: flex;
+  align-items: center;
+}
+
+.cat-name {
+  text-align: center;
+  font-family: 'Ovo', serif;
+  font-size: 1.6rem;
+  flex-basis: 95%;
+}
+
+.cat-name input {
+  font-size: 15px;
+  padding: .5rem;
+  outline: none;
+}
+
+.cat-add-note {
+  text-align: right;
+  margin: 10px;
+}
+
+.cat-delete {
+  visibility: hidden;
+  flex-basis: 5%;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.cat-delete button {
+  font-size: 1.7rem;
+}
+
+.cat-header:hover .cat-delete {
+  visibility: visible;
+  font-size: 15px;
+}
+
+.add-cat, .cat-add-note button, .add-category {
+  cursor: pointer;
+  background-color: #DE6449;
+  color: #fff;
+  padding: .7rem 1rem;
+  border-radius: .2rem;
+  font-size: .9rem;
+  color: #fff;
+  background: #E3655B;
+}
+
+.add-category {
+  padding: 1rem 1.2rem;
+  background: #DB5461;
+}
+
+.cat-delete button {
+  padding: 0;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+.add-note {
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+}
+
+.notes {
+  margin: 0.5em;
+  padding-left: 0;
+  max-width: 100%;
+  list-style: none;
+}
+
+.note {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  background-color: #fff;
+  border: 1px solid #2C8C99;
+}
+
+.note:hover {
+  box-shadow: 0 0 0.3em rgba(0,0,0,0.7);
+  transition: 0.6s;
+}
+
+.note .value {
+  display: inline-block;
+}
+
+.note input {
+  font-size: .9rem;
+  padding: .3rem;
+  outline: none;
+}
+
+.note .delete {
+  float: right;
+  padding: 0;
+  background-color: #fdfdfd;
+  border: none;
+  cursor: pointer;
+  visibility: hidden;
+  font-size: 1rem;
+}
+
+.note:hover .delete {
+  visibility: visible;
 }
