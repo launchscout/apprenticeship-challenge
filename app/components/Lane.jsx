@@ -42,21 +42,21 @@ export default class Lane extends React.Component {
     );
   }
 
-  editItem(id, name) {
+  editItem(id, name, price) {
     // Don't modify if trying set an empty value
     if(!name.trim()) {
       ItemActions.update({id, editing: false});
       return;
     }
 
-    ItemActions.update({id, name, editing: false});
+    ItemActions.update({id, name, price, editing: false});
   };
 
   addItem = (e) => {
     e.stopPropagation();
 
     const laneId = this.props.lane.id;
-    const item = ItemActions.create({name: 'New task'});
+    const item = ItemActions.create({name: 'New Item'});
 
     LaneActions.attachToLane({
       itemId: item.id,

@@ -18,6 +18,7 @@ class ItemStore {
 
     item.id = uuid.v4();
 
+
     this.setState({
       items: items.concat(item)
     });

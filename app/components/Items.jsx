@@ -5,6 +5,7 @@ import Editable from './Editable.jsx';
     return (
       <ul className="items">{items.map(item =>
         <li className="item" key={item.id}>
+
           <Editable
             editing={item.editing}
             value={item.name}

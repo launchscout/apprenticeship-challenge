@@ -1,7 +1,7 @@
 import React from 'react';
 
   //component definition
-export default class Note extends React.Component {
+export default class Item extends React.Component {
   constructor(props) {
     super(props);
 
@@ -35,6 +35,8 @@ export default class Note extends React.Component {
       return (
         <div onClick={this.edit}>
           <span className="name">{this.props.name}</span>
+          <span className="price">{this.props.price}</span>
+
           {onDelete ? this.renderDelete() : null}
         </div>
         )
@@ -59,6 +61,7 @@ export default class Note extends React.Component {
         this.finishEdit(e);
       }
     };
+
     finishEdit = (e) => {
       const value = e.target.value;
 
