@@ -1,0 +1,24 @@
+{
+  "esnext": true,
+  "preset": "google",
+
+  "fileExtensions": [".js", ".jsx"],
+
+  "requireCurlyBraces": true,
+  "requireParenthesesAroundIIFE": true,
+
+  "maximumLineLength": 120,
+  "validateLineBreaks": "LF",
+  "validateIndentation": 2,
+
+  "disallowKeywords": ["with"],
+  "disallowSpacesInsideObjectBrackets": null,
+  "disallowImplicitTypeConversion": ["string"],
+
+  "safeContextKeyword": "that",
+
+  "excludeFiles": [
+    "dist/**",
+    "node_modules/**"
+  ]
+}
