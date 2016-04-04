@@ -2,10 +2,11 @@
   "name": "kanban_app",
   "version": "0.0.0",
   "description": "Webpack demo app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "webpack-dev-server --inline --hot",
+    "postinstall": "webpack -p --config webpack.prod.config.js --profile --progress --colors"
   },
   "keywords": [
     "webpack",
@@ -22,13 +23,27 @@
     "babel-preset-survivejs-kanban": "^0.3.3",
     "css-loader": "^0.23.1",
     "npm-install-webpack-plugin": "^2.0.2",
+    "re-base": "^1.5.1",
+    "react": "^0.14.8",
+    "react-catalyst": "^0.3.0",
+    "react-router": "^2.0.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
+    "history": "^2.0.1",
+    "reach": "^1.0.0",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "name": "myapp",
+  "description": "a really cool app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "5.9.0",
+    "npm": "3.7.3"
   }
 }
