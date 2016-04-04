@@ -1,11 +1,11 @@
 import React from 'react';
-import Item from './Item.jsx';
+import Editable from './Editable.jsx';
 
   export default ({items, onValueClick, onEdit, onDelete}) => {
     return (
       <ul className="items">{items.map(item =>
         <li className="item" key={item.id}>
-          <Item
+          <Editable
             editing={item.editing}
             value={item.name}
             onValueClick={onValueClick.bind(null, item.id)}

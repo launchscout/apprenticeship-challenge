@@ -79,7 +79,7 @@ body {
   float: left;
 }
 
-.lane-add-note {
+.lane-add-item {
   float: left;
 
   margin-right: 0.5em;
@@ -96,7 +96,7 @@ body {
   visibility: visible;
 }
 
-.add-lane, .lane-add-note button {
+.add-lane, .lane-add-item button {
   cursor: pointer;
 
   background-color: #fdfdfd;

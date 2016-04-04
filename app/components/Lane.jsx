@@ -95,6 +95,6 @@ export default class Lane extends React.Component {
     LaneActions.update({id: laneId, editing: true});
   };
   activateItemEdit(id) {
-    NoteActions.update({id, editing: true});
+    ItemActions.update({id, editing: true});
   }
 }

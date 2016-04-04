@@ -43,7 +43,7 @@ export default class Note extends React.Component {
       // attach a delete button to each Note and then trigger onDelete
       return <button
         className="delete-item"
-        onClick={this.props.onDelete}>x</button>;
+        onClick={this.props.onDelete}>Remove</button>;
     };
 
     edit = () => {
