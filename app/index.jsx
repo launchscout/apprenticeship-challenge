@@ -101,7 +101,7 @@ var Fish = React.createClass({
     var buttonText = (isAvailable? 'Add To Order' : 'Add To Order');
     return (
       <li className="menu-fish">
-        <img src={this.props.details.image} alt={details.name}></img>
+        {/*<img src={this.props.details.image} alt={details.name}></img>*/}
         <h3 className="fish-name">
           {details.name}
           <span className="price">{helpers.formatPrice(details.price)}</span>
@@ -122,8 +122,8 @@ var AddFishForm = React.createClass({
       name : this.refs.name.value,
       price : this.refs.price.value,
       // status : this.refs.status.value,
-      desc : this.refs.desc.value,
-      image : this.refs.image.value
+      desc : this.refs.desc.value
+      // image : this.refs.image.value
     }
     // 3. add the fish to the app state
     this.props.addFish(fish);
@@ -139,7 +139,7 @@ var AddFishForm = React.createClass({
           <option value="unavailable">Sold Out!</option>
         </select>*/}
         <textarea type="text" ref="desc" placeholder="Short description"></textarea>
-        <input type="text" ref="image" placeholder="Stock inventory number" />
+        {/*<input type="text" ref="image" placeholder="Stock inventory number" />*/}
         <button type="submit">Add Item</button>
       </form>
     )
@@ -152,7 +152,7 @@ var Header = React.createClass({
 
     return (
       <header className="top">
-        <h1>Catch of the Day</h1>
+        <h1>Chicken of the Sea</h1>
         <h3 className="tagline">{this.props.tagline}</h3>
       </header>
     )
@@ -218,7 +218,7 @@ var Inventory = React.createClass({
           <option value="available">Fresh!</option>
         </select>*/}
         <textarea valueLink={linkState('fishes.'+key+'.desc')}></textarea>
-        <input type="text" valueLink={linkState('fishes.'+key+'.image')}></input>
+        {/*<input type="text" valueLink={linkState('fishes.'+key+'.image')}></input>*/}
         <button onClick={this.props.removeFish.bind(null, key)}>Remove Item</button>
       </div>
     )
