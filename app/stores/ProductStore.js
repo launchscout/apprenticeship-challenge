@@ -1,14 +1,15 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import ProductActions from '../actions/ProductActions';
+
 import Firebase from 'firebase';
+var productData = new Firebase('https://stamates-shopping.firebaseio.com/products');
 
 class ProductStore {
   constructor() {
     this.bindActions(ProductActions);
     this.products = [];
-    var temp = new Firebase('https://stamates-shopping.firebaseio.com/products');
-    temp.once("value", function(snapshot) {
+    productData.once("value", function(snapshot) {
       var items = [];
       snapshot.forEach(function(data){
         items.push(data.val());
@@ -25,8 +26,7 @@ class ProductStore {
     this.setState({
       products: products.concat(product)
     });
-    this.productsRef = new Firebase('https://stamates-shopping.firebaseio.com/products');
-    this.productsRef.push(product);
+    productData.push(product);
     return product;
   }
   update(updatedProduct) {
@@ -37,8 +37,7 @@ class ProductStore {
       return product;
     });
     this.setState({products});
-    this.productsRef = new Firebase('https://stamates-shopping.firebaseio.com/products');
-    this.productsRef.set(products);
+    productData.set(products);
   }
   delete(id) {
     var validProducts = this.products.filter(product => product.id !== id);

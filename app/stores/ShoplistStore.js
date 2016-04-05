@@ -3,14 +3,15 @@ import alt from '../libs/alt';
 import ShoplistActions from '../actions/ShoplistActions';
 import ProductActions from '../actions/ProductActions';
 import update from 'react-addons-update';
+
 import Firebase from 'firebase';
+var listData = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
 
 class ShoplistStore {
   constructor() {
     this.bindActions(ShoplistActions);
     this.shoplists = [];
-    var temp = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
-    temp.once("value", function(snapshot) {
+    listData.once("value", function(snapshot) {
       var items = [];
       snapshot.forEach(function(data){
         items.push(data.val());
@@ -25,8 +26,7 @@ class ShoplistStore {
     this.setState({
       shoplists: shoplists.concat(shoplist)
     });
-    this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
-    this.firebaseRef.push(shoplist);
+    listData.push(shoplist);
   }
   update(updatedShoplist) {
     const shoplists = this.shoplists.map(shoplist => {
@@ -36,15 +36,14 @@ class ShoplistStore {
       return shoplist;
     });
     this.setState({shoplists});
-    this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
     // TODO use update instead of set so key structure of database is maintained instead of rewrites
-    // this.firebaseRef.orderByChild("id").equalTo(updatedShoplist.id).on("value", function(snapshot) {
+    // listData.orderByChild("id").equalTo(updatedShoplist.id).on("value", function(snapshot) {
 		// 	snapshot.forEach(function(data) {
     //     // var record = data.val();
-    //     this.firebaseRef.child(data.key()).update(updatedShoplist);
+    //     listData.child(data.key()).update(updatedShoplist);
     //   }.bind(this));
     // }.bind(this));
-    this.firebaseRef.set(shoplists);
+    listData.set(shoplists);
   }
   // delete(id) {
   //   this.setState({
@@ -72,8 +71,7 @@ class ShoplistStore {
     this.setState({
       shoplists: validShoplists
     });
-    this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
-    this.firebaseRef.set(validShoplists);
+    listData.set(validShoplists);
   }
   attachToShoplist({shoplistId, productId}) {
     const shoplists = this.shoplists.map(shoplist => {
@@ -90,10 +88,9 @@ class ShoplistStore {
       return shoplist;
     });
     this.setState({shoplists});
-    this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
     // debugger;
-    // this.firebaseRef.update(shoplistId);
-    this.firebaseRef.set(shoplists);
+    // listData.update(shoplistId);
+    listData.set(shoplists);
   }
   detachFromShoplist({shoplistId, productId}) {
     const shoplists = this.shoplists.map(shoplist => {
@@ -103,8 +100,7 @@ class ShoplistStore {
       return shoplist;
     });
     this.setState({shoplists});
-    this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
-    this.firebaseRef.set(shoplists);
+    listData.set(shoplists);
   }
 
   move({sourceId, targetId}) {
@@ -128,8 +124,7 @@ class ShoplistStore {
       targetShoplist.products.splice(targetProductIndex, 0, sourceId);
     }
     this.setState({shoplists});
-    this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
-    this.firebaseRef.set(shoplists);
+    listData.set(shoplists);
   }
 }
 
