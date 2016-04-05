@@ -9,7 +9,7 @@ export default class Items extends React.Component {
 
     return (
       <ul className="items">{items.map(item =>
-        <Item 
+        <Item
           className="item"
           key={item.id}
           id={item.id}

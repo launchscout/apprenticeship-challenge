@@ -1,10 +1,10 @@
 import React from 'react'
-import Lists from './Lists';
+import Lists from './Lists'
 import { connect } from 'react-redux'
 import { createList } from '../actions/lists'
 // import Rebase from 're-base'
 
-// const base = new Rebase.createClass('https://appshoppinglist.firebaseio.com/items/');
+// const base = new Rebase.createClass('https://appshoppinglist.firebaseio.com/items/')
 
 class App extends React.Component {
   handleClick = () => {
@@ -16,13 +16,13 @@ class App extends React.Component {
 
     return (
       <div>
-        <button 
+        <button
           className="add-list"
           onClick={this.handleClick}>New Shopping List</button>
         <Lists lists={lists}/>
       </div>
     )
-  } 
+  }
 }
 
 export default connect(state => ({ lists: state.lists }))(App)

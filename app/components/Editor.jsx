@@ -13,13 +13,13 @@ export default class Editor extends React.Component {
 
   renderEdit = () => {
     return (
-      <input 
+      <input
         type="text"
         ref={(event) => event ? event.selectionStart = this.props.value.length : null}
         autoFocus={true}
         defaultValue={this.props.value}
         onBlur={this.finishEdit}
-        onKeyPress={this.checkEnter} 
+        onKeyPress={this.checkEnter}
       />
     )
   }

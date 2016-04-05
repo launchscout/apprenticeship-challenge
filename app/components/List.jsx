@@ -19,11 +19,11 @@ export default class List extends React.Component {
           <div className="list-add-item">
             <button onClick={this.addItem.bind(this, listId)}>+</button>
           </div>
-          <Editor 
+          <Editor
             className="list-title"
             isEditing={list.isEditing}
             value={list.title}
-            onEdit={title => props.listActions.updateList({id: listId, title, isEditing: false})} 
+            onEdit={title => props.listActions.updateList({id: listId, title, isEditing: false})}
           />
           <div className="list-delete">
             <button onClick={this.deleteList.bind(this, listId)}>x</button>
@@ -43,7 +43,7 @@ export default class List extends React.Component {
     e.stopPropagation()
 
     this.props.listActions.deleteList(listId)
-  } 
+  }
 
   addItem(listId, event) {
     event.stopPropagation()
