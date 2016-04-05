@@ -8,7 +8,7 @@ import * as itemActionCreators from '../actions/items'
 
 export default class List extends React.Component {
   render() {
-    const { list, updateList, ...props } = this.props
+    const { list, updateList, deleteList, ...props } = this.props
     const listId = list.id
 
     return (
@@ -30,19 +30,13 @@ export default class List extends React.Component {
           </div>
         </div>
         <Items
-          items={this.listItems}
+          items={props.listItems}
           onValueClick={id => props.itemActions.updateItem({id, isEditing: true})}
           onEdit={(id, text) => props.itemActions.updateItem({id, text, isEditing: false})}
-          onDelete={itemId => this.deleteItem(listId, itemId)}
+          onDelete={id => this.deleteItem(listId, id)}
         />
       </div>
     )
-  }
-
-  listItems() {
-    props.list.items.map(id => state.items[
-      state.items.findIndex(item => item.id === id)
-    ]).filter(item => item)
   }
 
   deleteList(listId, e) {
@@ -54,11 +48,10 @@ export default class List extends React.Component {
   addItem(listId, event) {
     event.stopPropagation()
 
-    const item = this.props.itemActions.createItem({
+    const items = this.props.itemActions.createItem({
       text: 'New Shopping Item'
     })
-
-    this.props.listActions.connectToList(listId, item.id)
+    this.props.listActions.connectToList(listId, items.item.id)
   }
 
   deleteItem(listId, itemId) {
@@ -67,10 +60,12 @@ export default class List extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
   return {
     lists: state.lists,
-    items: state.items
+    listItems: props.list.items.map(id => state.items[
+        state.items.findIndex(item => item.id === id)
+      ]).filter(item => item)
   }
 }
 

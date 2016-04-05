@@ -5,14 +5,7 @@ const initialState = []
 export default function lists(state = initialState, action) {
   switch (action.type) {
     case types.CREATE_LIST:
-      return [
-        ...state,
-        {
-          id: action.id,
-          title: action.title,
-          items: action.items || []
-        }
-      ]
+      return [ ...state, action.list ]
 
     case types.UPDATE_LIST:
       return state.map((list) => {
@@ -36,9 +29,10 @@ export default function lists(state = initialState, action) {
         if(index >= 0) {
           return Object.assign({}, list, {
             items: list.items.length > 1 ? list.items.slice(0, index).concat(
-              list.items.slice(index + 1)): []
+              list.items.slice(index + 1)) : []
           })
         }
+
         if(list.id === listId) {
           return Object.assign({}, list, {
             items: [...list.items, itemId]
