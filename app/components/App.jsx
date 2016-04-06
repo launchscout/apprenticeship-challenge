@@ -2,9 +2,6 @@ import React from 'react'
 import Lists from './Lists'
 import { connect } from 'react-redux'
 import { createList } from '../actions/lists'
-// import Rebase from 're-base'
-
-// const base = new Rebase.createClass('https://appshoppinglist.firebaseio.com/items/')
 
 class App extends React.Component {
   handleClick = () => {
