@@ -1,5 +1,4 @@
 import React from 'react';
-// import Price from './Price.jsx';
 import Editable from './Editable.jsx';
 
 export default ({prices, onEdit, onDelete, onValueClick}) => {

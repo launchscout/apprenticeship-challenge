@@ -64,9 +64,7 @@ export default class Price extends React.Component {
   };
 
   finishEdit = (e) => {
-   // it through `defaultProps`.
-    //
-    // See the *Typing with React* chapter for more information.
+
     const value = e.target.value;
 
     if(this.props.onEdit) {

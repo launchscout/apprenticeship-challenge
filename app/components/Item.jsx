@@ -5,7 +5,7 @@ export default class Item extends React.Component {
   constructor(props) {
     super(props);
 
-    // Track `editing` state.
+
     this.state = {
       editing: false
     };
@@ -13,13 +13,12 @@ export default class Item extends React.Component {
 
 
   render() {
-    // Render the component differently based on state.
+
     if(this.state.editing) {
       return this.renderEdit();
     }
 
     return this.renderItem();
-    // return this.renderPrice();
   }
 
 
@@ -53,14 +52,12 @@ export default class Item extends React.Component {
   };
 
   edit = () => {
-    // Enter edit mode.
     this.setState({
       editing: true
     });
   };
 
   checkEnter = (e) => {
-    // The user hit *enter*, let's finish up.
     if(e.key === 'Enter') {
       this.finishEdit(e);
     }
@@ -73,7 +70,6 @@ export default class Item extends React.Component {
     if(this.props.onEdit) {
       this.props.onEdit(value);
     <span className="sku">{this.props.sku}</span>
-      // Exit edit mode.
       this.setState({
         editing: false
       });
