@@ -13,7 +13,7 @@ export default class Items extends React.Component {
           key={item.id}
           id={item.id}>
           <Editor
-            item={item}
+            item={item.checked}
             isEditing={item.isEditing}
             value={item.text}
             onValueClick={onValueClick.bind(null, item.id)}

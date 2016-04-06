@@ -27,6 +27,9 @@ export default class Editor extends React.Component {
   renderValue = () => {
     const onDelete = this.props.onDelete
     const onCheck = this.props.onCheck
+    const itemChecked = this.props.item
+
+    debugger
     // somehow get the item.checked here to apply textDecoration: line-through
     //
     //
@@ -39,7 +42,7 @@ export default class Editor extends React.Component {
       <div>
         {onCheck ? this.renderCheckItem() : null}
         <div onClick={this.props.onValueClick}>
-          <span className='value'>{this.props.value}</span>
+          <span style={{textDecoration: itemChecked ? 'line-through' : 'none'}} className='value'>{this.props.value}</span>
           {onDelete && this.renderDelete()}
         </div>
       </div>
