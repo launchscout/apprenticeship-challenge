@@ -35,8 +35,6 @@ export default class Item extends React.Component {
       return (
         <div onClick={this.edit}>
           <span className="name">{this.props.name}</span>
-          <span className="price">{this.props.price}</span>
-
           {onDelete ? this.renderDelete() : null}
         </div>
         )

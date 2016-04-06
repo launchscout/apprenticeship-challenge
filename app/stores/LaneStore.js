@@ -38,20 +38,29 @@ class LaneStore {
     });
   }
 
-  attachToLane({laneId, itemId}) {
+   attachToLane({laneId, itemId, priceId}) {
     const lanes = this.lanes.map(lane => {
-      if(lane.id === laneId) {
+      if(lane.id === laneId && itemId) {
         if(lane.items.includes(itemId)) {
-          console.warn('This is already attached', lanes);
-      }
+          console.warn('Already attached item to lane', lanes);
+        }
         else {
           lane.items.push(itemId);
         }
-     }
+      } else if (lane.id === laneId && priceId) {
+        if(lane.items.includes(priceId)) {
+          console.warn('Price already attached item to lane', lanes);
+        }
+        else {
+          lane.prices.push(priceId);
+        }
+      }
       return lane;
     });
+
     this.setState({lanes});
   }
+
 
   detachFromLane({laneId, itemId}) {
     const lanes = this.lanes.map(lane => {
@@ -66,3 +75,6 @@ class LaneStore {
 }
 
 export default alt.createStore(LaneStore, 'LaneStore');
+
+
+
