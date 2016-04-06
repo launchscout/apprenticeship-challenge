@@ -45,7 +45,7 @@ export default class Price extends React.Component {
 
 
   renderDelete = () => {
-    return <button className="delete-note"
+    return <button className="delete-price"
     onClick={this.props.onDelete}>x</button>;
   };
 

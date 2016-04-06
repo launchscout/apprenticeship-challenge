@@ -16,25 +16,26 @@ class ItemStore {
   create(item) {
     const items = this.items;
 
-    item.id = uuid.v4();
+      item.id = uuid.v4();
+      item.sku = Math.floor(Math.random() * (1000 - 9999)) + 1000;
 
-
-    this.setState({
-      items: items.concat(item)
+      this.setState({
+        items: items.concat(item)
     });
-
-
-    return item;
-
+     return item;
   }
 
   update(updatedItem) {
     const items = this.items.map(item => {
       if(item.id === updatedItem.id) {
-        return Object.assign({}, item, updatedItem)
+
+        return Object.assign({}, item, updatedItem);
       }
+
       return item;
     });
+
+    // This is same as `this.setState({notes: notes})`
     this.setState({items});
   }
 

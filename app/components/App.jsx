@@ -13,6 +13,8 @@ import LaneStore from '../stores/LaneStore';
 import Prices from './Prices.jsx';
 import PriceActions from '../actions/PriceActions';
 import PriceStore from '../stores/PriceStore';
+
+
 export default class App extends React.Component {
 
   render() {
@@ -20,6 +22,8 @@ export default class App extends React.Component {
     return (
       <div>
         <button className="add-lane" onClick={this.addLane}>+</button>
+        <button onClick={function() {localStorage.clear(); location.reload()}}>dump</button>
+
 
          <AltContainer
           stores={[LaneStore]}
@@ -37,4 +41,25 @@ export default class App extends React.Component {
  addLane() {
     LaneActions.create({name: 'New List'});
   }
+
+ //  deletePrice = (id, e) => {
+ //    // Avoid bubbling to edit
+ //    e.stopPropagation();
+
+ //    PriceActions.delete(id);
+ //  }
+
+ //  addPrice = () => {
+ //   PriceActions.create({amount: '$0.00'});
+ //  }
+
+ //  editPrice = (id, amount) => {
+ //    // Don't modify if trying set an empty value
+ //    if(!amount.trim()) {
+ //      return;
+ //    }
+
+ //    PriceActions.update({id, amount});
+ //  }
+
 }

@@ -1,83 +1,54 @@
-import React from 'react';
+import uuid from 'node-uuid';
+import alt from '../libs/alt';
+import PriceActions from '../actions/PriceActions';
 
-export default class Price extends React.Component {
-  constructor(props) {
-    super(props);
+class PriceStore {
+  constructor() {
+    this.bindActions(PriceActions);
 
-    // Track `editing` state.
-    this.state = {
-      editing: false
-    };
-  }
-  render() {
-    // Render the component differently based on state.
-    if(this.state.editing) {
-      return this.renderEdit();
-    }
+    this.prices = [];
 
-    return this.renderPrice();
-  }
-
-
-  renderEdit = () => {
-       return <input type="text"
-      // ref={
-      //   (e) => e ? e.selectionStart = this.props.name.length : null
-      // }
-      autoFocus={true}
-      defaultValue={this.props.amount}
-      onBlur={this.finishEdit}
-      onKeyPress={this.checkEnter} />;
-
-  };
-
-  renderPrice = () => {
-    const onDelete = this.props.onDelete;
-
-    return (
-      <div onClick={this.edit}>
-        <span className="price">{this.props.amount}</span>
-        {onDelete ? this.renderDelete() : null }
-      </div>
-    );
-  };
-
-
-
-  renderDelete = () => {
-    return <button className="delete-note"
-    onClick={this.props.onDelete}>x</button>;
-  };
-
-  edit = () => {
-    // Enter edit mode.
-    this.setState({
-      editing: true
+    this.exportPublicMethods({
+      getPricesByIds: this.getPricesByIds.bind(this)
     });
-  };
+  }
 
-  checkEnter = (e) => {
-    // The user hit *enter*, let's finish up.
-    if(e.key === 'Enter') {
-      this.finishEdit(e);
-    }
-  };
+  create(price) {
+    const prices = this.prices;
 
-  finishEdit = (e) => {
-   // it through `defaultProps`.
-    //
-    // See the *Typing with React* chapter for more information.
-    const value = e.target.value;
+      price.id = uuid.v4();
 
-    if(this.props.onEdit) {
-      this.props.onEdit(value);
-
-      // Exit edit mode.
       this.setState({
-        editing: false
-      });
-    }
-  };
+        prices: prices.concat(price)
+    });
+      return price;
+  }
+
+  update(updatedPrice) {
+    const prices = this.prices.map(price => {
+      if(price.id === updatedPrice.id) {
+
+        return Object.assign({}, price, updatedPrice);
+      }
+
+      return price;
+    });
+
+    this.setState({prices});
+
+  }
+  delete(id) {
+    this.setState({
+      prices: this.prices.filter(price => price.id !== id)
+    });
+  }
+
+  getPricesByIds(ids) {
+
+    return (ids || []).map(
+      id => this.prices.filter(price => price.id === id)
+    ).filter(a => a.length).map(a => a[0]);
+  }
 }
 
-
+export default alt.createStore(PriceStore, 'PriceStore');

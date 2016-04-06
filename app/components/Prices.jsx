@@ -1,15 +1,19 @@
 import React from 'react';
-import Price from './Price.jsx';
+// import Price from './Price.jsx';
+import Editable from './Editable.jsx';
 
-export default ({prices, onEdit, onDelete}) => {
+export default ({prices, onEdit, onDelete, onValueClick}) => {
   return (
     <ul className="prices">{prices.map(price =>
       <li className="price" key={price.id}>
-        <Price
-          amount={price.amount}
+        <Editable
+          editing={price.editing}
+          value={price.amount}
+          onValueClick={onValueClick.bind(null, price.id)}
           onEdit={onEdit.bind(null, price.id)}
           onDelete={onDelete.bind(null, price.id)} />
       </li>
     )}</ul>
   );
 }
+
