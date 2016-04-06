@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server",
-    "test": "mocha --require test/helpers/test_setup.js",
+    "test": "mocha --compilers js:babel-register --recursive --require test/helpers/test_setup.js",
     "test:watch": "npm test -- --watch"
   },
   "keywords": [
@@ -28,9 +28,11 @@
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "ejs-loader": "^0.2.1",
+    "enzyme": "^2.2.0",
     "mocha": "^2.4.5",
     "node-sass": "^3.4.2",
     "npm-install-webpack-plugin": "^2.0.2",
+    "react-addons-test-utils": "^0.14.8",
     "sass-loader": "^3.2.0",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
