@@ -29,6 +29,9 @@ express-sessions: Simple session middleware for Express
 
 Run it
 ------
+    npm install babelify
+    npm install express-react-views 
+    npm install request
     npm install browserify
     npm install express
     npm install react
