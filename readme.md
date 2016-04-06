@@ -29,7 +29,7 @@ express-sessions: Simple session middleware for Express
 
 Run it
 ------
-    npm installl browserify
+    npm install browserify
     npm install express
     npm install react
     npm install react-dom
