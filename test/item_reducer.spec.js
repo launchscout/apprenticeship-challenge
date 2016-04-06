@@ -1,5 +1,4 @@
 import expect from 'expect'
-import * as actions from '../app/actions/items'
 import reducer from '../app/reducers/items'
 
 describe('Item Reducers', () => {

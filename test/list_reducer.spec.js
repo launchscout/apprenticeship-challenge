@@ -1,11 +1,10 @@
 import expect from 'expect'
-import * as actions from '../app/actions/lists'
 import reducer from '../app/reducers/lists'
 
 describe('List Reducers', () => {
   const initialState = [{
     id: 0,
-    title: "New Shopping List",
+    title: 'New Shopping List',
     items: []
   }]
 
@@ -24,7 +23,7 @@ describe('List Reducers', () => {
     ).toEqual([
       {
         id: 0,
-        title: "New Shopping List",
+        title: 'New Shopping List',
         items: []
       }
     ])
@@ -33,28 +32,28 @@ describe('List Reducers', () => {
   it('should handle UPDATE_LIST', () => {
     const newState = {
       id: initialState.id,
-      title: "Updated Title",
+      title: 'Updated Title',
     }
 
-    const nextState = reducer(newState, "UPDATE_LIST")
+    const nextState = reducer(newState, 'UPDATE_LIST')
     expect(nextState).toEqual(
       {
         id: initialState.id,
-        title: "Updated Title",
+        title: 'Updated Title',
       }
     )
   })
 
   it('should handle DELETE_LIST', () => {
-    const createdList = reducer(initialState, "CREATE_LIST")
+    const createdList = reducer(initialState, 'CREATE_LIST')
 
-    const nextState = reducer(createdList.id, "DELETE_LIST")
+    const nextState = reducer(createdList.id, 'DELETE_LIST')
     expect(nextState).toEqual([])
   })
 
   xit('should handle CONNECT_TO_LIST', () => {
-    let createdList = reducer(initialState, "CREATE_LIST")
-    let item = { id: "12345", text: "stuff" }
+    let createdList = reducer(initialState, 'CREATE_LIST')
+    let item = { id: '12345', text: 'stuff' }
 
     const newState = reducer(
       createdList, {

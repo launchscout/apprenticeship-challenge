@@ -1,7 +1,7 @@
 import uuid from 'node-uuid'
 
 export const CREATE_LIST = 'CREATE_LIST'
-export function createList(list) {
+export function createList (list) {
   return {
     type: CREATE_LIST,
     list: {
@@ -13,7 +13,7 @@ export function createList(list) {
 }
 
 export const UPDATE_LIST = 'UPDATE_LIST'
-export function updateList(updatedList) {
+export function updateList (updatedList) {
   return {
     type: UPDATE_LIST,
     ...updatedList
@@ -21,7 +21,7 @@ export function updateList(updatedList) {
 }
 
 export const DELETE_LIST = 'DELETE_LIST'
-export function deleteList(id) {
+export function deleteList (id) {
   return {
     type: DELETE_LIST,
     id
@@ -29,7 +29,7 @@ export function deleteList(id) {
 }
 
 export const CONNECT_TO_LIST = 'CONNECT_TO_LIST'
-export function connectToList(listId, itemId) {
+export function connectToList (listId, itemId) {
   return {
     type: CONNECT_TO_LIST,
     listId,
@@ -38,7 +38,7 @@ export function connectToList(listId, itemId) {
 }
 
 export const DISCONNECT_FROM_LIST = 'DISCONNECT_FROM_LIST'
-export function disconnectFromList(listId, itemId) {
+export function disconnectFromList (listId, itemId) {
   return {
     type: DISCONNECT_FROM_LIST,
     listId,

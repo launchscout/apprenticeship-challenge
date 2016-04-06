@@ -8,7 +8,7 @@ import { createList } from '../actions/lists'
 
 class App extends React.Component {
   handleClick = () => {
-    this.props.dispatch(createList({title: "New Shopping List"}))
+    this.props.dispatch(createList({title: 'New Shopping List'}))
   }
 
   render() {
@@ -17,7 +17,7 @@ class App extends React.Component {
     return (
       <div>
         <button
-          className="add-list"
+          className='add-list'
           onClick={this.handleClick}>New Shopping List</button>
         <Lists lists={lists}/>
       </div>

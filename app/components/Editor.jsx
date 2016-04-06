@@ -2,7 +2,7 @@ import React from 'react'
 
 export default class Editor extends React.Component {
   render() {
-    const {value, onEdit, onValueClick, isEditing, ...props} = this.props
+    const {item, value, onEdit, onValueClick, isEditing, onCheck, ...props} = this.props
 
     return (
       <div {...props} >
@@ -26,17 +26,39 @@ export default class Editor extends React.Component {
 
   renderValue = () => {
     const onDelete = this.props.onDelete
+    const onCheck = this.props.onCheck
+    // somehow get the item.checked here to apply textDecoration: line-through
+    //
+    //
+    // const _item = this.props.item
+    // const style = { texDecoration: 'none' }
+    // if (_item.checked) style.texDecoration = 'line-through'
+    // <span style={style.textDecoration} className='value'>{this.props.value}</span>
 
     return (
-      <div onClick={this.props.onValueClick}>
-        <span className="value">{this.props.value}</span>
-        {onDelete ? this.renderDelete() : null }
+      <div>
+        {onCheck ? this.renderCheckItem() : null}
+        <div onClick={this.props.onValueClick}>
+          <span className='value'>{this.props.value}</span>
+          {onDelete && this.renderDelete()}
+        </div>
       </div>
     )
   }
 
+  renderCheckItem = () => {
+    return (
+      <input 
+        type="checkbox"
+        className='check-item'
+        defaultChecked={false}
+        onClick={this.props.onCheck}
+      />
+    )
+  }
+
   renderDelete = () => {
-    return <button className="delete" onClick={this.props.onDelete}>x</button>
+    return <button className='delete' onClick={this.props.onDelete}>x</button>
   }
 
   checkEnter = (event) => {
