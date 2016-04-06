@@ -3,14 +3,8 @@ body {
   font-family: sans-serif;
 }
 
-.add-item {
-  background-color: #fdfdfd;
-  border: 1px solid #ccc;
-}
-
 .lane {
   display: inline-block;
-  columns: 100px 3;
 
   margin: 1em;
 
@@ -43,10 +37,11 @@ body {
 
   margin-right: 0.5em;
 }
-.lane-add-price {
-  /*float: left;*/
 
-  /*margin-left: 0.5em;*/
+.lane-add-price {
+  float: left;
+
+  margin-left: 0.5em;
 }
 
 .lane-delete {
@@ -56,23 +51,18 @@ body {
 
   visibility: hidden;
 }
+
 .lane-header:hover .lane-delete {
   visibility: visible;
 }
 
-.add-lane, .lane-add-item,  .lane-add-price button {
+.add-lane, .lane-add-item button {
   cursor: pointer;
 
   background-color: #fdfdfd;
   border: 1px solid #ccc;
 }
 
-/*.add-lane, .lane-add-price button {
-  cursor: pointer;
-
-  background-color: #fdfdfd;
-  border: 1px solid #ccc;
-}*/
 
 .lane-delete button {
   padding: 0;
@@ -89,7 +79,7 @@ body {
   margin: 0.5em;
   padding-left: 0;
 
-  max-width: 5em;
+  max-width: 9em;
   list-style: none;
 }
 
@@ -119,7 +109,7 @@ body {
 .price .delete {
   float: right;
   padding: 0;
-  background-color: #fdfdfd;
+  background-color: #77BA9B;
   border: none;
   cursor: pointer;
   visibility: hidden;
@@ -135,7 +125,7 @@ body {
   margin: 0.5em;
   padding-left: 0;
 
-  max-width: 5em;
+  max-width: 9em;
   list-style: none;
 }
 
@@ -143,7 +133,7 @@ body {
   margin-bottom: 0.5em;\
   padding: 0.5em;
 
-  background-color: #fdfdfd;
+  background-color: #B6A745;
   box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.3);
 }
 
@@ -165,7 +155,7 @@ body {
 .item .delete {
   float: right;
   padding: 0;
-  background-color: #fdfdfd;
+  background-color: #B6A745;
   border: none;
   cursor: pointer;
   visibility: hidden;

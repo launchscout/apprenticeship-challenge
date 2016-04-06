@@ -73,8 +73,6 @@ class LaneStore {
 
     this.setState({lanes});
   }
-
-
 }
 
 export default alt.createStore(LaneStore, 'LaneStore');
