@@ -41,6 +41,7 @@ Run it
     npm install express-session
     npm install react-bootstrap
     npm install body-parser
+    npm install
     npm run start
 
     *Make sure MySQL is running as well*
