@@ -9,6 +9,7 @@ import Editable from './Editable.jsx';
           <Editable
             editing={item.editing}
             value={item.name}
+            sku={item.sku}
             onValueClick={onValueClick.bind(null, item.id)}
             onEdit={onEdit.bind(null, item.id)}
             onDelete={onDelete.bind(null, item.id)}/>

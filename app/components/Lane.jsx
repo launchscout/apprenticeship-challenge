@@ -71,14 +71,15 @@ export default class Lane extends React.Component {
     );
   }
 
+
+// Item info_________________________________
   editItem(id, name, sku) {
-    // Don't modify if trying set an empty value
     if(!name.trim()) {
      ItemActions.update({id, editing: false});
 
       return;
     }
-    ItemActions.update({id, name, editing: false});
+    ItemActions.update({id, name, sku, editing: false});
   }
 
   addItem = (e) => {
@@ -100,7 +101,7 @@ export default class Lane extends React.Component {
     ItemActions.delete(itemId);
   };
 
-
+// Price info__________________________________________
   editPrice(id, amount) {
     // Don't modify if trying set an empty value
     if(!amount.trim()) {
@@ -130,10 +131,10 @@ export default class Lane extends React.Component {
     PriceActions.delete(priceId);
   };
 
+// Lane info_________________________________________
   editName = (name) => {
     const laneId = this.props.lane.id;
 
-    // Don't modify if trying set an empty value
     if(!name.trim()) {
       LaneActions.update({id: laneId, editing: false});
 

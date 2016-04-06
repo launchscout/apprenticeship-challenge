@@ -1,5 +1,4 @@
 import React from 'react';
-// import Prices from './Price.jsx';
 
 export default class Item extends React.Component {
   constructor(props) {
@@ -40,6 +39,8 @@ export default class Item extends React.Component {
     return (
       <div onClick={this.edit}>
         <span className="name">{this.props.name}</span>
+        <span className="sku">{this.props.sku}</span>
+
         {onDelete ? this.renderDelete() : null }
       </div>
     );
