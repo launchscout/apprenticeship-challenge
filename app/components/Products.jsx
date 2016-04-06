@@ -3,7 +3,7 @@ import Editable from './Editable.jsx';
 import Product from './Product.jsx';
 import ShoplistActions from '../actions/ShoplistActions';
 
-export default ({products, onValueClick, onEdit, onDelete}) => {
+export default ({products, onEdit, onDelete}) => {
   return (
     <ul className="products">{products.map(product =>
       <Product className="product" id={product.id} key={product.id}

@@ -1,6 +1,7 @@
 {
   "esnext": true,
   "preset": "google",
+  "validateQuoteMarks": null,
 
   "fileExtensions": [".js", ".jsx"],
 
@@ -8,11 +9,11 @@
   "requireParenthesesAroundIIFE": true,
 
   "maximumLineLength": 120,
-  "validateLineBreaks": "LF",
+  "validateLineBreaks": "CRLF",
   "validateIndentation": 2,
 
   "disallowKeywords": ["with"],
-  "disallowSpacesInsideObjectBrackets": null,
+  "disallowSpacesInsideObjectBrackets": "all",
   "disallowImplicitTypeConversion": ["string"],
 
   "safeContextKeyword": "that",

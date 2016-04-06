@@ -3,7 +3,7 @@ import React from 'react';
 export default class Editable extends React.Component {
   render() {
     // debugger;
-    const {value, onEdit, onValueClick, editing, ...props} = this.props;
+    const {editing, ...props} = this.props;
     return (
       <div {...props}>
         {editing ? this.renderEdit() : this.renderValue()}
@@ -13,7 +13,7 @@ export default class Editable extends React.Component {
 
   renderEdit = () => {
     // debugger;
-    return <input type='text'
+    return <input type="text"
       ref={
         (e) => e ? e.selectionStart = this.props.value.length : null
       }

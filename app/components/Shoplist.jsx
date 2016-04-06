@@ -22,7 +22,7 @@ const productTarget = {
   }
 };
 
-@DropTarget(ItemTypes.NOTE, productTarget, (connect) => ({
+@DropTarget(ItemTypes.NOTE, productTarget, (connect) => ({  // eslint-disable-line
   connectDropTarget: connect.dropTarget()
 }))
 export default class Shoplist extends React.Component {
@@ -72,11 +72,11 @@ export default class Shoplist extends React.Component {
     ProductActions.update({id, value, item, editing: false});
   }
 
-  addForm = (e) => {
-    <ProdForm addProduct={this.addProduct}/>
-  }
+  addForm = () => {
+    <ProdForm addProduct={this.addProduct}/>;
+  };
 
-  addProduct = (qty, name, price, e) => {
+  addProduct = (qty, name, price) => {
     // If product is added, avoid opening shoplist name edit by stopping
     // event bubbling in this case.
     // e.stopPropagation();

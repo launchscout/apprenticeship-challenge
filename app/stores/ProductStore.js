@@ -11,10 +11,10 @@ class ProductStore {
     this.products = [];
     productData.once("value", function(snapshot) {
       var items = [];
-      snapshot.forEach(function(data){
+      snapshot.forEach(function(data) {
         items.push(data.val());
       }.bind(this));
-      this.setState({ products: items });
+      this.setState({products: items});
     }.bind(this));
     this.exportPublicMethods({
       getProductsByIds: this.getProductsByIds.bind(this)

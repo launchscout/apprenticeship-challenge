@@ -1,7 +1,7 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import ShoplistActions from '../actions/ShoplistActions';
-import ProductActions from '../actions/ProductActions';
+// import ProductActions from '../actions/ProductActions';
 import update from 'react-addons-update';
 
 import Firebase from 'firebase';
@@ -13,10 +13,10 @@ class ShoplistStore {
     this.shoplists = [];
     listData.once("value", function(snapshot) {
       var items = [];
-      snapshot.forEach(function(data){
+      snapshot.forEach(function(data) {
         items.push(data.val());
       }.bind(this));
-      this.setState({ shoplists: items });
+      this.setState({shoplists: items});
     }.bind(this));
   }
   create(shoplist) {
@@ -38,18 +38,13 @@ class ShoplistStore {
     this.setState({shoplists});
     // TODO use update instead of set so key structure of database is maintained instead of rewrites
     // listData.orderByChild("id").equalTo(updatedShoplist.id).on("value", function(snapshot) {
-		// 	snapshot.forEach(function(data) {
+    // 	 snapshot.forEach(function(data) {
     //     // var record = data.val();
     //     listData.child(data.key()).update(updatedShoplist);
     //   }.bind(this));
     // }.bind(this));
     listData.set(shoplists);
   }
-  // delete(id) {
-  //   this.setState({
-  //     shoplists: this.shoplists.filter(shoplist => shoplist.id !== id)
-  //   });
-  // }
   delete(id) {
     // TODO remove products associated with shopping list
     // debugger;
@@ -67,7 +62,7 @@ class ShoplistStore {
     // for (var j=0; j < invalidProducts.length; j++) {
     //   ProductActions.delete(invalidProducts[i]);
     // }
-    var validShoplists = this.shoplists.filter(shoplist => shoplist.id !== id)
+    var validShoplists = this.shoplists.filter(shoplist => shoplist.id !== id);
     this.setState({
       shoplists: validShoplists
     });
