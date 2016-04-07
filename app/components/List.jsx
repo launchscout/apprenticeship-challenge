@@ -82,4 +82,13 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
+const { string, arrayOf, shape } = React.PropTypes
+
+List.propTypes = {
+  lists: arrayOf(shape({
+    id: string.isRequired,
+    title: string.isRequired
+  }).isRequired)
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(List)
