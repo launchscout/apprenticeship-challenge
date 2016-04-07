@@ -70,3 +70,12 @@ export default class Editor extends React.Component {
     }
   }
 }
+
+const { func, string, bool } = React.PropTypes
+
+Editor.propTypes = {
+  value: string.isRequired,
+  onEdit: func.isRequired,
+  item: bool,
+  isEditing: bool
+}
