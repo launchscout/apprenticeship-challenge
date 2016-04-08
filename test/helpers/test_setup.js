@@ -1,8 +1,8 @@
 import 'babel-register'
-import jsdom from 'jsdom'
+import { jsdom } from 'jsdom'
 import 'babel-polyfill'
-import { expect } from 'chai'
 import sinon from 'sinon'
+import expect from 'expect'
 import { render, shallow, mount } from 'enzyme'
 
 global.document = require('jsdom').jsdom('<body><div id="app"></div></body>')
