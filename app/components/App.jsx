@@ -3,7 +3,7 @@ import Lists from './Lists'
 import { connect } from 'react-redux'
 import { createList } from '../actions/lists'
 
-class App extends React.Component {
+export class App extends React.Component {
   handleClick = () => {
     this.props.dispatch(createList({title: 'New Shopping List'}))
   }

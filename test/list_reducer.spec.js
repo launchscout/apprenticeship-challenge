@@ -1,4 +1,3 @@
-import expect from 'expect'
 import reducer from '../app/reducers/lists'
 
 describe('List Reducers', () => {
