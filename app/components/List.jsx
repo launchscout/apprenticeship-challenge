@@ -6,7 +6,7 @@ import Editor from './Editor'
 import * as listActionCreators from '../actions/lists'
 import * as itemActionCreators from '../actions/items'
 
-export default class List extends React.Component {
+export class List extends React.Component {
   render () {
     const { list, ...props } = this.props
     const listId = list.id
