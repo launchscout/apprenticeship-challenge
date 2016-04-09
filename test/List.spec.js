@@ -1,6 +1,5 @@
 import React from 'react'
 import { List } from '../app/components/List'
-import store from '../app/stores/store'
 
 describe('<List />', () => {
   const items = [
