@@ -5,6 +5,11 @@ Notes:
 --------------
 This is my first React / Node app. Thanks for testing it out it!
 
+4/10/2016: Added unit tests, updated UI
+To run unit tests: 
+    npm test
+
+
 Application Structure
 ----------------
 App.js: 
