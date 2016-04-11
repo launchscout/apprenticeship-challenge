@@ -14,7 +14,7 @@ const productTarget = {
   hover(targetProps, monitor) {
     const sourceProps = monitor.getItem();
     const sourceId = sourceProps.id;
-    if (!targetProps.shoplist.products.length) {
+    if (targetProps.shoplist.products.length == 1) {
       ShoplistActions.attachToShoplist({
         shoplistId: targetProps.shoplist.id,
         productId: sourceId

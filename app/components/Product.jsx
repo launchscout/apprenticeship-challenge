@@ -44,7 +44,9 @@ export default class Product extends React.Component {
     // debugger;
     const dragSource = editing ? a => a : connectDragSource;
     return dragSource(connectDropTarget(
-      <div className="product" {...props}>
+      <div className="product" style={{
+        opacity: isDragging ? 0 : 1
+      }} {...props}>
         <AltContainer
           stores={[ItemStore]}
           inject={{
