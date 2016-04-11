@@ -22,7 +22,7 @@ class ShoplistStore {
   create(shoplist) {
     const shoplists = this.shoplists;
     shoplist.id = uuid.v4();
-    shoplist.products = shoplist.products || [];
+    shoplist.products = shoplist.products || [''];
     this.setState({
       shoplists: shoplists.concat(shoplist)
     });

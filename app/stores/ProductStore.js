@@ -23,7 +23,7 @@ class ProductStore {
   create(product) {
     const products = this.products;
     product.id = uuid.v4();
-    product.items = product.items || [];
+    product.items = product.items || [''];
     this.setState({
       products: products.concat(product)
     });
