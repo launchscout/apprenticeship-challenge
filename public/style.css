@@ -4,9 +4,18 @@ body {
   background-color: #eee;
 }
 
+#div_margin { 
+	height: 10px;
+}
+
+#submit_right { 
+	margin-right: 10px;
+}
+
 #label { 
 	background: #35465c; 
 	font-size: 13px;
+	margin-bottom:10px;
 }
 
 #top_navbar {
@@ -17,7 +26,28 @@ body {
 	color: white;
 }
 
+#input_container { 
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#list_item_2 { 
+	margin-bottom: 5px;
+}
+
 #add_item_header { 
+	margin-left: 10px;
+	font-size:18px;
+	color: black;
+	margin-bottom:10px;
+}
+
+#submit_btn { 
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+#list_item { 
 	margin-left: 10px;
 }
 
@@ -38,6 +68,11 @@ body {
 
 #text { 
 	padding-left: 15px;
+}
+
+#item_avatar { 
+	width: 40px;
+	height: 40px;
 }
 
 .form-signin {
