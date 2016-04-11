@@ -9,7 +9,7 @@ class ProductStore {
   constructor() {
     this.bindActions(ProductActions);
     this.products = [];
-    productData.once("value", function(snapshot) {
+    productData.on("value", function(snapshot) {
       var items = [];
       snapshot.forEach(function(data) {
         items.push(data.val());

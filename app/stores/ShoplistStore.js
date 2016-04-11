@@ -11,7 +11,7 @@ class ShoplistStore {
   constructor() {
     this.bindActions(ShoplistActions);
     this.shoplists = [];
-    listData.once("value", function(snapshot) {
+    listData.on("value", function(snapshot) {
       var items = [];
       snapshot.forEach(function(data) {
         items.push(data.val());
