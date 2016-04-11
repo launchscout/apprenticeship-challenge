@@ -8,14 +8,28 @@ table {
   text-align: center;
 }
 
-.delete {
-  position: relative;
-  top: -20px;
-  left: -85px;
+.qty {
+  display: inline-block;
+  width: 15%;
+  text-align: center;
 }
 
-#del {
-  visibility: hidden;
+.prodName {
+  display: inline-block;
+  width: 35%;
+  text-align: center;
+}
+
+.price {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+}
+
+.product-delete {
+  display: inline-block;
+  width: 30%;
+  text-align: center;
 }
 
 .shoplist {

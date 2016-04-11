@@ -1,9 +1,10 @@
 import AltContainer from 'alt-container';
 import React from 'react';
-import Products from './Products.jsx';
-import ProductActions from '../actions/ProductActions';
-import ProductStore from '../stores/ProductStore';
 import ShoplistActions from '../actions/ShoplistActions';
+import ProductActions from '../actions/ProductActions';
+import ItemActions from '../actions/ItemActions';
+import Products from './Products.jsx';
+import ProductStore from '../stores/ProductStore';
 import Editable from './Editable.jsx';
 import {DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
@@ -22,7 +23,7 @@ const productTarget = {
   }
 };
 
-@DropTarget(ItemTypes.NOTE, productTarget, (connect) => ({  // eslint-disable-line
+@DropTarget(ItemTypes.PRODUCT, productTarget, (connect) => ({  // eslint-disable-line
   connectDropTarget: connect.dropTarget()
 }))
 export default class Shoplist extends React.Component {
@@ -55,33 +56,34 @@ export default class Shoplist extends React.Component {
           }}
         >
           <Products
-            onValueClick={this.activateProductEdit}
-            onEdit={this.editProduct}
             onDelete={this.deleteProduct} />
         </AltContainer>
       </div>
     );
   }
 
-  editProduct(id, value, item) {
-    // Don't modify if trying set an empty value
-    if (!value.trim()) {
-      ProductActions.update({id, editing: false});
-      return;
-    }
-    ProductActions.update({id, value, item, editing: false});
-  }
-
   addForm = () => {
     <ProdForm addProduct={this.addProduct}/>;
   };
 
-  addProduct = (qty, name, price) => {
-    // If product is added, avoid opening shoplist name edit by stopping
-    // event bubbling in this case.
+  addItem = (product, itemType, value, editing) => {
+    // debugger;
     // e.stopPropagation();
+    const productId = product.id;
+    const item = ItemActions.create({'itemType': itemType, 'value': value, 'editing': editing});
+    ProductActions.attachToProduct({
+      itemId: item.id,
+      productId
+    });
+  };
+
+  addProduct = (qty, name, price) => {
+    // e.stopPropagation(product);
     const shoplistId = this.props.shoplist.id;
-    const product = ProductActions.create({prodName: name, qty: qty, price: price, editing: false});
+    const product = ProductActions.create({editing: false});
+    this.addItem(product, 'qty', qty, false);
+    this.addItem(product, 'prodName', name, false);
+    this.addItem(product, 'price', price, false);
     ShoplistActions.attachToShoplist({
       productId: product.id,
       shoplistId
@@ -115,7 +117,7 @@ export default class Shoplist extends React.Component {
     ShoplistActions.update({id: shoplistId, editing: true});
   };
 
-  activateProductEdit(id) {
-    ProductActions.update({id, editing: true});
-  }
+  // activateProductEdit(id) {
+  //   ProductActions.update({id, editing: true});
+  // }
 }

@@ -23,6 +23,7 @@ class ProductStore {
   create(product) {
     const products = this.products;
     product.id = uuid.v4();
+    product.items = product.items || [];
     this.setState({
       products: products.concat(product)
     });
@@ -30,6 +31,7 @@ class ProductStore {
     return product;
   }
   update(updatedProduct) {
+    // debugger;
     const products = this.products.map(product => {
       if (product.id === updatedProduct.id) {
         return Object.assign({}, product, updatedProduct);
@@ -47,6 +49,20 @@ class ProductStore {
     // Maintain products to be used for future list creation (lookup)
     // this.productsRef = new Firebase('https://stamates-shopping.firebaseio.com/products');
     // this.productsRef.set(validProducts);
+  }
+  attachToProduct({productId, itemId}) {
+    const products = this.products.map(product => {
+      if (product.id === productId) {
+        if (product.items.includes(itemId)) {
+          console.warn('Already attached item to product', products);
+        } else {
+          product.items.push(itemId);
+        }
+      }
+      return product;
+    });
+    this.setState({products});
+    productData.set(products);
   }
   getProductsByIds(ids) {
     return (ids || []).map(

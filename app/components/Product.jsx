@@ -1,6 +1,11 @@
+import AltContainer from 'alt-container';
 import React from 'react';
 import {DragSource, DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
+import ProductActions from '../actions/ProductActions';
+import Items from './Items.jsx';
+import ItemActions from '../actions/ItemActions';
+import ItemStore from '../stores/ItemStore';
 
 const productSource = {
   beginDrag(props) {
@@ -24,26 +29,49 @@ const productTarget = {
   }
 };
 
-@DragSource(ItemTypes.NOTE, productSource, (connect, monitor) => ({
+@DragSource(ItemTypes.PRODUCT, productSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging() // map isDragging() state to isDragging prop
 }))
-@DropTarget(ItemTypes.NOTE, productTarget, (connect) => ({
+@DropTarget(ItemTypes.PRODUCT, productTarget, (connect) => ({
   connectDropTarget: connect.dropTarget()
 }))
 export default class Product extends React.Component {
   render() {
     const {connectDragSource, connectDropTarget, isDragging,
-      editing, ...props} = this.props;
+      editing, product, ...props} = this.props;
     // Pass through if we are editing
+    // debugger;
     const dragSource = editing ? a => a : connectDragSource;
     return dragSource(connectDropTarget(
-      <li style={{opacity: isDragging ? 0 : 1}} {...props} >
-        {props.children}
-        <button
-          className="delete"
-          onClick={this.props.onDelete}>X</button>
-      </li>
+      <div className="product" {...props}>
+        <AltContainer
+          stores={[ItemStore]}
+          inject={{
+            items: () => ItemStore.getItemsByIds(product.items)
+          }}
+        >
+          <Items
+            onValueClick={this.activateItemEdit.bind(null, product.id)}
+            onEdit={this.editItem.bind(null, product.id)} />
+        </AltContainer>
+        <span className="product-delete">
+          <button onClick={this.props.onDelete}>x</button>
+        </span>
+      </div>
     ));
+  }
+  editItem(productId, id, value) {
+    // Don't modify if trying to set an empty value
+    if (!value.trim()) {
+      ItemActions.update({id, editing: false});
+      return;
+    }
+    ProductActions.update({id: productId, editing: false});
+    ItemActions.update({id, value, editing: false});
+  }
+  activateItemEdit(productId, id) {
+    ProductActions.update({id: productId, editing: true});
+    ItemActions.update({id, editing: true});
   }
 }

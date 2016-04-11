@@ -1,3 +1,3 @@
 export default {
-  NOTE: 'product'
+  PRODUCT: 'product'
 };

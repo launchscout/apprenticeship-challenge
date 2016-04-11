@@ -1,18 +1,18 @@
 import React from 'react';
+// import Col from 'react-bootstrap/lib/Col';
 
 export default class Editable extends React.Component {
   render() {
     // debugger;
     const {editing, ...props} = this.props;
     return (
-      <div {...props}>
+      <span {...props}>
         {editing ? this.renderEdit() : this.renderValue()}
-      </div>
+      </span>
     );
   }
 
   renderEdit = () => {
-    // debugger;
     return <input type="text"
       ref={
         (e) => e ? e.selectionStart = this.props.value.length : null
