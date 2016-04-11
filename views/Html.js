@@ -62,6 +62,7 @@ module.exports = React.createClass({
 
           <script src="/main.js"></script>
 		  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	    	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
           <script dangerouslySetInnerHTML={{__html: initScript}} />
 
         </body>

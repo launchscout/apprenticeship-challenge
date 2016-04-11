@@ -39,13 +39,31 @@ var ShoppingListApp = React.createClass({
 		  var itemSku = obj.item_sku; 
 		  var itemPrice = obj.item_price; 
 		  var listId = obj.list_id; 
+		  var thumbnailUrl = obj.thumbnail_url;  
 		  
 		  itemArgs.push(
 		  	<div className="col-md-9" id="item_col"> 
 				<div className="panel panel-default">
 			  		<div className="panel-body">
 			  			<div className="pull-left">
-			  				{itemName}
+			  				{function(){
+								if (thumbnailUrl != ""){
+									return ( 
+						  				<img src={thumbnailUrl}  id="item_avatar" />  
+									)	
+								}
+								else {
+									return ( 
+						  				<img src="http://marketsquareltd.com/placeholder/blank-page/blank_page_item_04.png"  id="item_avatar" /> 									
+									) 
+								}
+			  				}.call(this)}
+							<text id='list_item'>{itemName}</text>
+							<br /> 
+							<br /> 
+							<b>SKU:</b> {itemSku}
+							<br /> 
+							<b>Price:</b> ${itemPrice}
 						</div>
 						<div className="pull-right"> 
 							<div id="item_wrapper"> 
@@ -57,10 +75,6 @@ var ShoppingListApp = React.createClass({
 								</form>
 							</div>
 						</div>
-					</div>
-			  		<div className="panel-footer"> 
-			  			<text><b>SKU</b>: {itemSku} </text>
-						<text><b>Price</b>: ${itemPrice}</text>
 					</div>
 				</div>
 			</div>
@@ -80,6 +94,7 @@ var ShoppingListApp = React.createClass({
 		  
 		  var listName = obj.list_name; 
 		  var listId = obj.list_id; 
+		  var thumbnailUrl = obj.thumbnail_url;
 		  var listNameUrl = "/list?listname="+listId+"&user="+this.state.username; 
 		  
 		  itemArgs.push(
@@ -87,7 +102,19 @@ var ShoppingListApp = React.createClass({
 		  	<div className="panel panel-default">
 			  <div className="panel-body">
 			  	<div className="pull-left">
-					<a href={listNameUrl}>{listName}</a>
+				{function(){
+				if (thumbnailUrl != ""){
+					return ( 
+		  				<img src={thumbnailUrl}  id="item_avatar" />  
+					)					
+				}
+				else { 
+					return ( 
+		  				<img src="http://marketsquareltd.com/placeholder/blank-page/blank_page_item_04.png"  id="item_avatar" />  
+					)
+				}
+				}.call(this)}
+					<a id='list_item' href={listNameUrl}>{listName}</a>
 				</div>
 			    <div className="pull-right">
 			    	<div id='item_wrapper'> 
@@ -106,11 +133,6 @@ var ShoppingListApp = React.createClass({
 	  
 	  return itemArgs; 
   }, 
-  /** Sets the sidebar type (items, recipes, lists )**/
-  onChangeSidebarType: function(sidebarType, e){ 
-	  this.setState({sidebar_type: sidebarType});
-  },
-  
   /** Sets the value of the password **/ 
   onChangePassword: function(e) {
     this.setState({password: e.target.value});
@@ -148,20 +170,23 @@ var ShoppingListApp = React.createClass({
 				</Nav>
 			</Navbar>
 			   <div className="container" id="groceries_list">
-				    <div className="create_container_lsit">
+				    <div className="create_container_list">
 			  			<div className="col-md-9" id="item_col">
 			  				<div className="panel panel-default"> 
 			  				<div className="panel-header"> 
-			  					<h4 id="add_item_header">Edit List Name</h4>
+          						<a id='add_item_header' data-toggle="collapse" href="#collapse1"><Glyphicon glyph="edit"/> Edit List Name</a>
 							</div>
-			  				<div className="panel-body">
+			  				<div id="collapse1" className="panel-collapse collapse">
 							<form method="post" action="/editlistname">
 							<div className="input-group">
+			  					<div id="div_margin"></div>
 			  					<input type="hidden" value={this.state.username} name="inputUsername"/> 
 			  					<input type="hidden" value={this.state.list_name} name="inputListId" /> 
-								<input type="text" className="form-control" placeholder="List Name" name="inputListName" id="" required/>									
+								<input type="text" className="form-control" placeholder="List Name" name="inputListName" id="list_item" required/>									
 								<div className="input-group-btn">
-									<button className="btn" type="submit">Change</button>
+			  						<div id="div_margin"></div>
+									<button id='submit_right' className="btn" type="submit">Change</button>
+			  						<div id="div_margin"></div>
 								</div>
 							</div>
 							</form>	
@@ -171,21 +196,21 @@ var ShoppingListApp = React.createClass({
 				  		<div className="col-md-9" id="item_col">
 			  				<div className="panel panel-default">
 			  				<div className="panel-header"> 
-			  					<h4 id="add_item_header">Add Item</h4>
+          						<a id='add_item_header' data-toggle="collapse" href="#collapse2"><Glyphicon glyph="plus" /> Add Item</a>
 							</div>
-			  				<div className="panel-body">
-			  				<form action="/editlist" method="post"> 
-							</form>
+			  				<div className="panel-collapse collapse" id="collapse2">
 				  			<form action="/additem" method="post">
-								<div className="input-group">
+			  						<div id="div_margin"></div>
 			  						<input type="hidden" name="inputListName" value={this.state.list_name}/> 
 			  						<input type="hidden" name="inputUsername" value={this.state.username} /> 
-									<input type="text" className="form-control" placeholder="Item Name" name="inputItemName" required/>		
-									<input type="text" className="form-control" placeholder="SKU" name="inputSKU" required/>
-			  						<input type="text" className="form-control" placeholder="Price" name="inputPrice" required/> 
-								</div>
+									<div id='input_container'>
+										<input id="list_item_2" type="text" className="form-control" placeholder="Item Name" name="inputItemName" required/>		
+										<input id="list_item_2" type="text" className="form-control" placeholder="SKU" name="inputSKU" required/>
+			  							<input id="list_item_2" type="text" className="form-control" placeholder="Price" name="inputPrice" required/> 
+										<input id="list_item_2" type="text" className="form-control" placeholder="Thumbnail URL" name="inputThumbnailUrl" />
+									</div>
 				  					<br /> 
-									<button className="btn" type="submit">Create</button>
+									<button id="submit_btn" className="btn" type="submit">Create</button>
 							</form>
 			  				</div>
 			  				</div>
@@ -230,23 +255,24 @@ var ShoppingListApp = React.createClass({
 				  		<div className="col-md-9" id="item_col">
 				  		<div className="panel panel-default">
 				  		<div className="panel-header">
-				  			<h4 id='add_item_header'>Create List</h4>
+          					<a id='add_item_header' data-toggle="collapse" href="#collapse1"><Glyphicon glyph="pencil" /> Create List</a>
 						</div>
-				  		<div className="panel-body">
+				  		<div id="collapse1" className="panel-collapse collapse">
 				  			<form action="/createlist" method="post">
 								<div className="input-group">
+				  					<div id="div_margin"></div>
 				  					<input type="hidden" name="inputUsername" value={this.state.username}/> 
-									<input type="text" className="form-control" placeholder="List Name" name="inputListName" required/>		
+									<input type="text" className="form-control" id='list_item' placeholder="List Name" name="inputListName"  required/>		
+									<input type="text" className="form-control" id='list_item' placeholder="Thumbnail URL" name="inputThumbnailUrl"/> 
 								</div>
 				  					<br /> 
-									<button className="btn" type="submit">Add</button>
+									<button id='submit_btn' className="btn" type="submit">Add</button>
 							</form>
 				  		</div>
 				  		</div>
 				  		</div>
 					</div>
-				    <br /> 
-				  	{this.fetchItems()}
+				  {this.fetchItems()}
 				   </div>
 				</div>
 			  ); 
