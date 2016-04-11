@@ -96,8 +96,9 @@ app.post('/additem', function(req, res){
 	var sku = req.body.inputSKU; 
 	var price = req.body.inputPrice; 
 	var username = req.body.inputUsername; 
-	
-	var post = {list_id: listId, item_name: itemName, item_sku: sku, item_price: price}; 
+	var thumbnailUrl = req.body.inputThumbnailUrl; 
+		
+	var post = {list_id: listId, item_name: itemName, item_sku: sku, item_price: price, thumbnail_url: thumbnailUrl}; 
 	
 	shoppingListConn.query("INSERT INTO items SET ?", [post], function(error, results, fields){
 		if (!error){
@@ -113,15 +114,16 @@ app.post('/additem', function(req, res){
 				res.render('Html', {data: initialState});
 			});
 		}
-	}); 
+	});  
 }); 
 
 /** Creates a list **/ 
 app.post('/createlist', function(req, res){
 	var username = req.body.inputUsername; 
 	var listname = req.body.inputListName;
+	var thumbnailUrl = req.body.inputThumbnailUrl; 
 	
-	var post = {current_user: username, list_name: listname, list_id: Math.random()}; 
+	var post = {current_user: username, list_name: listname, list_id: Math.random(), thumbnail_url: thumbnailUrl}; 
 	
 	shoppingListConn.query("INSERT INTO lists SET ?", [post], function(error, results, fields){
 		shoppingListConn.query("SELECT * FROM lists", function(error, results, fields){ 
@@ -211,7 +213,6 @@ app.post('/register', function(req, res){
 
 			shoppingListConn.query("INSERT INTO users SET ?", [post], function(error, results, fields){
 				if (error){ 
-					console.log(error); 
 					res.redirect('/register'); 
 				}
 				else { 
