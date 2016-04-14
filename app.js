@@ -46,17 +46,7 @@ app.post('/editlistname', function(req, res){
 		  
 	shoppingListConn.query("UPDATE lists SET list_name = ? WHERE list_id = ?", [req.body.inputListName, req.body.inputListId], function(error, results, fields){
 		if (!error){ 
-			shoppingListConn.query("SELECT * FROM items WHERE `list_id` =?", [req.body.inputListId], function(error, results, fields){ 
-	  			 var initialState = {
-					type: 'list_detail',
-					username: username, 
-					items: JSON.stringify(results), 
-					sidebar_type: 'items', 
-					variable: username
-	  			};
-		
-				res.render('Html', {data: initialState});
-			});
+			res.redirect('/list?listname='+req.body.inputListId+"&user="+username); 
 		}
 	}); 
 }); 
@@ -102,17 +92,10 @@ app.post('/additem', function(req, res){
 	
 	shoppingListConn.query("INSERT INTO items SET ?", [post], function(error, results, fields){
 		if (!error){
-			shoppingListConn.query("SELECT * FROM items WHERE `list_id` =?", [listId], function(error, results, fields){ 
-	  			 var initialState = {
-					type: 'list_detail',
-					username: username, 
-					items: JSON.stringify(results), 
-					sidebar_type: 'items', 
-					variable: username
-	  			};
-		
-				res.render('Html', {data: initialState});
-			});
+			res.redirect('/list?listname='+listId+"&user="+username);
+		}
+		else { 
+			console.log(error); 
 		}
 	});  
 }); 
@@ -126,17 +109,12 @@ app.post('/createlist', function(req, res){
 	var post = {current_user: username, list_name: listname, list_id: Math.random(), thumbnail_url: thumbnailUrl}; 
 	
 	shoppingListConn.query("INSERT INTO lists SET ?", [post], function(error, results, fields){
-		shoppingListConn.query("SELECT * FROM lists", function(error, results, fields){ 
-  			 var initialState = {
-				type: 'home',
-				username: username, 
-				items: JSON.stringify(results), 
-				sidebar_type: 'items', 
-				variable: username
-  			};
-		
-			res.render('Html', {data: initialState});
-		});
+		if (!error){ 
+			res.redirect('/'); 
+		}
+		else { 
+			console.log(error); 
+		}
 	}); 
 });
 
@@ -148,21 +126,9 @@ app.post('/removeitemlist', function(req, res){
 	
 	shoppingListConn.query("DELETE FROM items WHERE list_id =? AND item_name =?", [listName, itemName], function(error, results, fields){
 		if (!error){ 
-			shoppingListConn.query("SELECT * FROM items", function(error, results, fields){ 
-				if (!error){ 
-	     		  	 var initialState = {
-	     				type: 'home',
-	     				username: username, 
-	     				items: JSON.stringify(results), 
-	     				sidebar_type: 'items', 
-	     				variable: username
-	     		  	};
-					
-					res.redirect('/list?listname='+listName);
-				}
-			});
+			res.redirect('/list?listname='+listName);
 		}
-		else {
+		else { 
 			console.log(error); 
 		}
 	}); 	
@@ -177,21 +143,9 @@ app.post('/removelist', function(req, res){
 		
 	shoppingListConn.query("DELETE FROM lists WHERE list_id =?", [listId], function(error, results, fields){
 		if (!error){ 
-			shoppingListConn.query("SELECT * FROM items", function(error, results, fields){ 
-				if (!error){ 
-	     		  	 var initialState = {
-	     				type: 'home',
-	     				username: username, 
-	     				items: JSON.stringify(results), 
-	     				sidebar_type: 'items', 
-	     				variable: username
-	     		  	};
-					
-					res.redirect('/'); 
-				}
-			});
+			res.redirect('/');
 		}
-		else {
+		else { 
 			console.log(error); 
 		}
 	}); 
@@ -323,12 +277,11 @@ app.get('/*', function (req, res) {
 		}
 		else {
 		  	var initialState = {
-				type: 'register',
+				type: 'login',
 				username: '', 
 				variable: variable
 		  	};
 			// no user period, direct them to signin page 
-			res.redirect('/signin');
 		 	res.render('Html', { data: initialState });
 		}
 	}
