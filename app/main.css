@@ -1,3 +1,126 @@
 body {
-  background: cornsilk;
+  background: lightblue;
+  font-family: sans-serif;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+}
+
+.qty {
+  display: inline-block;
+  width: 15%;
+  text-align: center;
+}
+
+.prodName {
+  display: inline-block;
+  width: 35%;
+  text-align: center;
+}
+
+.price {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+}
+
+.product-delete {
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+}
+
+.shoplist {
+  /*display: inline-block;*/
+  margin: 1em;
+  background-color: #efefef;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  min-width: 10em;
+  vertical-align: top;
+}
+
+.shoplist-header {
+  overflow: auto;
+  padding: 1em;
+  color: #efefef;
+  background-color: #333;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.shoplist-name {
+  float: left;
+}
+
+.shoplist-add-product {
+  float: left;
+  margin-right: 0.5em;
+}
+
+.shoplist-delete {
+  float: right;
+  margin-left: 0.5em;
+  visibility: hidden;
+}
+
+.shoplist-header:hover .shoplist-delete {
+  visibility: visible;
+}
+
+.add-shoplist, .shoplist-add-product button {
+  cursor: pointer;
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+}
+
+.shoplist-delete button {
+  padding: 0;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+.add-product {
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+}
+
+.products {
+  margin: 0.5em;
+  padding-left: 0;
+  max-width: 10em;
+  list-style: none;
+  display: inline;
+}
+
+.product {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  background-color: #fdfdfd;
+  box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.3);
+}
+.product:hover {
+  box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.7);
+  transition: 0.6s;
+}
+
+.product .value {
+  /* force to use inline-block so that it gets minimum height */
+  display: inline-block;
+}
+
+.product .delete {
+  float: right;
+  padding: 0;
+  background-color: #fdfdfd;
+  border: none;
+  cursor: pointer;
+  visibility: hidden;
+}
+.product:hover .delete {
+  visibility: visible;
 }
