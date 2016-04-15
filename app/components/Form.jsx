@@ -18,13 +18,13 @@ export default class Form extends React.Component {
   renderForm = () => {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="Qty" value={this.state.qty}
+        <input className="qty" type="text" placeholder="Qty" value={this.state.qty}
           onChange={this.qtyEdit} />
-        <input type="text" placeholder="Product"
+        <input className="prodName" type="text" placeholder="Product"
           value={this.state.prodName} onChange={this.nameEdit} />
-        <input type="text" placeholder="Price" value={this.state.price}
+        <input className="price" type="text" placeholder="Price" value={this.state.price}
           onChange={this.priceEdit} />
-        <input type="submit" value="Add" />
+        <input className="product-add" type="submit" value="Add" />
       </form>
     );
   };

@@ -1,8 +1,8 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
+import update from 'react-addons-update';
 import ShoplistActions from '../actions/ShoplistActions';
 // import ProductActions from '../actions/ProductActions';
-import update from 'react-addons-update';
 
 import Firebase from 'firebase';
 var listData = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
@@ -22,6 +22,7 @@ class ShoplistStore {
   create(shoplist) {
     const shoplists = this.shoplists;
     shoplist.id = uuid.v4();
+    shoplist.total = 0;
     shoplist.products = shoplist.products || [''];
     this.setState({
       shoplists: shoplists.concat(shoplist)
