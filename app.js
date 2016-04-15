@@ -258,7 +258,7 @@ app.get('/*', function (req, res) {
 	// and not a simple session
 	if (req.session.current_user == undefined){ 
 		if (req.query.user){ 
-			shoppingListConn.query('SELECT * FROM lists', function(err, rows, fields)   
+			shoppingListConn.query("SELECT * FROM lists WHERE `current_user` =?", [req.query.user], function(err, rows, fields)   
 			{  
 			  if (err) throw err;
 			  						  
@@ -286,7 +286,7 @@ app.get('/*', function (req, res) {
 		}
 	}
 	else {
-		shoppingListConn.query('SELECT * FROM lists', function(err, rows, fields)   
+		shoppingListConn.query("SELECT * FROM lists WHERE `current_user` =?", [req.session.current_user], function(err, rows, fields)   
 		{  
 		  if (err) throw err;
 		  						  
