@@ -3,13 +3,8 @@ Gaslight Apprenticeship Challenge Application
 
 Notes: 
 --------------
-This is my first React / Node app. Thanks for testing it out it!
 
-4/10/2016: Added unit tests, updated UI
-To run unit tests: 
-
-    npm test
-
+If you are encountering errors after updating the existing files, delete everything and install it again. I changed package.json so it will download express-react-views instead of trying to use a local version.
 
 Application Structure
 ----------------
