@@ -6,18 +6,6 @@ Notes:
 
 If you are encountering errors after updating the existing files, delete everything and install it again. I changed package.json so it will download express-react-views instead of trying to use a local version.
 
-Application Structure
-----------------
-App.js: 
-Starts server. Also defines routes, such as /register and /createlist
-
-Install.sql: 
-Script that checks to see if database exists, and if it doesn't exist then 
-create it 
-
-views/Content.js: 
-Parses and renders the content fetched from the MySQL queries
-
 Libraries used
 --------------
 express-react-views: Easily use Express, Node, and React together 
