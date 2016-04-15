@@ -12,7 +12,7 @@
     "babelify": "^6.3.0",
     "browserify": "^8.0.3",
     "express": "^4.10.6",
-    "express-react-views": "file:../../",
+    "express-react-views": "^0.10.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
   }
