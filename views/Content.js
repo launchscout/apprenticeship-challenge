@@ -6,6 +6,8 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import ShoppingNavbar from '../views/ShoppingNavbar.js';
 import ItemView from '../views/ItemView.js';  
 import UserListsView from '../views/UserListsView.js'; 
+import RegisterView from '../views/RegisterView.js'; 
+import LoginView from '../views/LoginView.js'; 
 
 var React = require('react');
 var app = require('../app'); 
@@ -26,29 +28,10 @@ var ShoppingListApp = React.createClass({
   getInitialState: function() {
     return this.props;
   },
-  
-  /** Sets the value of the username **/ 
-  onChangeUsername: function(e) {
-    this.setState({username: e.target.value});
-  },  
-  /** Sets the value of the password **/ 
-  onChangePassword: function(e) {
-    this.setState({password: e.target.value});
-  },
   render: function() {
 	  if (this.state.type == 'login'){ 
 	  	return (
-			<div>
-			<form className="form-signin" action='/signin' method='post'>
-					<h2 className="form-signin-heading">Shopping List</h2> 
-					<label for="inputEmail" className="sr-only">Username</label>
-					<input type="username" name='inputEmail' id="inputEmail" className="form-control" placeholder="Username" required autofocus/> 
-      	  			<label for="inputPassword" className="sr-only">Password</label> 
-					<input type="password" name='inputPassword' id="inputPassword" className="form-control" placeholder="Password" required/> 
-					<button className="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-					<a href="/register" className="btn btn-lg btn-primary btn-block" type="submit">Register</a>	
-				</form>
-			</div>
+			<LoginView /> 
 	  	); 
 	  }
 	  else if (this.state.type == 'list_detail'){
@@ -64,16 +47,7 @@ var ShoppingListApp = React.createClass({
 	  }
 	  else if (this.state.type == 'register'){
 		  return (
-		  	<div>
-      	  		<form className="form-signin" action='/register' method='post'>
-					<h2 className="form-signin-heading">Shopping List</h2> 
-					<label for="inputEmail" className="sr-only">Username</label>
-					<input type="username" name="inputEmail" id="inputEmail" className="form-control" placeholder="Username" required autofocus/> 
-      	  			<label for="inputPassword" className="sr-only">Password</label> 
-					<input type="password" name="inputPassword" id="inputPassword" className="form-control" placeholder="Password" required/> 
-					<button className="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-				</form>				
-			</div>
+			  <RegisterView /> 
 		  );
 	  }
 	  else if (this.state.type == 'home'){
