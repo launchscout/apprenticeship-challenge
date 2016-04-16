@@ -5,64 +5,66 @@ import Items from './Items'
 import Editor from './Editor'
 import * as listActionCreators from '../actions/lists'
 import * as itemActionCreators from '../actions/items'
+import Modal from './Modal'
+import ItemForm from './ItemForm'
 
 export class List extends React.Component {
-  render () {
-    const { list, ...props } = this.props
-    const listId = list.id
+  constructor(props) {
+    super(props)
 
-    return (
-      <div {...props}>
-        <div className='list-header'
-          onClick={() => props.listActions.updateList({id: listId, isEditing: true})}
-        >
-          <div className='list-add-item'>
-            <button onClick={this.addItem.bind(this, listId)}>+</button>
-          </div>
-          <Editor
-            className='list-title'
-            isEditing={list.isEditing}
-            value={list.title}
-            onEdit={(title) => props.listActions.updateList({id: listId, title, isEditing: false})}
-          />
-          <div className='list-delete'>
-            <button onClick={this.deleteList.bind(this, listId)}>x</button>
-          </div>
-        </div>
-        <Items
-          items={props.listItems}
-          onValueClick={(id) => props.itemActions.updateItem({id, isEditing: true})}
-          onEdit={(id, text) => props.itemActions.updateItem({id, text, isEditing: false})}
-          onDelete={(id) => this.deleteItem(listId, id)}
-          onCheck={(id) => this.checkItem(id)}
-        />
-      </div>
-    )
+    this.state = {
+      isModalOpen: false
+    }
   }
 
-  checkItem (id) {
-    this.props.itemActions.checkItem(id)
+  toggleModal () {
+    this.setState({ isModalOpen: !this.state.isModalOpen })
   }
-
+  
   deleteList (listId, e) {
     e.stopPropagation()
 
     this.props.listActions.deleteList(listId)
   }
 
-  addItem (listId, event) {
-    event.stopPropagation()
+  render () {
+    const { list, ...props } = this.props
+    const listId = list.id
 
-    const items = this.props.itemActions.createItem({
-      text: 'New Shopping Item',
-      checked: false
-    })
-    this.props.listActions.connectToList(listId, items.item.id)
-  }
+    return (
+      <div {...props}>
+        <div className='list-add-item'>
+          <button onClick={this.toggleModal.bind(this, listId)}>+</button>
+        </div>
 
-  deleteItem (listId, itemId) {
-    this.props.listActions.disconnectFromList(listId, itemId)
-    this.props.itemActions.deleteItem(itemId)
+        <div className='list-header'
+          onClick={() => props.listActions.updateList({id: listId, isEditing: true})} >
+
+          <Editor
+            className='list-title'
+            isEditing={list.isEditing}
+            value={list.title}
+            onEdit={(title) => props.listActions.updateList({id: listId, title, isEditing: false})}>
+          </Editor>
+
+          <div className='list-delete'>
+            <button onClick={this.deleteList.bind(this, listId)}>x</button>
+          </div>
+        </div>
+
+        <Items items={props.listItems} />
+
+        <Modal 
+          className='list-add-item'
+          openModal={this.state.isModalOpen}>
+          <ItemForm 
+            itemActions={this.props.itemActions} 
+            listActions={this.props.listActions} 
+            listId={listId}
+          />
+        </Modal>
+      </div>
+    )
   }
 }
 

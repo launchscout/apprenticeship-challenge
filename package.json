@@ -41,17 +41,10 @@
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
-    "alt": "^0.18.4",
-    "alt-container": "^1.0.2",
-    "alt-utils": "^1.0.0",
-    "firebase": "^2.4.1",
     "node-uuid": "^1.4.7",
-    "re-base": "^1.5.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.1",
-    "reactfire": "^0.6.0",
-    "rebase": "^0.3.0",
     "redux": "^3.3.1",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1"

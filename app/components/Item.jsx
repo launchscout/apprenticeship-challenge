@@ -4,8 +4,14 @@ export default class Item extends React.Component {
   render () {
     const { ...props } = this.props
 
+    console.log(props)
     return (
-      <li {...props}>{props.children}</li>
+    <span>
+      <li>SKU: {this.props.sku}</li>  
+      <li>ITEM: {this.props.text}</li>
+      <li>PRICE: {this.props.price}</li>
+      <button>Edit Item</button>
+    </span>
     )
   }
 }
