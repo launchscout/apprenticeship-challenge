@@ -36,7 +36,6 @@ export class List extends React.Component {
   }
 
   createItem (item) {
-    console.log("ITEM>>>", item)
     let items = {
       id: uuid.v4(),
       sku: item.sku,
@@ -44,13 +43,17 @@ export class List extends React.Component {
       price: item.price
     }
 
-    this.props.itemActions.createItem(items) 
+    this.props.itemActions.createItem(items)
     this.props.listActions.connectToList(this.props.list.id, items.id)
     this.resetForm()
   }
 
+  updateItem () {
+    this.props.itemActions.updateItem
+    this.resetForm()
+  }
+
   populateForm (item) {
-    console.log("POPULATE", item)
     const { id, sku, text, price } = item
     this.props.dispatch(initialize('items', {
       id, sku, text, price
@@ -82,17 +85,17 @@ export class List extends React.Component {
           </div>
         </div>
 
-        <Items 
+        <Items
           items={props.listItems}
           populateForm={(item) => this.populateForm(item)}
           openModal={this.toggleModal.bind(this)}>
         </Items>
 
-        <Modal 
+        <Modal
           className='list-add-item'
           openModal={this.state.isModalOpen}>
           <ItemForm
-            onEdit={(item) => {this.props.itemActions.updateItem({item})}}
+            onEdit={this.updateItem.bind(this)}
             onSubmit={this.createItem.bind(this)}/>
         </Modal>
       </div>
