@@ -1,6 +1,7 @@
 import React from 'react';
 import GroceryList from './GroceryList.jsx';
-import AppBar from 'material-ui/lib/app-bar'
+import AllLists from './AllLists.jsx';
+import AppBar from 'material-ui/lib/app-bar';
 
 export default class App extends React.Component {
   render() {
@@ -8,6 +9,7 @@ export default class App extends React.Component {
       <div>
         <AppBar />
         <GroceryList />
+        <AllLists />
       </div>
     );
   }

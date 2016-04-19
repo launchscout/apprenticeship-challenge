@@ -1,12 +1,22 @@
 import React from 'react';
+import ListItem from 'material-ui/lib/lists/list-item';
 
 export default class GroceryItem extends React.Component {
+  constructor(props){
+    super(props);
+    this.deleteMe = this.deleteMe.bind(this);
+  }
+    deleteMe(){
+      this.props.deleteMe(this.props.fbRef, this.props.item.key)
+    }
 
   render(){
     return (
-      <div>
-        <p>GroceryItem is working</p>
-      </div>
+      <ListItem onClick={this.deleteMe}>
+        Name: {this.props.item.name}
+        Sku: {this.props.item.sku}
+        Price: {this.props.item.price}
+      </ListItem>
     );
   }
 };
