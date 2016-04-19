@@ -5,43 +5,24 @@ import Items from './Items'
 import Editor from './Editor'
 import * as listActionCreators from '../actions/lists'
 import * as itemActionCreators from '../actions/items'
+import Modal from './Modal'
+import ItemForm from './ItemForm'
+import uuid from 'node-uuid'
+import { reset, initialize } from 'redux-form'
 
 export class List extends React.Component {
-  render () {
-    const { list, ...props } = this.props
-    const listId = list.id
+  constructor(props) {
+    super(props)
 
-    return (
-      <div {...props}>
-        <div className='list-header'
-          onClick={() => props.listActions.updateList({id: listId, isEditing: true})}
-        >
-          <div className='list-add-item'>
-            <button onClick={this.addItem.bind(this, listId)}>+</button>
-          </div>
-          <Editor
-            className='list-title'
-            isEditing={list.isEditing}
-            value={list.title}
-            onEdit={(title) => props.listActions.updateList({id: listId, title, isEditing: false})}
-          />
-          <div className='list-delete'>
-            <button onClick={this.deleteList.bind(this, listId)}>x</button>
-          </div>
-        </div>
-        <Items
-          items={props.listItems}
-          onValueClick={(id) => props.itemActions.updateItem({id, isEditing: true})}
-          onEdit={(id, text) => props.itemActions.updateItem({id, text, isEditing: false})}
-          onDelete={(id) => this.deleteItem(listId, id)}
-          onCheck={(id) => this.checkItem(id)}
-        />
-      </div>
-    )
+    this.state = {
+      isModalOpen: false
+    }
+
+    this.resetFrom = this.resetForm.bind(this)
   }
 
-  checkItem (id) {
-    this.props.itemActions.checkItem(id)
+  toggleModal () {
+    this.setState({ isModalOpen: !this.state.isModalOpen })
   }
 
   deleteList (listId, e) {
@@ -50,19 +31,72 @@ export class List extends React.Component {
     this.props.listActions.deleteList(listId)
   }
 
-  addItem (listId, event) {
-    event.stopPropagation()
-
-    const items = this.props.itemActions.createItem({
-      text: 'New Shopping Item',
-      checked: false
-    })
-    this.props.listActions.connectToList(listId, items.item.id)
+  resetForm() {
+    this.props.reset('items')
   }
 
-  deleteItem (listId, itemId) {
-    this.props.listActions.disconnectFromList(listId, itemId)
-    this.props.itemActions.deleteItem(itemId)
+  createItem (item) {
+    console.log("ITEM>>>", item)
+    let items = {
+      id: uuid.v4(),
+      sku: item.sku,
+      text: item.text,
+      price: item.price
+    }
+
+    this.props.itemActions.createItem(items) 
+    this.props.listActions.connectToList(this.props.list.id, items.id)
+    this.resetForm()
+  }
+
+  populateForm (item) {
+    console.log("POPULATE", item)
+    const { id, sku, text, price } = item
+    this.props.dispatch(initialize('items', {
+      id, sku, text, price
+    }, ['id', 'sku', 'text', 'price']))
+  }
+
+  render () {
+    const { list, ...props } = this.props
+    const listId = list.id
+
+    return (
+      <div {...props}>
+        <div className='list-add-item'>
+          <button onClick={this.toggleModal.bind(this)}>+</button>
+        </div>
+
+        <div className='list-header'
+          onClick={() => props.listActions.updateList({id: listId, isEditing: true})} >
+
+          <Editor
+            className='list-title'
+            isEditing={list.isEditing}
+            value={list.title}
+            onEdit={(title) => props.listActions.updateList({id: listId, title, isEditing: false})}>
+          </Editor>
+
+          <div className='list-delete'>
+            <button onClick={this.deleteList.bind(this, listId)}>x</button>
+          </div>
+        </div>
+
+        <Items 
+          items={props.listItems}
+          populateForm={(item) => this.populateForm(item)}
+          openModal={this.toggleModal.bind(this)}>
+        </Items>
+
+        <Modal 
+          className='list-add-item'
+          openModal={this.state.isModalOpen}>
+          <ItemForm
+            onEdit={(item) => {this.props.itemActions.updateItem({item})}}
+            onSubmit={this.createItem.bind(this)}/>
+        </Modal>
+      </div>
+    )
   }
 }
 
@@ -71,14 +105,16 @@ function mapStateToProps (state, props) {
     lists: state.lists,
     listItems: props.list.items.map((id) => state.items[
         state.items.findIndex((item) => item.id === id)
-      ]).filter((item) => item)
+    ]).filter((item) => item)
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     listActions: bindActionCreators(listActionCreators, dispatch),
-    itemActions: bindActionCreators(itemActionCreators, dispatch)
+    itemActions: bindActionCreators(itemActionCreators, dispatch),
+    reset: bindActionCreators(reset, dispatch),
+    dispatch: bindActionCreators(dispatch, dispatch)
   }
 }
 

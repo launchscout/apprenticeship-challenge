@@ -2,7 +2,7 @@ import React from 'react'
 
 export default class Editor extends React.Component {
   render() {
-    const {item, value, onEdit, onValueClick, isEditing, onCheck, ...props} = this.props
+    const { value, onEdit, onValueClick, isEditing, onCheck, ...props} = this.props
 
     return (
       <div {...props} >
@@ -26,29 +26,14 @@ export default class Editor extends React.Component {
 
   renderValue = () => {
     const onDelete = this.props.onDelete
-    const onCheck = this.props.onCheck
-    const itemChecked = this.props.item
-    const isChecked = {textDecoration: itemChecked ? 'line-through' : 'none'} 
 
     return (
       <div>
-        {onCheck ? this.renderCheckItem() : null}
         <div onClick={this.props.onValueClick}>
-          <span style={isChecked} className='value'>{this.props.value}</span>
+          <span className='value'>{this.props.value}</span>
           {onDelete && this.renderDelete()}
         </div>
       </div>
-    )
-  }
-
-  renderCheckItem = () => {
-    return (
-      <input 
-        type="checkbox"
-        className='check-item'
-        defaultChecked={false}
-        onClick={this.props.onCheck}
-      />
     )
   }
 
@@ -76,6 +61,5 @@ const { func, string, bool } = React.PropTypes
 Editor.propTypes = {
   value: string.isRequired,
   onEdit: func.isRequired,
-  item: bool,
   isEditing: bool
 }
