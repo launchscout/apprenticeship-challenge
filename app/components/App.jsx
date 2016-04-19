@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { createList } from '../actions/lists'
 
 export class App extends React.Component {
+
   handleClick = () => {
     this.props.dispatch(createList({title: 'New Shopping List'}))
   }

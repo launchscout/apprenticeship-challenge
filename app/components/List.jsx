@@ -55,6 +55,11 @@ export class List extends React.Component {
     }, ['id', 'sku', 'text', 'price']))
   }
 
+  deleteItem(listId, itemId) {
+    this.props.listActions.disconnectFromList(listId, itemId)
+    this.props.itemActions.deleteItem(itemId)
+  }
+
   render () {
     const { list, ...props } = this.props
     const listId = list.id
@@ -83,7 +88,8 @@ export class List extends React.Component {
         <Items
           items={props.listItems}
           populateForm={(item) => this.populateForm(item)}
-          openModal={this.toggleModal.bind(this)}>
+          openModal={this.toggleModal.bind(this)}
+          onDelete={(itemId) => this.deleteItem(listId, itemId)}>
         </Items>
 
         <Modal
@@ -91,7 +97,8 @@ export class List extends React.Component {
           openModal={this.state.isModalOpen}>
           <ItemForm
             onEdit={this.props.itemActions.updateItem}
-            onSubmit={this.createItem.bind(this)}/>
+            onSubmit={this.createItem.bind(this)}>
+          </ItemForm>
         </Modal>
       </div>
     )

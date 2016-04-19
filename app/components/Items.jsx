@@ -3,7 +3,7 @@ import Item from './Item'
 
 export default class Items extends React.Component {
   render () {
-    const {items, openModal, populateForm, ...props} = this.props
+    const {items, openModal, populateForm, onDelete, ...props} = this.props
 
     return (
       <ul className='items'>{items.map((item) =>
@@ -15,7 +15,8 @@ export default class Items extends React.Component {
           text={item.text}
           price={item.price}
           populateForm={populateForm.bind(null, item)}
-          openModal={openModal}>
+          openModal={openModal}
+          onDelete={onDelete.bind(null, item.id)}>
         </Item>
       )}</ul>
     )
