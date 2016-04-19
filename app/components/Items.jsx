@@ -1,12 +1,10 @@
 import React from 'react'
-import Editor from './Editor'
 import Item from './Item'
 
 export default class Items extends React.Component {
   render () {
-    const {items, onEdit, ...props} = this.props
+    const {items, openModal, populateForm, ...props} = this.props
 
-    console.log("ITEMS PROPS>>", props)
     return (
       <ul className='items'>{items.map((item) =>
         <Item
@@ -15,7 +13,9 @@ export default class Items extends React.Component {
           id={item.id}
           sku={item.sku}
           text={item.text}
-          price={item.price}>
+          price={item.price}
+          populateForm={populateForm.bind(null, item)}
+          openModal={openModal}>
         </Item>
       )}</ul>
     )

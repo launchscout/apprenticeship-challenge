@@ -46,6 +46,7 @@
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.1",
     "redux": "^3.3.1",
+    "redux-form": "^5.0.1",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1"
   }
