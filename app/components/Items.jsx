@@ -22,16 +22,15 @@ export default class Items extends React.Component {
   }
 }
 
-// const { string, bool, func, arrayOf, shape} = React.PropTypes
+const { string, bool, func, arrayOf, shape} = React.PropTypes
 
-// Items.propTypes = {
-  // items: arrayOf(shape({
-    // id: string.isRequired,
-    // text: string.isRequired,
-    // checked: bool.isRequired
-  // }).isRequired).isRequired,
-  // onEdit: func.isRequired,
-  // onDelete: func.isRequired,
-  // onValueClick: func.isRequired,
-  // // onCheck: func.isRequired
-// }
+Items.propTypes = {
+  items: arrayOf(shape({
+    id: string.isRequired,
+    sku: string.isRequired,
+    text: string.isRequired,
+    price: string.isRequired,
+  }).isRequired).isRequired,
+  populateForm: func.isRequired,
+  openModal: func.isRequired,
+}

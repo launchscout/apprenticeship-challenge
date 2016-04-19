@@ -31,7 +31,7 @@ export class List extends React.Component {
     this.props.listActions.deleteList(listId)
   }
 
-  resetForm() {
+  resetForm () {
     this.props.reset('items')
   }
 
@@ -45,11 +45,6 @@ export class List extends React.Component {
 
     this.props.itemActions.createItem(items)
     this.props.listActions.connectToList(this.props.list.id, items.id)
-    this.resetForm()
-  }
-
-  updateItem () {
-    this.props.itemActions.updateItem
     this.resetForm()
   }
 
@@ -95,7 +90,7 @@ export class List extends React.Component {
           className='list-add-item'
           openModal={this.state.isModalOpen}>
           <ItemForm
-            onEdit={this.updateItem.bind(this)}
+            onEdit={this.props.itemActions.updateItem}
             onSubmit={this.createItem.bind(this)}/>
         </Modal>
       </div>
