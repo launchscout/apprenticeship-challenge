@@ -1,5 +1,6 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
+import validate from './validate'
 
 class ItemForm extends React.Component {
   render() {
@@ -7,14 +8,23 @@ class ItemForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit} >
-        <label>SKU</label>
-        <input type="text" {...sku}/>
+        <div>
+          <label>SKU</label>
+          <input type="text" {...sku}/>
+          <div>{sku.touched ? sku.error : ''}</div>
+        </div>
 
-        <label>Item</label>
-        <input type="text" {...text} />
+        <div>
+          <label>Item</label>
+          <input type="text" {...text} />
+          <div>{text.touched ? text.error : ''}</div>
+        </div>
 
-        <label>Price</label>
-        <input type="text" {...price} />
+        <div>
+          <label>Price</label>
+          <input type="text" {...price} />
+          <div>{price.touched ? price.error : ''}</div>
+        </div>
         { id && id.value ?
           <button 
             onClick={(e) => {
@@ -34,9 +44,8 @@ class ItemForm extends React.Component {
   }
 }
 
-ItemForm = reduxForm({
+export default ItemForm = reduxForm({
   form: 'items',
   fields: ['id', 'sku', 'text', 'price'],
+  validate
 })(ItemForm);
-
-export default ItemForm
