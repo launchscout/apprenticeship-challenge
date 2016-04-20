@@ -58,11 +58,10 @@ export default class GroceryList extends React.Component {
 
   render(){
     let that = this;
-    let itemNodes = null;
-    itemNodes = _.values(this.state.groceryItems).map((item)=> {
+    let itemNodes = _.values(this.state.groceryItems).map((item)=> {
       return (
         <GroceryItem
-          fbRef={that.baseRef}
+          fbRef={`${that.baseRef}/${that.props.selectedList}`}
           key={item.key}
           item={item}
           deleteMe={that.deleteItem} />

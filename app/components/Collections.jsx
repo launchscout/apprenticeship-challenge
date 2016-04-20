@@ -39,8 +39,10 @@ export default class AllLists extends React.Component {
     this.updateItem = this.updateItem.bind(this);
   }
 
-  updateItem(ref, key){
-
+  updateItem(ref, key, input){
+    debugger;
+    let newRef = new Firebase(`${ref}/${key}`);
+    newRef.set({name: input});
   }
 
   render(){

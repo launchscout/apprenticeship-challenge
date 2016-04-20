@@ -17,7 +17,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <AppBar />
+        <AppBar
+          title="Grocery List App" />
         <GroceryList selectedList={this.state.selectedItem} />
         <Collections selectList={this.selectList} />
       </div>

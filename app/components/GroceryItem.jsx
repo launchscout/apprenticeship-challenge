@@ -6,9 +6,9 @@ export default class GroceryItem extends React.Component {
     super(props);
     this.deleteMe = this.deleteMe.bind(this);
   }
-    deleteMe(){
-      this.props.deleteMe(this.props.fbRef, this.props.item.key)
-    }
+  deleteMe(){
+    this.props.deleteMe(this.props.fbRef, this.props.item.key);
+  }
 
   render(){
     return (

@@ -43,7 +43,6 @@ export default class GroceryInput extends React.Component {
         sku: this.state.sku,
         price: this.state.price
       }
-      debugger;
       this.firebaseRef.push(finishedItem);
 
       this.setState({
