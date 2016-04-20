@@ -3,7 +3,7 @@ import Item from './Item'
 
 export default class Items extends React.Component {
   render () {
-    const {items, openModal, populateForm, onDelete, ...props} = this.props
+    const {items, populateForm, onDelete, ...props} = this.props
 
     return (
       <ul className='items'>{items.map((item) =>
@@ -15,7 +15,6 @@ export default class Items extends React.Component {
           text={item.text}
           price={item.price}
           populateForm={populateForm.bind(null, item)}
-          openModal={openModal}
           onDelete={onDelete.bind(null, item.id)}>
         </Item>
       )}</ul>
@@ -32,6 +31,5 @@ Items.propTypes = {
     text: string.isRequired,
     price: string.isRequired,
   }).isRequired).isRequired,
-  populateForm: func.isRequired,
-  openModal: func.isRequired,
+  populateForm: func.isRequired
 }

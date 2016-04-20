@@ -8,7 +8,7 @@ export default class Item extends React.Component {
         <li>SKU: {this.props.sku}</li>  
         <li>ITEM: {this.props.text}</li>
         <li>PRICE: ${this.props.price}</li>
-        <button className="edit" onClick={this.props.populateForm}></button>
+        <button className="edit" onClick={this.props.populateForm}>edit</button>
         <button className="delete" onClick={this.props.onDelete}>x</button>
       </span>
     )
