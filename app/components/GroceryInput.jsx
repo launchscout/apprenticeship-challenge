@@ -11,7 +11,11 @@ export default class GroceryInput extends React.Component {
       sku: '',
       price: ''
     }
-    this.firebaseRef = new Firebase('https://gaslightchallenge.firebaseio.com/list');
+    this.firebaseRef = new Firebase(this.props.fbRef);
+  }
+
+  componentWillReceiveProps(next){
+    this.firebaseRef = new Firebase(next.fbRef);
   }
 
   nameChange(e){
@@ -39,6 +43,7 @@ export default class GroceryInput extends React.Component {
         sku: this.state.sku,
         price: this.state.price
       }
+      debugger;
       this.firebaseRef.push(finishedItem);
 
       this.setState({

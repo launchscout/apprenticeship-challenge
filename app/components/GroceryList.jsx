@@ -13,37 +13,48 @@ export default class GroceryList extends React.Component {
       groceryItems: {}
     };
 
-    this.baseRef = 'https://gaslightchallenge.firebaseio.com/list'
-    this.firebaseRef = new Firebase(this.baseRef);
-    //read list from firebase
-    this.firebaseRef.on("child_added", (item)=> {
-      let itemVal = item.val();
-      itemVal.key = item.key();
-      this.state.groceryItems[itemVal.key] = itemVal;
-      this.setState({groceryItems: this.state.groceryItems});
-    });
-    //check for removed item in firebase
-    this.firebaseRef.on("child_removed", (item)=> {
-      let key = item.key();
-      delete this.state.groceryItems[key];
-      this.setState({groceryItems: this.state.groceryItems});
-    });
-    //check for changed item in firebase
-    this.firebaseRef.on('child_changed', (item)=> {
-      let itemVal = item.val();
-      itemVal.key = item.key();
-      this.state.groceryItems[itemVal.key] = itemVal;
-      this.setState({groceryItems: this.state.groceryItems});
-    });
+    this.baseRef = 'https://gaslightchallenge.firebaseio.com';
+
+    this.showList = function(ref){
+      this.firebaseRef = new Firebase(ref);
+      //read list from firebase
+      this.firebaseRef.on("child_added", (item)=> {
+        let itemVal = item.val();
+        itemVal.key = item.key();
+        this.state.groceryItems[itemVal.key] = itemVal;
+        this.setState({groceryItems: this.state.groceryItems});
+      });
+      //check for removed item in firebase
+      this.firebaseRef.on("child_removed", (item)=> {
+        let key = item.key();
+        delete this.state.groceryItems[key];
+        this.setState({groceryItems: this.state.groceryItems});
+      });
+      //check for changed item in firebase
+      this.firebaseRef.on('child_changed', (item)=> {
+        let itemVal = item.val();
+        itemVal.key = item.key();
+        this.state.groceryItems[itemVal.key] = itemVal;
+        this.setState({groceryItems: this.state.groceryItems});
+      });
+    }
 
     //extra binding to use with es6 classes
     this.deleteItem = this.deleteItem.bind(this);
+  }
+  componentDidMount(){
+    this.showList(`${this.baseRef}/${this.props.selectedList}`)
+  }
+
+  componentWillReceiveProps(next){
+    this.setState({groceryItems: {}});
+    this.showList(`${this.baseRef}/${next.selectedList}`);
   }
 
   deleteItem (ref, key){
     let newRef = new Firebase(`${ref}/${key}`);
     newRef.set(null);
-  };
+  }
 
   render(){
     let that = this;
@@ -51,7 +62,7 @@ export default class GroceryList extends React.Component {
       return (
         <GroceryItem
           fbRef={that.baseRef}
-          key={item.key} //resolves error
+          key={item.key}
           item={item}
           deleteMe={that.deleteItem} />
       );
@@ -59,7 +70,7 @@ export default class GroceryList extends React.Component {
 
     return (
       <div>
-        <GroceryInput />
+        <GroceryInput fbRef={`${this.baseRef}/${this.props.selectedList}`} />
         <Card>
           <List>{itemNodes}</List>
         </Card>

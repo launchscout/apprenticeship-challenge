@@ -1,5 +1,6 @@
 import React from 'react';
-import GList from './GList.jsx';
+import ColecctionItem from './ColecctionItem.jsx';
+import CollectionInput from './CollectionInput';
 import Firebase from 'firebase';
 import _ from 'lodash';
 import Card from 'material-ui/lib/card/card';
@@ -46,16 +47,18 @@ export default class AllLists extends React.Component {
     let that = this;
     let listNodes = _.values(this.state.lists).map((list)=> {
       return (
-        <GList
+        <CollectionItem
           fbRef={that.baseRef}
           key={list.key}
           list={list}
+          selectList={that.props.selectList}
           updateItem={that.updateItem} />
       );
     });
 
     return (
       <div>
+        <CollectionInput />
         <Card>
           <List>{listNodes}</List>
         </Card>
