@@ -1,6 +1,6 @@
 import React from 'react';
 import GroceryList from './GroceryList.jsx';
-import AllLists from './AllLists.jsx';
+import Collections from './Collections.jsx';
 import AppBar from 'material-ui/lib/app-bar';
 
 export default class App extends React.Component {
@@ -9,7 +9,7 @@ export default class App extends React.Component {
       <div>
         <AppBar />
         <GroceryList />
-        <AllLists />
+        <Collections />
       </div>
     );
   }
