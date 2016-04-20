@@ -19,7 +19,7 @@ export default class App extends React.Component {
       <div>
         <AppBar />
         <GroceryList selectedList={this.state.selectedItem} />
-        <GLists selectList={this.selectList} />
+        <Collections selectList={this.selectList} />
       </div>
     );
   }

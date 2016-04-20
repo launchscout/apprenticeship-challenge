@@ -1,5 +1,5 @@
 import React from 'react';
-import ColecctionItem from './ColecctionItem.jsx';
+import CollectionItem from './CollectionItem.jsx';
 import CollectionInput from './CollectionInput';
 import Firebase from 'firebase';
 import _ from 'lodash';
