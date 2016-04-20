@@ -1,6 +1,6 @@
 import React from 'react';
 import GroceryList from './GroceryList.jsx';
-import GLists from './GLists.jsx';
+import Collections from './Collections.jsx';
 import AppBar from 'material-ui/lib/app-bar';
 
 export default class App extends React.Component {
