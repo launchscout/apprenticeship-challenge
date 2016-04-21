@@ -3,13 +3,15 @@ import reducer from '../app/reducers/items'
 describe('Item Reducers', () => {
   const initialState = [{
     id: 0,
-    text: "New Shopping Item",
+    sku: "00000000",
+    text: "Initial State",
+    price: "1.00"
   }]
 
   it('should return initial state', () => {
     expect(
       reducer(undefined, {})
-    ).toEqual([])
+    ).toEqual({})
   })
 
   it('should handle CREATE_ITEM', () => {
@@ -21,17 +23,21 @@ describe('Item Reducers', () => {
     )
   })
 
-  it('should handle UPDATE_ITEM', () => {
-    const newState = {
-      id: initialState.id,
-      text: "Updated text"
+  xit('should handle UPDATE_ITEM', () => {
+    const createdItem = reducer(initialState, "CREATE_ITEM")
+    const updatedItem = {
+      id: 0,
+      sku: "11111111",
+      text: "updated",
+      price: "2.00"
     }
-
-    const nextState = reducer(newState, "UPDATE_ITEM")
+    const nextState = reducer(updatedItem, "UPDATE_ITEM")
     expect(nextState).toEqual(
       {
-        id: newState.id,
-        text: "Updated text"
+        id: 0,
+        sku: "11111111",
+        text: "updated",
+        price: "2.00"
       }
     )
   })
@@ -40,6 +46,6 @@ describe('Item Reducers', () => {
     const createdItem = reducer(initialState, "CREATE_ITEM")
 
     const nextState = reducer(createdItem.id, "DELETE_ITEM")
-    expect(nextState).toEqual([])
+    expect(nextState).toEqual({})
   })
 })

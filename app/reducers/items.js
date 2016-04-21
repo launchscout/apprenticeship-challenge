@@ -13,12 +13,6 @@ export default function items(state = initialState, action) {
           return Object.assign({}, action.updatedItem)
         }
 
-      // return {
-        // state[id]: {
-          // ...state,
-          //item
-        // }
-      // }
         return item
       })
 
