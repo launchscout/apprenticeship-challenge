@@ -16,9 +16,10 @@ export class App extends React.Component {
     return (
       <div>
         <Nav>
+          <h1 className='h1 header'>Shopping List</h1>
           <button
-            className='add-list'
-            onClick={this.handleClick}>New Shopping List
+            className='btn add-list'
+            onClick={this.handleClick}>New List
           </button>
         </Nav>
         <Lists lists={lists}/>

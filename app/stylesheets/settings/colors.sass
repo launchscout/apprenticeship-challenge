@@ -7,19 +7,16 @@ $grey: rgb(117, 117, 117) !default
 $dark-grey: rgb(80, 78, 76) !default
 $silver: rgb(199, 199, 199) !default
 $dark-silver: rgb(149, 149, 149) !default
-$space: rgb(233, 229, 227) !default
+$space: rgb(253, 253, 523) !default
 $white: rgb(255, 255, 255) !default
-$off-white: rgb(244, 242, 241) !default
+$burlywood: rgb(239, 220, 195) !default
 $light-blue: rgb(173, 216, 230) !default
-$deep-cove: rgb(5, 27, 55) !default
 $red: rgb(215, 95, 95) !default
-$yellow: rgb(247, 197, 42) !default
-$orange: rgb(255, 135, 0) !default
-
-$green: #A5E4CD !default
+$deep-salmon: rgb(244, 164, 96) !default
+$cornsilk: rgb(255, 248, 220) !default
 
 // This allows all of the primary colors to be accessed by mixins that generate display classes for objects with one of each color
-$all-colors: (black, $black) (grey, $grey) (dark-grey, $dark-grey) (silver, $silver) (white, $white) (light-blue, $light-blue) (deep-cove, $deep-cove) (red, $red) (yellow, $yellow) (orange, $orange) (green, $green)
+$all-colors: (black, $black) (grey, $grey) (dark-grey, $dark-grey) (silver, $silver) (dark-silver, $dark-silver) (space, $space) (white, $white) (burlywood, $burlywood) (light-blue, $light-blue) (red, $red)(deep-salmon, $deep-salmon) (cornsilk, $cornsilk)
 
 ////////////////////
 // Function Colors
@@ -30,11 +27,7 @@ $color-inverted: $white !default
 $color-secondary: $dark-grey !default
 $color-accent: $grey !default
 $color-subaccent: $silver !default
-$color-function: $black !default
-$color-success: $green !default
 $color-alert: $red !default
-$color-warning: $yellow !default
-$color-secure: $orange !default
 
 // This allows all of the function colors to be accessed by mixins that generate display classes for objects with one of each color
-$all-function-colors: (primary, $color-primary) (secondary, $color-secondary) (accent, $color-accent) (subaccent, $color-subaccent) (function, $color-function) (alert, $color-alert) (success, $color-success) (warning, $color-warning) (secure, $color-secure)
+$all-function-colors: (primary, $color-primary) (secondary, $color-secondary) (accent, $color-accent) (subaccent, $color-subaccent) (alert, $color-alert)

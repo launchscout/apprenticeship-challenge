@@ -23,6 +23,7 @@ export class List extends React.Component {
     e.stopPropagation()
 
     this.props.listActions.deleteList(listId)
+    this.props.modalActions.closeModal()
   }
 
   resetForm () {
@@ -65,22 +66,24 @@ export class List extends React.Component {
 
     return (
       <div {...props}>
-        <div className='list-add-item-wrapper'>
-          <button className="list-add-item-button" onClick={openModal.bind(this, listId)}>+</button>
-        </div>
+        <div className="header-wrapper">
+          <div className='list-add-item-wrapper'>
+            <button className="btn list-add-item-button" onClick={openModal.bind(this, listId)}>+</button>
+          </div>
 
-        <div className='list-header'
-          onClick={() => updateList({id: listId, isEditing: true})} >
+          <div className='list-header'
+            onClick={() => updateList({id: listId, isEditing: true})} >
 
-          <Editor
-            className='list-title'
-            isEditing={list.isEditing}
-            value={list.title}
-            onEdit={(title) => updateList({id: listId, title, isEditing: false})}>
-          </Editor>
+            <Editor
+              className='list-title'
+              isEditing={list.isEditing}
+              value={list.title}
+              onEdit={(title) => updateList({id: listId, title, isEditing: false})}>
+            </Editor>
 
-          <div className='list-delete'>
-            <button onClick={this.deleteList.bind(this, listId)}>x</button>
+            <div className='list-delete'>
+              <button className='btn' onClick={this.deleteList.bind(this, listId)}>x</button>
+            </div>
           </div>
         </div>
 

@@ -1,6 +1,3 @@
-@import '../settings/colors'
-@import '../settings/borders'
-
 /////////////////////////////
 // List
 /////////////////////////////
@@ -13,38 +10,42 @@
   min-width: 10em
   vertical-align: top
 
-.list-header
-  overflow: auto
-  padding: 1em
-  color: $color-secondary
-  border-bottom: 1px solid $color-primary
+.header-wrapper
+  background-color: $burlywood
+  .list-header
+    overflow: auto
+    padding: 1em
+    color: $color-secondary
 
-.list-title
+.list-title, .list-add-item-wrapper
   float: left
 
 .list-add-item-wrapper
-  float: left
   margin: 1em 0.5em 0em 0.5em
 
-///////////////////////////////////////////
+/////////////////////////////
 // Button
-///////////////////////////////////////////
+/////////////////////////////
+
+.add-list
+  height: 5.1em
+  margin: -6em 0em 0em 1.5em
+  float: left
 
 .list-add-item-button, .list-delete button
-  border-radius: $border-radius-round
   height: 2em
   width: 2em
   border: none
-
-.list-delete button
-  cursor: pointer
-  color: $color-primary
-  background-color: $color-subaccent
 
 .list-delete
   float: right
   margin-left: 1em
   visibility: hidden
+
+.list-delete button
+  cursor: pointer
+  color: $color-primary
+  background-color: $color-subaccent
 
 .list-header:hover .list-delete
   visibility: visible

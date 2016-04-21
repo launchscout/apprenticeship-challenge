@@ -15,24 +15,25 @@ class ItemForm extends React.Component {
     return (
       <form onSubmit={handleSubmit}>
         <div>
-          <label>SKU</label>
-          <input type='text' placeholder='00000000' {...sku}/>
-          <div>{sku.touched ? sku.error : ''}</div>
+          <label className='label'>SKU</label>
+          <input className='input' type='text' placeholder='00000000' {...sku}/>
+          <div className="error">{sku.touched ? sku.error : ''}</div>
         </div>
 
         <div>
-          <label>Item</label>
-          <input type='text' placeholder='item' {...text}/>
-          <div>{text.touched ? text.error : ''}</div>
+          <label className='label'>Item</label>
+          <input  className='input' type='text' placeholder='item' {...text}/>
+          <div className="error">{text.touched ? text.error : ''}</div>
         </div>
 
         <div>
-          <label>Price</label>
-          <input type='text' placeholder='0.00' {...price}/>
-          <div>{price.touched ? price.error : ''}</div>
+          <label className='label'>Price</label>
+          <input  className='input' type='text' placeholder='0.00' {...price}/>
+          <div className="error">{price.touched ? price.error : ''}</div>
         </div>
         { id && id.value ?
           <button 
+            className="btn button button__form" 
             onClick={(e) => {
               e.preventDefault()
               onEdit(
@@ -48,12 +49,14 @@ class ItemForm extends React.Component {
             }}>
             Update Item
           </button> :
-          <button>Add Item</button>
+          <button className="btn button button__form">Add Item</button>
         }
-        <button onClick={(e) => {
-          e.preventDefault()
-          destroyForm()
-          closeModal()}}>Cancel</button>
+        <button 
+          className="btn button button__form"
+          onClick={(e) => {
+            e.preventDefault()
+            destroyForm()
+            closeModal()}}>Cancel</button>
       </form>
     )
   }
