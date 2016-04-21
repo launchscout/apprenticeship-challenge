@@ -46,9 +46,7 @@ Think of other things a shopping list might need to be it more useful.
 
 Once you've built your application, submit a pull request to us. If you are new to using git there are [many](https://try.github.io/) [online](https://git-scm.com/documentation) [resources](http://gitimmersion.com/) for learning git. It will be necessary to have some basic working knowledge of git to complete this challenge, and it is a core skill you'll be using as an apprentice (and as a developer).
 
-## Timeframe
-
-**This part is important: I'll be reviewing these starting on Monday, April 4.**
+## Next steps
 
 We will review and select candidates to do pairing sessions with me on adding a feature to this application either in person or remotely using [join.me](https://www.join.me/) or something similar. We appreciate you taking the time to complete this challenge. Our commitment to you is that if you submit a pull request, it will get a thorough review and we'll give you specific feedback even if you are not selected to pair with us.
 
