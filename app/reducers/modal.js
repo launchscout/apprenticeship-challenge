@@ -6,12 +6,6 @@ const initialState = {
 
 export default function modal (state = initialState, action) {
   switch (action.type) {
-    // case types.TOGGLE_MODAL:
-      // return {
-        // isOpen: !state.isOpen,
-        // listId: action.listId
-      // }
-
     case types.OPEN_MODAL:
       return {
         isOpen: true,

@@ -1,0 +1,20 @@
+@import '../settings/global'
+
+////////////////////
+// List Parents
+////////////////////
+
+.ol, .ul , .dl
+  margin: $rhythm-vertical 0
+  list-style-position: inside
+  .ol, .ul, .dl
+    margin: 0 0 0 $rhythm-horizontal
+.ol
+  list-style-type: decimal
+  &--roman
+    list-style-type: upper-roman
+  &--alpha
+    list-style-type: upper-alpha
+
+.ul
+  list-style-type: disc

@@ -29,6 +29,8 @@
     "css-loader": "^0.23.1",
     "ejs-loader": "^0.2.1",
     "enzyme": "^2.2.0",
+    "file-loader": "^0.8.5",
+    "image-webpack-loader": "^1.7.0",
     "mocha": "^2.4.5",
     "node-sass": "^3.4.2",
     "npm-install-webpack-plugin": "^2.0.2",
@@ -41,6 +43,7 @@
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
+    "file-loader": "^0.8.5",
     "node-uuid": "^1.4.7",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
@@ -48,6 +51,8 @@
     "redux": "^3.3.1",
     "redux-form": "^5.0.1",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "resolve-url-loader": "^1.4.3",
+    "url-loader": "^0.5.7"
   }
 }

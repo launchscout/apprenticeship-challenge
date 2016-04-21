@@ -65,8 +65,8 @@ export class List extends React.Component {
 
     return (
       <div {...props}>
-        <div className='list-add-item'>
-          <button onClick={openModal.bind(null, listId)}>+</button>
+        <div className='list-add-item-wrapper'>
+          <button className="list-add-item-button" onClick={openModal.bind(this, listId)}>+</button>
         </div>
 
         <div className='list-header'

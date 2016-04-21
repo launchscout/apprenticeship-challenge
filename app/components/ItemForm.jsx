@@ -4,7 +4,13 @@ import validate from './validate'
 
 class ItemForm extends React.Component {
   render() {
-    const { fields: {id, sku, text, price}, handleSubmit, onEdit, destroyForm, closeModal } = this.props
+    const { 
+      fields: {id, sku, text, price}, 
+      handleSubmit, 
+      onEdit, 
+      destroyForm,
+      closeModal 
+    } = this.props
 
     return (
       <form onSubmit={handleSubmit}>
@@ -42,9 +48,7 @@ class ItemForm extends React.Component {
             }}>
             Update Item
           </button> :
-          <button>
-            Add Item
-          </button>
+          <button>Add Item</button>
         }
         <button onClick={(e) => {
           e.preventDefault()

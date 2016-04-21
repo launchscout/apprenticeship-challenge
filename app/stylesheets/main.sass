@@ -1,44 +1,18 @@
-///////////////////////////////////////////
-// Base
-///////////////////////////////////////////
+@import './settings/global'
+@import './settings/colors'
+@import './settings/backgrounds'
+@import './settings/borders'
+@import './settings/type'
+@import './settings/forms'
+@import './generic/reset'
+@import './base/forms'
+@import './base/layout'
+@import './base/lists'
+@import './base/scale'
+@import './base/type'
+@import './components/nav'
+@import './components/list'
 
-body
-  background: cornsilk
-  // margin: 1em
-
-///////////////////////////////////////////
-// List
-///////////////////////////////////////////
-
-.list
-  display: inline-block
-  margin: 1em
-  border: 1px solid #ccc
-  border-radius: 0.5em
-  min-width: 10em
-  vertical-align: top
-
-.list-header
-  overflow: auto
-  padding: 1em
-  color: #333
-  border-bottom: 1px solid #333
-
-.list-title
-  float: left
-
-.list-add-item
-  float: left
-  margin-right: 0.5em
-  margin-top: 1em
-
-.list-delete
-  float: right
-  margin-left: 0.5em
-  visibility: hidden
-
-.list-header:hover .list-delete
-  visibility: visible
 
 ///////////////////////////////////////////
 // Item
@@ -73,21 +47,12 @@ body
 
 .item-li
   margin-left: 1em
-///////////////////////////////////////////
-// Button
-///////////////////////////////////////////
 
 .add-list, .list-add-item button
   cursor: pointer
   background-color: #fdfdfd
   border: 1px solid #ccc
 
-.list-delete button
-  padding: 0
-  cursor: pointer
-  color: white
-  background-color: rgba(0, 0, 0, 0)
-  border: 0
 
 ///////////////////////////////////////////
 // Checkbox

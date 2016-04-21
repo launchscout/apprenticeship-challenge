@@ -2,6 +2,7 @@ import React from 'react'
 import Lists from './Lists'
 import { connect } from 'react-redux'
 import { createList } from '../actions/lists'
+import Nav from './Nav'
 
 export class App extends React.Component {
 
@@ -14,9 +15,12 @@ export class App extends React.Component {
 
     return (
       <div>
-        <button
-          className='add-list'
-          onClick={this.handleClick}>New Shopping List</button>
+        <Nav>
+          <button
+            className='add-list'
+            onClick={this.handleClick}>New Shopping List
+          </button>
+        </Nav>
         <Lists lists={lists}/>
       </div>
     )
