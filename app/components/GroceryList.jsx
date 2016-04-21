@@ -15,14 +15,15 @@ export default class GroceryList extends React.Component {
 
     this.baseRef = 'https://gaslightchallenge.firebaseio.com';
 
-    this.showList = function(ref){
+    this.showList = function(ref, stateBase){
       this.firebaseRef = new Firebase(ref);
       //read list from firebase
       this.firebaseRef.on("child_added", (item)=> {
         let itemVal = item.val();
         itemVal.key = item.key();
-        this.state.groceryItems[itemVal.key] = itemVal;
-        this.setState({groceryItems: this.state.groceryItems});
+        console.log("child added: ", itemVal)
+        stateBase[itemVal.key] = itemVal;
+        this.setState({groceryItems: stateBase});
       });
       //check for removed item in firebase
       this.firebaseRef.on("child_removed", (item)=> {
@@ -43,12 +44,12 @@ export default class GroceryList extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
   }
   componentDidMount(){
-    this.showList(`${this.baseRef}/${this.props.selectedList}`)
+    this.showList(`${this.baseRef}/${this.props.selectedList}`, {})
   }
 
   componentWillReceiveProps(next){
-    this.setState({groceryItems: {}});
-    this.showList(`${this.baseRef}/${next.selectedList}`);
+    this.setState({groceryItems: {}}); //needed to switch to an empty list
+    this.showList(`${this.baseRef}/${next.selectedList}`, {});
   }
 
   deleteItem (ref, key){
@@ -57,6 +58,7 @@ export default class GroceryList extends React.Component {
   }
 
   render(){
+    console.log(this.state.groceryItems);
     let that = this;
     let itemNodes = _.values(this.state.groceryItems).map((item)=> {
       return (

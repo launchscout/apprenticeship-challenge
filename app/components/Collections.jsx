@@ -40,7 +40,6 @@ export default class AllLists extends React.Component {
   }
 
   updateItem(ref, key, input){
-    debugger;
     let newRef = new Firebase(`${ref}/${key}`);
     newRef.set({name: input});
   }
