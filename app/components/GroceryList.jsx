@@ -21,7 +21,6 @@ export default class GroceryList extends React.Component {
       this.firebaseRef.on("child_added", (item)=> {
         let itemVal = item.val();
         itemVal.key = item.key();
-        console.log("child added: ", itemVal)
         stateBase[itemVal.key] = itemVal;
         this.setState({groceryItems: stateBase});
       });
@@ -58,7 +57,6 @@ export default class GroceryList extends React.Component {
   }
 
   render(){
-    console.log(this.state.groceryItems);
     let that = this;
     let itemNodes = _.values(this.state.groceryItems).map((item)=> {
       return (
