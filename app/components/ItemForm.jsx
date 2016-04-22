@@ -64,6 +64,6 @@ class ItemForm extends React.Component {
 
 export default ItemForm = reduxForm({
   form: 'items',
-  fields: ['id', 'sku', 'text', 'price'],
+  fields: ['id', 'sku', 'text', 'price', 'checked'],
   validate
 })(ItemForm);

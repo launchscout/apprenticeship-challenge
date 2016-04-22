@@ -3,7 +3,7 @@ import Item from './Item'
 
 export default class Items extends React.Component {
   render () {
-    const {items, populateForm, onDelete, ...props} = this.props
+    const {items, populateForm, onDelete, onCheck, ...props} = this.props
 
     return (
       <ul className='items'>{items.map((item) =>
@@ -14,6 +14,8 @@ export default class Items extends React.Component {
           sku={item.sku}
           text={item.text}
           price={item.price}
+          checked={item.checked}
+          onCheck={onCheck.bind(null, item.id)}
           populateForm={populateForm.bind(null, item)}
           onDelete={onDelete.bind(null, item.id)}>
         </Item>
