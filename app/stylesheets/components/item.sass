@@ -9,7 +9,6 @@
   list-style: none
 
 .item
-  margin-bottom: 0.5em
   padding: 0.5em
   background-color: $space
   box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.3)
@@ -17,6 +16,9 @@
   &:hover
     box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.7)
     transition: .6s
+.hr
+  width: 100%
+  margin-left: 0.5em
 
 .add-list, .list-add-item button
   cursor: pointer
@@ -28,4 +30,12 @@
 ///////////////////////////////////////////
 
 .edit-item, .delete-item
-  margin-left: 3em
+  margin-left: 23%
+
+///////////////////////////////////////////
+// Check
+///////////////////////////////////////////
+
+.checked
+  -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+  filter: grayscale(100%)
