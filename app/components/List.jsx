@@ -35,7 +35,8 @@ export class List extends React.Component {
       id: uuid.v4(),
       sku: item.sku,
       text: item.text,
-      price: item.price
+      price: item.price,
+      checked: item.checked
     }
 
     this.props.itemActions.createItem(items)
@@ -55,6 +56,10 @@ export class List extends React.Component {
   deleteItem(listId, itemId) {
     this.props.listActions.disconnectFromList(listId, itemId)
     this.props.itemActions.deleteItem(itemId)
+  }
+
+  checkItem(id) {
+    this.props.itemActions.checkItem(id)
   }
 
   render () {
@@ -90,7 +95,8 @@ export class List extends React.Component {
         <Items
           items={listItems}
           populateForm={(item) => this.populateForm(item)}
-          onDelete={(itemId) => this.deleteItem(listId, itemId)}>
+          onDelete={(itemId) => this.deleteItem(listId, itemId)}
+          onCheck={(id) => this.checkItem(id)}>
         </Items>
 
         <Modal

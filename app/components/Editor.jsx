@@ -2,7 +2,7 @@ import React from 'react'
 
 export default class Editor extends React.Component {
   render() {
-    const { value, onEdit, onValueClick, isEditing, onCheck, ...props} = this.props
+    const { value, onEdit, onValueClick, isEditing, ...props} = this.props
 
     return (
       <div {...props} >
