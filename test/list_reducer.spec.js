@@ -29,7 +29,7 @@ describe('List Reducers', () => {
   it('should handle UPDATE_LIST', () => {
     const list = { title: 'Updated Title' }
 
-    const newState = reducer(createdList, {// << not sure why it wont work with createdList
+    const newState = reducer(createdList, {
       type: 'UPDATE_LIST',
       id: 0,
       title: list.title
@@ -54,5 +54,17 @@ describe('List Reducers', () => {
     })
 
     expect(newState[0].items.length).toEqual(1)
+  })
+
+  it('should handle DISCONNECT_FROM_LIST', () => {
+    let item = { id: '12345' }
+
+    const newState = reducer(createdList, {
+      type: 'DISCONNECT_FROM_LIST',
+      listId: createdList[0].id,
+      itemId: item.id
+    })
+
+    expect(newState[0].items.length).toEqual(0)
   })
 })
