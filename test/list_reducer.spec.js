@@ -7,19 +7,17 @@ describe('List Reducers', () => {
     items: []
   }]
 
+  const createdList = reducer(undefined, {
+    type: 'CREATE_LIST',
+    list: initialState[0],
+  })
+
   it('should return initial state', () => {
-    expect(
-      reducer(undefined, {})
-    ).toEqual([])
+    expect(reducer(undefined, {})).toEqual([])
   })
 
   it('should handle CREATE_LIST', () => {
-    expect(
-      reducer(undefined, {
-        type: 'CREATE_LIST',
-        list: initialState[0]
-      })
-    ).toEqual([
+    expect(createdList).toEqual([
       {
         id: 0,
         title: 'New Shopping List',
@@ -29,37 +27,32 @@ describe('List Reducers', () => {
   })
 
   it('should handle UPDATE_LIST', () => {
-    const newState = {
-      id: initialState.id,
-      title: 'Updated Title',
-    }
+    const list = { title: 'Updated Title' }
 
-    const nextState = reducer(newState, 'UPDATE_LIST')
-    expect(nextState).toEqual(
-      {
-        id: initialState.id,
-        title: 'Updated Title',
-      }
-    )
+    const newState = reducer(createdList, {// << not sure why it wont work with createdList
+      type: 'UPDATE_LIST',
+      id: 0,
+      title: list.title
+    })
+
+    expect(newState[0].title).toMatch(/Updated Title/)
   })
 
   it('should handle DELETE_LIST', () => {
-    const createdList = reducer(initialState, 'CREATE_LIST')
-
     const nextState = reducer(createdList.id, 'DELETE_LIST')
+
     expect(nextState).toEqual([])
   })
 
-  xit('should handle CONNECT_TO_LIST', () => {
-    let createdList = reducer(initialState, 'CREATE_LIST')
-    let item = { id: '12345', text: 'stuff' }
+  it('should handle CONNECT_TO_LIST', () => {
+    let item = { id: '12345' }
 
-    const newState = reducer(
-      createdList, {
-        type: 'CONNECT_TO_LIST',
-        listId: createdList.id,
-        itemId: item.id
-      })
-    expect(newState[0]).toEqual(1)
+    const newState = reducer(createdList, {
+      type: 'CONNECT_TO_LIST',
+      listId: createdList[0].id,
+      itemId: item.id
+    })
+
+    expect(newState[0].items.length).toEqual(1)
   })
 })

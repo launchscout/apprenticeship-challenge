@@ -19,7 +19,7 @@ const validate = (values) => {
   }
   if (!values.price || values.price.trim() === '') {
     errors.price = 'Enter a price'
-  } else if (!values.price || validatePrice.test(values.price)) {
+  } else if (validatePrice.test(values.price)) {
     errors.price = 'Invalid price'
   }
 

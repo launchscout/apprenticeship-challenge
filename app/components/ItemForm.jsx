@@ -1,6 +1,6 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
-import validate from './validate'
+import validate from '../validators/validate'
 
 class ItemForm extends React.Component {
   render() {

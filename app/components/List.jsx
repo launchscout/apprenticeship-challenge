@@ -62,6 +62,12 @@ export class List extends React.Component {
     this.props.itemActions.checkItem(id)
   }
 
+  total() {
+    return this.props.listItems.reduce((prev, item) => {
+      return prev + parseFloat(item.price)
+    }, 0)
+  }
+
   render () {
     const { list, listItems, isModalOpen, ...props } = this.props
     const { updateList, deleteList } = this.props.listActions
@@ -91,6 +97,8 @@ export class List extends React.Component {
             </div>
           </div>
         </div>
+
+        <div className="total">{this.total()}</div>
 
         <Items
           items={listItems}
