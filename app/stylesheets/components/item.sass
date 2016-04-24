@@ -1,0 +1,41 @@
+///////////////////////////////////////////
+// Item
+///////////////////////////////////////////
+
+.items
+  margin: 0.5em
+  padding-left: 0
+  max-width: 12em
+  list-style: none
+
+.item
+  padding: 0.5em
+  background-color: $space
+  box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.3)
+  margin-left: 1em
+  &:hover
+    box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.7)
+    transition: .6s
+.hr
+  width: 100%
+  margin-left: 0.5em
+
+.add-list, .list-add-item button
+  cursor: pointer
+  background-color: #fdfdfd
+  border: 1px solid #ccc
+
+///////////////////////////////////////////
+// Button
+///////////////////////////////////////////
+
+.edit-item, .delete-item
+  margin-left: 23%
+
+///////////////////////////////////////////
+// Check
+///////////////////////////////////////////
+
+.checked
+  background-color: $silver
+  text-decoration: line-through

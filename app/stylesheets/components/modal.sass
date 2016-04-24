@@ -1,0 +1,25 @@
+////////////////////////////
+// Modal
+////////////////////////////
+
+.modalIsOpen
+  background: $white
+  box-shadow: 0 0 12px 0 rgba(0,0,0,.2)
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  margin: 25% 0% 0% 20%
+  padding: 2em
+  width: 55%
+  height: 30%
+  position: absolute
+  @media #{$medium-up}
+    margin: 25% 0% 0% 39%
+    width: 25%
+    height: 30%
+  @media #{$large-up}
+    margin: 10% 0% 0% 39%
+
+.modalIsClosed
+  display: none

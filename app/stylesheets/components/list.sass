@@ -1,0 +1,51 @@
+/////////////////////////////
+// List
+/////////////////////////////
+
+.list
+  display: inline-block
+  margin: 1em
+  border: 1px solid $silver
+  border-radius: $border-radius
+  min-width: 10em
+  vertical-align: top
+
+.header-wrapper
+  background-color: $burlywood
+  .list-header
+    overflow: auto
+    padding: 1em
+    color: $color-secondary
+
+.list-title, .list-add-item-wrapper
+  float: left
+
+.list-add-item-wrapper
+  margin: 1em 0em 0em 0.5em
+
+/////////////////////////////
+// Button
+/////////////////////////////
+
+.add-list
+  height: 5.1em
+  margin: -6em 0em 0em 1.5em
+  float: left
+
+.list-add-item-button, .list-delete button
+  height: 2em
+  width: 2em
+  border: none
+
+.list-delete
+  float: right
+  margin-left: 1em
+  visibility: hidden
+
+.list-delete button
+  cursor: pointer
+  color: $color-primary
+  background-color: $color-subaccent
+
+.list-header:hover .list-delete
+  visibility: visible

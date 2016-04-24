@@ -10,5 +10,6 @@
         "react-hmre"
       ]
     }
-  }
+  },
+  "plugins": "syntax-decorators"
 }
