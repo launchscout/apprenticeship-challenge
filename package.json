@@ -28,7 +28,14 @@
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
+    "alt": "^0.18.4",
+    "alt-container": "^1.0.2",
+    "alt-utils": "^1.0.0",
+    "node-uuid": "^1.4.7",
     "react": "^0.14.7",
+    "react-addons-update": "^0.14.8",
+    "react-dnd": "^2.1.4",
+    "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^0.14.7"
   }
 }
