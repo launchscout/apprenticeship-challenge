@@ -5,6 +5,8 @@ import Firebase from 'firebase';
 import _ from 'lodash';
 import Card from 'material-ui/lib/card/card';
 import List from 'material-ui/lib/lists/list';
+import LeftNav from 'material-ui/lib/left-nav';
+import MenuItem from 'material-ui/lib/menus/menu-item';
 
 export default class AllLists extends React.Component {
   constructor(props){
@@ -37,11 +39,16 @@ export default class AllLists extends React.Component {
 
     //extra binding to use with es6 classes
     this.updateItem = this.updateItem.bind(this);
+    this.onRequestChange = this.onRequestChange.bind(this);
   }
 
   updateItem(ref, key, input){
     let newRef = new Firebase(`${ref}/${key}`);
     newRef.set({name: input});
+  }
+
+  onRequestChange(){
+    this.props.onRequestChange();
   }
 
   render(){
@@ -53,16 +60,21 @@ export default class AllLists extends React.Component {
           key={list.key}
           list={list}
           selectList={that.props.selectList}
-          updateItem={that.updateItem} />
+          updateItem={that.updateItem}
+          handleClose={that.props.handleClose} />
       );
     });
 
     return (
       <div>
-        <CollectionInput />
-        <Card>
-          <List>{listNodes}</List>
-        </Card>
+        <LeftNav
+        open={this.props.open}
+        docked={false}
+        width={275}
+        onRequestChange={this.onRequestChange.bind(this)} >
+          <CollectionInput />
+          <div>{listNodes}</div>
+        </LeftNav>
       </div>
     );
   }

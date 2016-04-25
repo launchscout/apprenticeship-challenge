@@ -12,8 +12,14 @@ export default class GroceryItem extends React.Component {
 
   render(){
     return (
-      <ListItem onClick={this.deleteMe}>
-        Name: {this.props.item.name}, Sku: {this.props.item.sku}, Price: {this.props.item.price}, <span style={{color: '#808080'}}>Click Me to Delete Me</span>
+      <ListItem
+        onClick={this.deleteMe}
+        style={{
+          margin: 5,
+          minHeigh: 30,
+          fontSize: 16
+        }}>
+        Name: {this.props.item.name}, Sku: {this.props.item.sku}, Price: {this.props.item.price} <span style={{color: '#808080'}}>Click Me to Delete Me</span>
       </ListItem>
     );
   }
