@@ -9,6 +9,7 @@
 
 var React = require('react');
 var ShoppingList = require('ShoppingList');
+var AddItem = require('AddItem');
 
 var ShoppingApp = React.createClass({
     getInitialState: function () {
@@ -24,12 +25,17 @@ var ShoppingApp = React.createClass({
             ]
         };
     },
+    handleAddItem: function (text) {
+        alert('new item: ' + text);
+    },
+    
     render: function () {
         var {items} = this.state;
         
         return (
             <div>
                 <ShoppingList items={items}/>
+                <AddItem onAddItem={this.handleAddItem}/>
             </div>
         )
     }    
