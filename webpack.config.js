@@ -16,24 +16,24 @@ const common = {
     app: PATHS.app
   },
   resolve: {
-      
-//    moduleDirectories: [
+    root: __dirname,
+//    moduleDirectories: [    
 //      'node_modules',
-//        './app/components'
+//      './app/components'
 //    ],  
     
-    root: __dirname,
+//    root: __dirname,
     alias: {
         ShoppingList: 'app/components/ShoppingList.jsx',
         Item: 'app/components/Item.jsx',
-        App: 'app/components/app.jsx',
+        App: 'app/components/app.jsx'
     },
     
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: PATHS.build,
-    filename: 'bundle.js'
+    path: __dirname,
+    filename: './build/bundle.js'
   },
   module: {
     loaders: [
