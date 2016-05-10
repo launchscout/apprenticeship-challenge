@@ -6,7 +6,7 @@ const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  public: path.join(__dirname, 'public')
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -23,7 +23,7 @@ const common = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: PATHS.build,
+    path: PATHS.public,
     filename: 'bundle.js'
   },
   module: {
@@ -46,7 +46,7 @@ if(TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {
     devtool: 'eval-source-map',
     devServer: {
-      contentBase: PATHS.build,
+      contentBase: PATHS.public,
 
       historyApiFallback: true,
       hot: true,
@@ -70,6 +70,6 @@ if(TARGET === 'start' || !TARGET) {
   });
 }
 
-if(TARGET === 'build') {
+if(TARGET === 'public') {
   module.exports = merge(common, {});
 }
