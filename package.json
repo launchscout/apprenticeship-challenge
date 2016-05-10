@@ -4,6 +4,7 @@
   "description": "App for Gaslight Apprenticeship Challenge",
   "main": "index.js",
   "scripts": {
+    "test": "karma start",
     "build": "webpack",
     "start": "node server.js",
     "monitor": "webpack -w"
@@ -22,6 +23,14 @@
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-survivejs-kanban": "^0.3.3",
     "css-loader": "^0.23.1",
+    "expect": "^1.14.0",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-mocha": "^0.2.2",
+    "karma-mocha-reporter": "^2.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.4.5",
     "npm-install-webpack-plugin": "^2.0.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
