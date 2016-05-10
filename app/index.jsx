@@ -2,6 +2,6 @@ import './main.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import ShoppingApp from './components/ShoppingApp.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<ShoppingApp />, document.getElementById('app'));
