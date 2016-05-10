@@ -18,16 +18,20 @@ var ShoppingApp = React.createClass({
             items: [
                 {
                     id: uuid(),
-                    text: 'Apples'
+                    text: 'Apples',
+                    completed: false
                 }, {
                     id: uuid(),
-                    text: 'Bananas'
+                    text: 'Bananas',
+                    completed: true
                 }, {
                     id: uuid(),
-                    text: 'Coconuts'
+                    text: 'Coconuts',
+                    copmleted: true
                 }, {
                     id: uuid(),
-                    text: 'Danish'
+                    text: 'Danish',
+                    completed: false
                 }
             ]
         };
@@ -38,10 +42,23 @@ var ShoppingApp = React.createClass({
                ...this.state.items, 
                {
                    id: uuid(),
-                   text: text
+                   text: text,
+                   completed: false
                }
            ] 
         });
+    },
+    
+    handleToggle: function (id) {
+        var updatedItems = this.state.items.map((item) => {
+            if (item.id === id) {
+                item.completed = !item.completed;
+            }
+            
+            return item;
+        });
+        
+        this.setState({items: updatedItems});
     },
     
     render: function () {
@@ -49,7 +66,7 @@ var ShoppingApp = React.createClass({
         
         return (
             <div>
-                <ShoppingList items={items}/>
+                <ShoppingList items={items} onToggle={this.handleToggle}/>
                 <AddItem onAddItem={this.handleAddItem}/>
             </div>
         )

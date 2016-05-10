@@ -20,4 +20,21 @@ describe('ShoppingApp', () => {
         
         expect(shoppingApp.state.items[0].text).toBe(itemText);
     });
+    
+    it('should toggle completed value when handleToggle called', () => {
+        var itemData = {
+            id: 11,
+            text: 'Testing toggle',
+            completed: false
+        };
+        var shoppingApp = TestUtils.renderIntoDocument(<ShoppingApp/>);
+        shoppingApp.setState({items: [itemData]});
+       
+        //check that items first item has completed value of false
+        expect(shoppingApp.state.items[0].completed).toBe(false);
+        //call handleToggle with 11
+        shoppingApp.handleToggle(11);
+        //verify that value has changed
+        expect(shoppingApp.state.items[0].completed).toBe(true);
+    });
 });

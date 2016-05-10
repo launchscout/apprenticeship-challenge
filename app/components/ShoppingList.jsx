@@ -11,7 +11,7 @@ var ShoppingList = React.createClass({
         var renderItems = () => {
             return items.map((item) => {
                 return (
-                <Item key={item.id} {...item}/>
+                <Item key={item.id} {...item} onToggle={this.props.onToggle}/>
                 );
             });
         };
