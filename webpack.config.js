@@ -16,10 +16,21 @@ process.env.BABEL_ENV = TARGET;
 module.exports = {
     entry: [
 //    app: PATHS.app
-      //'script!jquery/dist/jquery.min.js',
-      //'script!foundation-sites/dist/foundation.min.js',    
+      'script!jquery/dist/jquery.min.js',
+      'script!foundation-sites/dist/foundation.min.js',    
       './app/index.jsx'
   ],
+    
+    externals: {
+        jquery: 'jQuery'    
+    },
+    
+    plugins: [
+        new webpack.ProvidePlugin({
+            '$': 'jquery',
+            'jQuery': 'jquery'
+        })
+    ],
   resolve: {
     root: __dirname,
 //    moduleDirectories: [    
@@ -31,7 +42,8 @@ module.exports = {
     alias: {
         ShoppingList: 'app/components/ShoppingList.jsx',
         Item: 'app/components/Item.jsx',
-        ShoppingApp: 'app/components/ShoppingApp.jsx'
+        ShoppingApp: 'app/components/ShoppingApp.jsx',
+        AddItem: 'app/components/AddItem.jsx'
     },
     
     extensions: ['', '.js', '.jsx']
@@ -40,21 +52,38 @@ module.exports = {
     path: __dirname,
     filename: './build/bundle.js'
   },
-  module: {
+    
+    module: {
     loaders: [
       {
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-        //include: PATHS.app
-      },
-      {
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015']
+        },
         test: /\.jsx?$/,
-        loaders: ['babel?cacheDirectory'],
-        //include: PATHS.app
+        exclude: /(node_modules|bower_components)/
       }
     ]
   }
+    
 };
+
+
+//  module: {
+//    loaders: [
+//      {
+//        test: /\.css$/,
+//        loaders: ['style', 'css'],
+//        //include: PATHS.app
+//      },
+//      {
+//        test: /\.jsx?$/,
+//        loaders: ['babel?cacheDirectory'],
+//        //include: PATHS.app
+//      }
+//    ]
+//  }
+//
 
 //if(TARGET === 'start' || !TARGET) {
 //  module.exports = merge(common, {
