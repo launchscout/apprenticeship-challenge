@@ -8,12 +8,28 @@
 //}
 
 var React = require('react');
+var ShoppingList = require('ShoppingList');
 
 var App = React.createClass({
+    getInitialState: function () {
+        return {
+            items: [
+                {
+                    id: 1,
+                    text: 'Apples'
+                }, {
+                    id: 2,
+                    text: 'Bananas'
+                }
+            ]
+        };
+    },
     render: function () {
+        var {items} = this.state;
+        
         return (
             <div>
-                App.jsx
+                <ShoppingList items={items}/>
             </div>
         )
     }    

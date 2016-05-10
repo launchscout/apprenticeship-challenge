@@ -16,10 +16,19 @@ const common = {
     app: PATHS.app
   },
   resolve: {
-    moduleDirectories: [
-      'node_modules',
-        './app/components'
-    ],  
+      
+//    moduleDirectories: [
+//      'node_modules',
+//        './app/components'
+//    ],  
+    
+    root: __dirname,
+    alias: {
+        ShoppingList: 'app/components/ShoppingList.jsx',
+        Item: 'app/components/Item.jsx',
+        App: 'app/components/app.jsx',
+    },
+    
     extensions: ['', '.js', '.jsx']
   },
   output: {
