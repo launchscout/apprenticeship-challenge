@@ -16,6 +16,10 @@ const common = {
     app: PATHS.app
   },
   resolve: {
+    moduleDirectories: [
+      'node_modules',
+        './app/components'
+    ],  
     extensions: ['', '.js', '.jsx']
   },
   output: {

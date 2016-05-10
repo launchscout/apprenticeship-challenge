@@ -1,7 +1,7 @@
 {
   "name": "shopping_list_app",
   "version": "0.0.0",
-  "description": "App for Gaslight Apprenticeship Challend",
+  "description": "App for Gaslight Apprenticeship Challenge",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
