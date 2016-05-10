@@ -33,6 +33,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "node-uuid": "^1.4.7",
     "npm-install-webpack-plugin": "^2.0.2",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",

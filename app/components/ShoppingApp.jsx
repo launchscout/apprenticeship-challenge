@@ -10,23 +10,38 @@
 var React = require('react');
 var ShoppingList = require('ShoppingList');
 var AddItem = require('AddItem');
+var uuid = require('node-uuid');
 
 var ShoppingApp = React.createClass({
     getInitialState: function () {
         return {
             items: [
                 {
-                    id: 1,
+                    id: uuid(),
                     text: 'Apples'
                 }, {
-                    id: 2,
+                    id: uuid(),
                     text: 'Bananas'
+                }, {
+                    id: uuid(),
+                    text: 'Coconuts'
+                }, {
+                    id: uuid(),
+                    text: 'Danish'
                 }
             ]
         };
     },
     handleAddItem: function (text) {
-        alert('new item: ' + text);
+        this.setState({
+           items: [
+               ...this.state.items, 
+               {
+                   id: uuid(),
+                   text: text
+               }
+           ] 
+        });
     },
     
     render: function () {
