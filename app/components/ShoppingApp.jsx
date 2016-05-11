@@ -55,9 +55,17 @@ var ShoppingApp = React.createClass({
         var {items} = this.state;
         
         return (
-            <div>
-                <ShoppingList items={items} onToggle={this.handleToggle}/>
-                <AddItem onAddItem={this.handleAddItem}/>
+        <div>
+            <h1 className="page-title">Shopping List App</h1>
+
+                <div className="row">
+                    <div className="column small-centered small-11 medium-6 large-5">
+                        <div className="container">
+                            <ShoppingList items={items} onToggle={this.handleToggle}/>
+                            <AddItem onAddItem={this.handleAddItem}/>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }    

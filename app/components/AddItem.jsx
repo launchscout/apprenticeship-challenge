@@ -20,7 +20,7 @@ var AddItem = React.createClass({
 
     render: function () {
         return (
-            <div>
+            <div className = "container_footer">
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <div>

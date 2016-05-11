@@ -29,7 +29,8 @@ module.exports = {
         new webpack.ProvidePlugin({
             '$': 'jquery',
             'jQuery': 'jquery'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
   resolve: {
     root: __dirname,
@@ -44,7 +45,8 @@ module.exports = {
         Item: 'app/components/Item.jsx',
         ShoppingApp: 'app/components/ShoppingApp.jsx',
         AddItem: 'app/components/AddItem.jsx',
-        ItemAPI: 'app/api/ItemAPI.jsx'
+        ItemAPI: 'app/api/ItemAPI.jsx',
+        applicationStyles: 'app/styles/main.css'
     },
     
     extensions: ['', '.js', '.jsx']

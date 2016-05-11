@@ -1,4 +1,4 @@
-//import './main.css';
+//import './styles/main.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,6 +9,9 @@ require('style!css!foundation-sites/dist/foundation.min.css');
 jQuery(document).ready(function($) {
 $(document).foundation();
 });
+
+// App css
+require('style!css!applicationStyles')
 
 
 ReactDOM.render(<ShoppingApp />, document.getElementById('app'));
