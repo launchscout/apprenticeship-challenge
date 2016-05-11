@@ -12,19 +12,19 @@ describe('ShoppingApp', () => {
     });
     
     it('should add item to the items state on handleItem', () => {
-       var itemText = "Salad";
+       var itemName = "Salad";
        var shoppingApp = TestUtils.renderIntoDocument(<ShoppingApp/>);
                                                   
         shoppingApp.setState({items: []});
-        shoppingApp.handleAddItem(itemText);
+        shoppingApp.handleAddItem(itemName);
         
-        expect(shoppingApp.state.items[0].text).toBe(itemText);
+        expect(shoppingApp.state.items[0].name).toBe(itemName);
     });
     
     it('should toggle completed value when handleToggle called', () => {
         var itemData = {
             id: 11,
-            text: 'Testing toggle',
+            name: 'Testing toggle',
             completed: false
         };
         var shoppingApp = TestUtils.renderIntoDocument(<ShoppingApp/>);

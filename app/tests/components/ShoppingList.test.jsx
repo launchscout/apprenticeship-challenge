@@ -15,10 +15,10 @@ describe('ShoppingList', () => {
     it('should render one Item component for each Item in list', () => {
         var items = [{
             id: 1,
-            text: 'Cranberries'
+            name: 'Cranberries'
         }, {
             id: 2,
-            text: 'Daisy'
+            name: 'Daisy'
         }];
         var shoppingList = TestUtils.renderIntoDocument(<ShoppingList items={items}/>);
         var itemsComponents = TestUtils.scryRenderedComponentsWithType(shoppingList, Item);

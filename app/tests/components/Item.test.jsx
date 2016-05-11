@@ -14,7 +14,7 @@ describe('Item', () => {
     it('should call onToggle prop with id on click', () => {
         var itemData = {
             id: 200,
-            text: 'Writing id.text.jsdx test',
+            name: 'Writing id.name.jsdx test',
             completed: true
         };
         var spy = expect.createSpy();

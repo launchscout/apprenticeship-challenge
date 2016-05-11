@@ -12,24 +12,24 @@ describe('AddItem', () => {
     });
     
     it('should call onAddItem prop with valid data', () => {
-        var itemText = 'Grapes';
+        var itemName = 'Grapes';
         var spy = expect.createSpy();
         var addItem = TestUtils.renderIntoDocument(<AddItem onAddItem={spy}/>);
         var $el = $(ReactDOM.findDOMNode(addItem));
         
-        addItem.refs.itemText.value = itemText;
+        addItem.refs.itemName.value = itemName;
         TestUtils.Simulate.submit($el.find('form')[0]);
         
-        expect(spy).toHaveBeenCalledWith(itemText);
+        expect(spy).toHaveBeenCalledWith(itemName);
     });
     
      it('should not call onAddItem prop when invalid data', () => {
-        var itemText = '';
+        var itemName = '';
         var spy = expect.createSpy();
         var addItem = TestUtils.renderIntoDocument(<AddItem onAddItem={spy}/>);
         var $el = $(ReactDOM.findDOMNode(addItem));
         
-        addItem.refs.itemText.value = itemText;
+        addItem.refs.itemName.value = itemName;
         TestUtils.Simulate.submit($el.find('form')[0]);
         
         expect(spy).toNotHaveBeenCalled();

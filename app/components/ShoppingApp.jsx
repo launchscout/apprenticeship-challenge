@@ -18,36 +18,47 @@ var ShoppingApp = React.createClass({
             items: [
                 {
                     id: uuid(),
-                    text: 'Apples',
+                    name: 'Apples',
+                    price: '4.99',
+                    sku: 'APPL-GRN-14',
                     completed: false
                 }, {
                     id: uuid(),
-                    text: 'Bananas',
+                    name: 'Bananas',
+                    price: '8',
+                    sku: 'BNN-YEL-12',
                     completed: true
                 }, {
                     id: uuid(),
-                    text: 'Coconuts',
-                    copmleted: true
+                    name: 'Coconuts',
+                    price: '6.50',
+                    sku: 'CCN-BRN-88',
+                    completed: true
                 }, {
                     id: uuid(),
-                    text: 'Danish',
+                    name: 'Danish',
+                    price: '18.00',
+                    sku: 'DAN-YUM-16',
                     completed: false
                 }
             ]
         };
     },
-    handleAddItem: function (text) {
+    handleAddItem: function (name, price, sku) {
         this.setState({
            items: [
                ...this.state.items, 
                {
                    id: uuid(),
-                   text: text,
+                   name: name,
+                   price: price,
+                   sku: sku,
                    completed: false
                }
            ] 
         });
     },
+    
     
     handleToggle: function (id) {
         var updatedItems = this.state.items.map((item) => {
