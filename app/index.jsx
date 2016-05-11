@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
 $(document).foundation();
 });
 
-// App css
+// Main css
 require('style!css!applicationStyles')
 
 

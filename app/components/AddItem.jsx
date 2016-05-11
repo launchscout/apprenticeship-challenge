@@ -29,7 +29,7 @@ var AddItem = React.createClass({
                             </div>
                             <div className="large-4 columns">
                               <label>Price
-                                <input type="number" min="0.01" step="0.01" ref="itemPrice" placeholder="34.99"/>
+                                <input type="number" min="0.01" step="0.01" ref="itemPrice" placeholder="19.99"/>
                               </label>
                             </div>
                             <div className="large-4 columns">
