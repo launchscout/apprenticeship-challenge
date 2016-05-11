@@ -53,8 +53,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'bundle.js'
+    path: __dirname,
+    filename: './build/bundle.js'
   },
     
     module: {
