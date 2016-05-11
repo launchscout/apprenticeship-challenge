@@ -1,4 +1,4 @@
-const path = require('path');
+var path = require('path');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
