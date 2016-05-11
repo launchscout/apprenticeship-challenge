@@ -43,7 +43,8 @@ module.exports = {
         ShoppingList: 'app/components/ShoppingList.jsx',
         Item: 'app/components/Item.jsx',
         ShoppingApp: 'app/components/ShoppingApp.jsx',
-        AddItem: 'app/components/AddItem.jsx'
+        AddItem: 'app/components/AddItem.jsx',
+        ItemAPI: 'app/api/ItemAPI.jsx'
     },
     
     extensions: ['', '.js', '.jsx']

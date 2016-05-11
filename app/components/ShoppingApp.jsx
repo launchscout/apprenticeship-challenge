@@ -8,41 +8,20 @@
 //}
 
 var React = require('react');
+var uuid = require('node-uuid');
+
 var ShoppingList = require('ShoppingList');
 var AddItem = require('AddItem');
-var uuid = require('node-uuid');
+var ItemAPI = require('ItemAPI');
 
 var ShoppingApp = React.createClass({
     getInitialState: function () {
         return {
-            items: [
-                {
-                    id: uuid(),
-                    name: 'Apples',
-                    price: '4.99',
-                    sku: 'APPL-GRN-14',
-                    completed: false
-                }, {
-                    id: uuid(),
-                    name: 'Bananas',
-                    price: '8',
-                    sku: 'BNN-YEL-12',
-                    completed: true
-                }, {
-                    id: uuid(),
-                    name: 'Coconuts',
-                    price: '6.50',
-                    sku: 'CCN-BRN-88',
-                    completed: true
-                }, {
-                    id: uuid(),
-                    name: 'Danish',
-                    price: '18.00',
-                    sku: 'DAN-YUM-16',
-                    completed: false
-                }
-            ]
+            items: ItemAPI.getItems()
         };
+    },
+    componentDidUpdate: function () {
+      ItemAPI.setItems(this.state.items);  
     },
     handleAddItem: function (name, price, sku) {
         this.setState({
