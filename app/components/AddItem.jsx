@@ -20,31 +20,34 @@ var AddItem = React.createClass({
 
     render: function () {
         return (
-            <div className = "container_footer">
                 <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <div>
-                            <p>Enter the item you would like to buy</p>
-                            <input type="text" ref="itemName" placeholder="What are you shopping for?"/>
+                        <div className="row">
+                            <div className="large-4 columns">
+                              <label>Item to buy
+                                <input type="text" ref="itemName" placeholder="Shoes"/>
+                              </label>
+                            </div>
+                            <div className="large-4 columns">
+                              <label>Price
+                                <input type="number" min="0.01" step="0.01" ref="itemPrice" placeholder="34.99"/>
+                              </label>
+                            </div>
+                            <div className="large-4 columns">
+                              <label>SKU
+                                <input type="text" ref="itemSku" placeholder="NIKE-AIR-07"/>
+                              </label>
+                            </div>
                         </div>
-                        <div>
-                            <p>Enter the price of the item</p>
-                            <input type="number" min="0.01" step="0.01" ref="itemPrice" placeholder="e.g. 14.99"/>
-                        </div>
-                        <div>
-                            <p>Enter the SKU of the item</p>
-                            <input type="text" ref="itemSku" placeholder="e.g. NIKE-T15-SM"/>
-                        </div>
-                    </div>
                     <div>
                         <button className="button expanded">Add Item</button>
                     </div>
                 </form>
-            </div>
-        
+            
+      
         )
     },
     
 });
 
 module.exports = AddItem;
+

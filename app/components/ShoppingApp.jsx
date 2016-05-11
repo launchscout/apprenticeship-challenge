@@ -12,17 +12,21 @@ var uuid = require('node-uuid');
 
 var ShoppingList = require('ShoppingList');
 var AddItem = require('AddItem');
+var ShoppingListHeader = require('ShoppingListHeader')
 var ItemAPI = require('ItemAPI');
 
 var ShoppingApp = React.createClass({
     getInitialState: function () {
         return {
+            showCompleted: false,
+            listTitle: '',
             items: ItemAPI.getItems()
         };
     },
     componentDidUpdate: function () {
       ItemAPI.setItems(this.state.items);  
     },
+    
     handleAddItem: function (name, price, sku) {
         this.setState({
            items: [
@@ -38,6 +42,13 @@ var ShoppingApp = React.createClass({
         });
     },
     
+    handleFilter: function (showCompleted, listTitle) {
+        this.setState({
+            showCompleted: showCompleted,
+            listTitle: listTitle
+            
+        })
+},
     
     handleToggle: function (id) {
         var updatedItems = this.state.items.map((item) => {
@@ -52,7 +63,9 @@ var ShoppingApp = React.createClass({
     },
     
     render: function () {
-        var {items} = this.state;
+        var {items, showCompleted} = this.state;
+        var filteredItems = ItemAPI.filterItems(items, showCompleted);
+            
         
         return (
         <div>
@@ -60,9 +73,12 @@ var ShoppingApp = React.createClass({
 
                 <div className="row">
                     <div className="column small-centered small-11 medium-6 large-5">
+                            <ShoppingListHeader onFilter={this.handleFilter}/>
+                       
                         <div className="container">
-                            <ShoppingList items={items} onToggle={this.handleToggle}/>
+                            
                             <AddItem onAddItem={this.handleAddItem}/>
+                            <ShoppingList items={filteredItems} onToggle={this.handleToggle}/>
                         </div>
                     </div>
                 </div>

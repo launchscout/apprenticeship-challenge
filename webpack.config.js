@@ -42,6 +42,7 @@ module.exports = {
 //    root: __dirname,
     alias: {
         ShoppingList: 'app/components/ShoppingList.jsx',
+        ShoppingListHeader: 'app/components/ShoppingListHeader.jsx',
         Item: 'app/components/Item.jsx',
         ShoppingApp: 'app/components/ShoppingApp.jsx',
         AddItem: 'app/components/AddItem.jsx',

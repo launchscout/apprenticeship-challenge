@@ -17,12 +17,16 @@ module.exports = {
             
         }
         
-        //return $.isArray(items) ? items : [];
-        
-        if ($.isArray(items)) {
-            return items;
-        } else {
-            return [];
+        return $.isArray(items) ? items : [];
+    },
+            
+        filterItems: function (items, showCompleted) {
+            var filteredItems = items;
+            
+            filteredItems = filteredItems.filter((item) => {
+                return !item.completed || showCompleted;
+            });
+            
+            return filteredItems;
         }
-    }
-};
+    };
