@@ -11,19 +11,20 @@ var ListHeader = React.createClass({
     render: function () {
         return (
             <div className = "containerHeader">
-               
+                <form onSubmit={this.handleSubmit}>
                     <div> 
-                        <input type="text" ref="listTitle" placeholder="Enter List Title"/>
-                    </div>
+                        <label>
+                            <input type="text" ref="listTitle" placeholder="Enter List Title"/>
+                        </label>
+                    </div>    
+                </form>
                     <div> 
                         <label>
                             <input type="checkbox" ref="showCompleted" onChange={this.handleFilter}/>
                             Show Purchased Items
                         </label>
                     </div>
-  
             </div>
-            
         
         )
     }

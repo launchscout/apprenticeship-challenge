@@ -2,7 +2,10 @@
   "name": "shopping_list_app",
   "version": "0.0.0",
   "description": "App for Gaslight Apprenticeship Challenge",
-  "main": "index.js",
+  "main": "index.jsx",
+    "engines": {
+    "node": "4.4.3"
+  },
   "scripts": {
     "test": "karma start",
     "build": "webpack",

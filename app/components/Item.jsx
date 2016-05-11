@@ -3,10 +3,10 @@ var React = require('react');
 var Item = React.createClass({
     render: function () {
         var{id, name, price, sku, completed} = this.props;
-        
+        var itemClassName = completed ? 'item-completed' : 'item-completed';
         
         return (   
-                <div onClick={() => {
+                <div className={itemClassName} onClick={() => {
                     this.props.onToggle(id);
                 }}>
 
@@ -25,7 +25,7 @@ var Item = React.createClass({
                 </div>
                  <div> 
                     <input type="checkbox" checked={completed}/> 
-                    <label>Add to purchased items</label>
+                    <label className="italics">Purchased?</label>
                  </div>
             </div>
                             
