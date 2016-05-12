@@ -2,23 +2,44 @@
     text-align: center;
 }
 
+.text-centered {
+    
+    text-align: center;
+    padding-top: .5rem;
+
+}
+
+.information {
+    
+    color: #aaa;
+    font-style: italic;
+    
+}
+
+.margin {
+    
+    margin-right: 2rem;
+}
+
 .container {
     
     background-color: #fafafa;
     border: 1px solid rgb(190,190,190);
     border-radius: 5px;
-    padding: .25rem;
+    padding-top: .5rem;
     margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .containerHeader {
-    padding: .25rem;
+    padding: .8rem;
+    margin: .5rem;
     border-bottom: 1px solid rgb(190,190,190);
 }
 
 .containerFooter {
     margin-top: 2rem;
-    padding: .25rem;
+    padding: .5rem;
     border-top: 1px solid rgb(190,190,190);
  
 }
@@ -27,6 +48,7 @@
     color: #aaa;
     margin: 2rem auto;
     text-align: center;
+    font-style: italic;
     
 }
 
@@ -41,7 +63,7 @@ label {
 
 .description {
     font-weight: 500;
-    padding: .25rem;
+    padding: .5rem;
 }
 
 .italics {
@@ -53,9 +75,7 @@ label {
 
 
 .item {
-    /*align-items: center;
-    display: flex;*/
-    padding: .25rem;
+    padding: .5rem;
     transition: background .3s ease;
 }
 

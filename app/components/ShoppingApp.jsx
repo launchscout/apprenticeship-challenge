@@ -38,10 +38,10 @@ var ShoppingApp = React.createClass({
             showCompleted: showCompleted
         })
 },
-       handleSubmit: function (listName) {
+       handleAddTitle: function (listName) {
         this.setState({
             listName: listName
-            
+          
         })
 },
     
@@ -58,7 +58,7 @@ var ShoppingApp = React.createClass({
     },
     
     render: function () {
-        var {items, showCompleted} = this.state;
+        var {items, showCompleted, listName} = this.state;
         var filteredItems = ItemAPI.filterItems(items, showCompleted);
             
         
@@ -70,8 +70,9 @@ var ShoppingApp = React.createClass({
                          <img src="http://i.imgur.com/LzoLnow.png?1"/>   
                         
                         <div className="container">
-                            <p>Welcome to SHOPR. To get started, enter the name of your shopping list.</p> 
-                            <ShoppingListHeader onSubmit={this.handleSubmit} onFilter={this.handleFilter}/>                
+                            <p className = "text-centered">Welcome to SHOPR. To get started, enter the name of your shopping list. This can be changed anytime.</p> 
+                            <ShoppingListHeader onFilter={this.handleFilter} onAddTitle={this.handleAddTitle}/> 
+                            <h3 className = "text-centered">{listName}</h3>
                             <ShoppingList items={filteredItems} onToggle={this.handleToggle}/>
                             <AddItem onAddItem={this.handleAddItem}/>
                         </div>
