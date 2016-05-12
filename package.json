@@ -1,17 +1,22 @@
 {
-  "name": "kanban_app",
+  "name": "shopping_list_app",
   "version": "0.0.0",
-  "description": "Webpack demo app",
+  "description": "App for Gaslight Apprenticeship Challenge",
   "main": "index.js",
+    "engines": {
+    "node": "4.4.3"
+  },
   "scripts": {
+    "test": "karma start",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "node server.js",
+    "monitor": "webpack -w"
   },
   "keywords": [
     "webpack",
     "demo"
   ],
-  "author": "",
+  "author": "Josh Stricker",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.5.2",
@@ -21,13 +26,26 @@
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-survivejs-kanban": "^0.3.3",
     "css-loader": "^0.23.1",
+    "expect": "^1.14.0",
+    "foundation-sites": "^6.2.0",
+    "jquery": "^2.2.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-mocha": "^0.2.2",
+    "karma-mocha-reporter": "^2.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.4.5",
+    "node-uuid": "^1.4.7",
     "npm-install-webpack-plugin": "^2.0.2",
+    "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
+    "express": "^4.13.4",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   }

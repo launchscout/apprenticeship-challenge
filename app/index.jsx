@@ -1,7 +1,17 @@
-import './main.css';
+//import './styles/main.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import ShoppingApp from './components/ShoppingApp.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+// Load foundation
+require('style!css!foundation-sites/dist/foundation.min.css');
+jQuery(document).ready(function($) {
+$(document).foundation();
+});
+
+// Main css
+require('style!css!applicationStyles')
+
+
+ReactDOM.render(<ShoppingApp />, document.getElementById('app'));
