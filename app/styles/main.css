@@ -71,7 +71,12 @@ label {
 
 .item-completed {
     font-style: italic;
-    
+    font-weight: 300;
+    color: #CD9B9B; 
+}
+
+.checkbox {
+    display: none;
 }
 
 

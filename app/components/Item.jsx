@@ -22,10 +22,14 @@ var Item = React.createClass({
                         {sku}
                     </div>
                 </div>
-                 <div> 
-                        <input type="checkbox" checked={completed}/> 
-                        <label className="italics">Remove from list</label>
-                 </div>
+                   
+                             
+                     <div> 
+                        <input className="checkbox" type="checkbox" checked={completed}/> 
+                        <label className="italics">&times; Remove from list</label>
+                    </div>
+                        
+                
             </div>
                          
         )

@@ -18,12 +18,14 @@ var ListHeader = React.createClass({
                         </label>
                     </div>    
                 </form>
-                    <div> 
-                        <label>
-                            <input type="checkbox" ref="showCompleted" onChange={this.handleFilter}/>
-                            Show Removed Items
-                        </label>
-                    </div>
+                <div className="switch small">
+                      <input className="switch-input" id="yes-no" type="checkbox" ref="showCompleted" onClick={this.handleFilter}>
+                      <label className="switch-paddle" for="yes-no">
+                        <span className="show-for-sr">Do you like me?</span>
+                        <span className="switch-active" aria-hidden="true">Yes</span>
+                        <span className="switch-inactive" aria-hidden="true">No</span>
+                      </label></input>
+                </div>
             </div>
         
         )
