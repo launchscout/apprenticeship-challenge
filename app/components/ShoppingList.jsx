@@ -8,6 +8,7 @@ var Item = require('Item');
 var ShoppingList = React.createClass({
     render: function () {
         var {items} = this.props;    
+                    
         var renderItems = () => {
             if (items.length === 0) {
                 return (
@@ -24,9 +25,22 @@ var ShoppingList = React.createClass({
         };
 
             return (
-                <div>
-                    {renderItems()}
-                </div>
+                <div>    
+                    <div className="row description">
+                            <div className="small-6 large-6 columns">
+                               Item
+                            </div>
+                            <div className="small-3 large-3 columns">
+                                Price
+                            </div>
+                            <div className="small-3 large-3 columns">
+                                SKU
+                            </div>
+                        </div>
+                        <div>
+                            {renderItems()}
+                        </div>
+                    </div>
             )
         }    
 }); 

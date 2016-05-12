@@ -1,12 +1,3 @@
-//import React from 'react';
-//import Note from './Note.jsx';
-
-//export default class App extends React.Component {
-//  render() {
-//    return <Note />;
-//  }
-//}
-
 var React = require('react');
 var uuid = require('node-uuid');
 
@@ -69,16 +60,15 @@ var ShoppingApp = React.createClass({
         
         return (
         <div>
-            <h1 className="page-title">Shopping List App</h1>
+            <h2 className="page-title">Shopping List App</h2>
 
                 <div className="row">
-                    <div className="column small-centered small-11 medium-6 large-5">
-                            <ShoppingListHeader onFilter={this.handleFilter}/>
-                       
-                        <div className="container">
+                    <div className="columns small-centered small-11 medium-6 large-5">
                             
-                            <AddItem onAddItem={this.handleAddItem}/>
+                        <div className="container">
+                            <ShoppingListHeader onFilter={this.handleFilter}/>                
                             <ShoppingList items={filteredItems} onToggle={this.handleToggle}/>
+                            <AddItem onAddItem={this.handleAddItem}/>
                         </div>
                     </div>
                 </div>

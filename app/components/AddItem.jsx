@@ -20,21 +20,21 @@ var AddItem = React.createClass({
 
     render: function () {
         return (
-                <form onSubmit={this.handleSubmit}>
+                <form className="containerFooter" onSubmit={this.handleSubmit}>
                         <div className="row">
-                            <div className="large-4 columns">
+                            <div className="small-6 large-6 columns">
                               <label>Item to buy
                                 <input type="text" ref="itemName" placeholder="Shoes"/>
                               </label>
                             </div>
-                            <div className="large-4 columns">
+                            <div className="small-3 large-3 columns">
                               <label>Price
                                 <input type="number" min="0.01" step="0.01" ref="itemPrice" placeholder="19.99"/>
                               </label>
                             </div>
-                            <div className="large-4 columns">
+                            <div className="small-3 large-3 columns">
                               <label>SKU
-                                <input type="text" ref="itemSku" placeholder="NIKE-AIR-07"/>
+                                <input type="text" ref="itemSku" placeholder="NIKE-07"/>
                               </label>
                             </div>
                         </div>
