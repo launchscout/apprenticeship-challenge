@@ -10,7 +10,7 @@ var ShoppingApp = React.createClass({
     getInitialState: function () {
         return {
             showCompleted: false,
-            listTitle: '',
+            listName: '',
             items: ItemAPI.getItems()
         };
     },
@@ -33,10 +33,14 @@ var ShoppingApp = React.createClass({
         });
     },
     
-    handleFilter: function (showCompleted, listTitle) {
+    handleFilter: function (showCompleted) {
         this.setState({
-            showCompleted: showCompleted,
-            listTitle: listTitle
+            showCompleted: showCompleted
+        })
+},
+       handleSubmit: function (listName) {
+        this.setState({
+            listName: listName
             
         })
 },
@@ -60,13 +64,14 @@ var ShoppingApp = React.createClass({
         
         return (
         <div>
-            <h2 className="page-title">Shopping List App</h2>
 
                 <div className="row">
                     <div className="columns small-centered small-11 medium-6 large-5">
-                            
+                         <img src="http://i.imgur.com/LzoLnow.png?1"/>   
+                        
                         <div className="container">
-                            <ShoppingListHeader onFilter={this.handleFilter}/>                
+                            <p>Welcome to SHOPR. To get started, enter the name of your shopping list.</p> 
+                            <ShoppingListHeader onSubmit={this.handleSubmit} onFilter={this.handleFilter}/>                
                             <ShoppingList items={filteredItems} onToggle={this.handleToggle}/>
                             <AddItem onAddItem={this.handleAddItem}/>
                         </div>

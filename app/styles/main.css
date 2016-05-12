@@ -1,6 +1,4 @@
 .page-title {
-    margin: 0;
-    padding: 2rem 0;
     text-align: center;
 }
 
@@ -71,8 +69,8 @@ label {
 
 .item-completed {
     font-style: italic;
-    font-weight: 300;
-    color: #CD9B9B; 
+    font-weight: 400;
+    color: #DD5143; 
 }
 
 .checkbox {

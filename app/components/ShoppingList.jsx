@@ -4,6 +4,7 @@
 
 var React = require('react');
 var Item = require('Item');
+var ShoppingListHeader = require('ShoppingListHeader');
 
 var ShoppingList = React.createClass({
     render: function () {
@@ -25,7 +26,7 @@ var ShoppingList = React.createClass({
         };
 
             return (
-                <div>    
+                <div>  
                     <div className="row description">
                             <div className="small-6 large-6 columns">
                                Item

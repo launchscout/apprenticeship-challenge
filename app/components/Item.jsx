@@ -26,7 +26,7 @@ var Item = React.createClass({
                              
                      <div> 
                         <input className="checkbox" type="checkbox" checked={completed}/> 
-                        <label className="italics">&times; Remove from list</label>
+                        <label className="italics">&times; Add/Remove</label>
                     </div>
                         
                 
