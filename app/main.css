@@ -1,3 +1,6 @@
 body {
-  background: cornsilk;
+  background: white;
+}
+li {
+  list-style-type: none;
 }

@@ -23,9 +23,9 @@ This will mean your environment is set up correctly and you are ready to start c
 
 We'd like you to build a basic shopping list application. It should have the following features:
 
-1. **Create a shopping list.**
+X1. **Create a shopping list.**
 A shopping list should have a name and list of items.
-2. **Edit a shopping list.** A user should be able to change the name of their shopping list.
+X2. **Edit a shopping list.** A user should be able to change the name of their shopping list.
 3. **Add a shopping list item** A user should be able to add items to a shopping list. Each item should have a name, SKU #, and price.
 4. **Removing an item** A user should be able to remove an item from a list.
 
