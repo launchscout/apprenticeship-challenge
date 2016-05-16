@@ -14,7 +14,8 @@ var Table = React.createClass({
               key={row.sku}
               item={row.item}
               sku={row.sku}
-              price={row.price} />
+              price={row.price}
+              removeItem={this.props.removeItem} />
           )}
         </ul>
       </div>

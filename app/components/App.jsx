@@ -1,26 +1,27 @@
 import uuid from 'node-uuid';
 import React from 'react';
-
 import Table from './Table.jsx'
 
 export default React.createClass({
 
   getInitialState() {
     return {
+      newItem: '',
+      newPrice: 0,
       list: [
         {
-          item: 'milk',
+          item: 'Milk',
           sku: uuid.v4(),
           price: 2.00
         },
         {
-          item: 'eggs',
+          item: 'Eggs',
           sku: uuid.v4(),
           price: 1.50
 
         },
          {
-          item: 'oj',
+          item: 'Orange Juice',
           sku: uuid.v4(),
           price: 3.00
         }
@@ -28,16 +29,25 @@ export default React.createClass({
     }
   },
 
+  updateName (event) {
+    this.setState({newItem: event.target.value})
+  },
+
+  updatePrice (event) {
+    this.setState({newPrice: Number(event.target.value)})
+  },
+
   render(){
     return (
       <div>
-        <button onClick={this.addItem}>+</button>
+        <Table rowList={this.state.list} removeItem={this.removeItem} />
+
         <form id="add-form" onSubmit={this.handleSubmit}>
-          <input id='create' ref="description" type='text' placeholder='Item Name'/>
-          <input id='create' ref="description" type='text' placeholder='SKU'/>
-          <input id='create' ref="description" type='text' placeholder= 'Price'/>
-    </form>
-        <Table rowList={this.state.list}/>
+          <input type='text' placeholder='Item Name' onChange={this.updateName} />
+          <input type='text' placeholder= 'Price' onChange={this.updatePrice} />
+          <button className='button' onClick={this.addItem}>+</button>
+        </form>
+
       </div>
     );
   },
@@ -45,10 +55,20 @@ export default React.createClass({
   addItem () {
     this.setState({
       list: this.state.list.concat([{
-        item: 'New item',
+        item: this.state.newItem,
         sku: uuid.v4(),
-        price: 0
+        price: this.state.newPrice
       }])
     });
+  },
+
+  removeItem (givenSku) {
+    var updatedList = this.state.list.filter(row =>
+      row.sku !== givenSku
+    )
+
+    this.setState({
+      list:  updatedList
+    })
   }
 })
