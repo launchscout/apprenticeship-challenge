@@ -7,10 +7,9 @@ var Row = React.createClass({
 
   render: function () {
     return (
-      <tr>
-        <td>{this.props.item}</td>
-        <td>{this.props.sku}</td>
-        <td>${this.props.price && this.props.price.toFixed(2)}</td>
+      <tr>{Object.keys(this.props.row).map(key =>
+         <td>{this.props.row[key]}</td>
+      )}
         <td><button className='button' onClick={this.onRemove}>-</button></td>
       </tr>
     );

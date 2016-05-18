@@ -14,17 +14,20 @@ export default React.createClass({
         {
           item: 'Milk',
           sku: uuid.v4(),
-          price: 2.00
+          price: "$2.00",
+          sellBy: '1/1/11'
         },
         {
           item: 'Eggs',
           sku: uuid.v4(),
-          price: 1.50
+          price: "$1.50",
+          sellBy: '1/1/11'
         },
          {
           item: 'Orange Juice',
           sku: uuid.v4(),
-          price: 3.00
+          price: "$3.00",
+          sellBy: '1/1/11'
         }
       ]
     };

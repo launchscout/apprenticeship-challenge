@@ -21,6 +21,7 @@ thead tr th {
   border-bottom: 1px solid #666;
   border-collapse: collapse;
   border-spacing: 0;
+  text-transform: capitalize;
 }
 
 td {
