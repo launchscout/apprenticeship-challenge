@@ -10,25 +10,21 @@ export default React.createClass({
     return {
       item: '',
       price: '',
-      weight: '',
       list: [
         {
           item: 'Milk',
           sku: uuid.v4(),
-          price: "$2.00",
-          weight: "3lbs"
+          price: "$2.00"
         },
         {
           item: 'Eggs',
           sku: uuid.v4(),
-          price: "$1.50",
-          weight: "1lbs"
+          price: "$1.50"
         },
          {
           item: 'Orange Juice',
           sku: uuid.v4(),
-          price: "$3.00",
-          weight: "2lbs"
+          price: "$3.00"
         }
       ]
     };
@@ -48,8 +44,7 @@ export default React.createClass({
     updatedList.push({
       item: this.state.item,
       sku: uuid.v4(),
-      price: this.state.price,
-      weight: this.state.weight
+      price: this.state.price
     });
 
     this.setState({
