@@ -39,10 +39,10 @@ If testing isn't something you've seen much of yet, it's one of the first things
 ### Store the shopping list
 There are options like [Firebase](https://www.firebase.com/docs/web/libraries/react/) that would allow you to persist the shopping list in the cloud. That might be fun!
 
-### Add features
+XX Add features
 Think of other things a shopping list might need to be it more useful.
 
-## Submitting the finished application
+XX Submitting the finished application
 
 Once you've built your application, submit a pull request to us. If you are new to using git there are [many](https://try.github.io/) [online](https://git-scm.com/documentation) [resources](http://gitimmersion.com/) for learning git. It will be necessary to have some basic working knowledge of git to complete this challenge, and it is a core skill you'll be using as an apprentice (and as a developer).
 
