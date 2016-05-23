@@ -8,7 +8,7 @@ var Table = React.createClass({
   render() {
     return (
       <table>
-        <Header list={this.props.rowList} />
+        <Header row={this.props.rowList[0]} />
         <tbody>
           {this.props.rowList.map(row =>
             <Row row={row}

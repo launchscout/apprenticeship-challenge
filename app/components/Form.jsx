@@ -1,12 +1,26 @@
 import React from 'react';
+import _ from 'underscore';
 
 var Form = React.createClass({
+  update(key, event) {
+    this.props.update(key, event.target.value)
+  },
+
   render () {
+    var allFields = Object.keys(this.props.row),
+        ommittedFields = this.props.hideFields,
+        fields = _.difference(allFields, ommittedFields);
+
     return (
-      <form>
-        <input type='text' placeholder='Item Name' onChange={this.props.updateName} />
-        <input type='text' placeholder= 'Price' onChange={this.props.updatePrice} />
-        <button className='button' onClick={this.props.addItem}>+</button>
+      <form onSubmit={this.props.addItem}>
+        {fields.map(key =>
+          <input
+            type="text"
+            key={key}
+            placeholder={key}
+            onChange={this.update.bind(this, key)} />)
+        }
+        <button className="button">+</button>
       </form>
     );
   }

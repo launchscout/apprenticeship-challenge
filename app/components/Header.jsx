@@ -4,8 +4,8 @@ var Header = React.createClass({
   render () {
     return(
       <thead>
-        <tr>{Object.keys(this.props.list[0]).map(key =>
-            <th>{key}</th>
+        <tr>{Object.keys(this.props.row).map(key =>
+            <th key={key}>{key}</th>
           )}
         </tr>
       </thead>

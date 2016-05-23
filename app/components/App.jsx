@@ -8,45 +8,48 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      newItem: '',
-      newPrice: 0,
+      item: '',
+      price: '',
+      weight: '',
       list: [
         {
           item: 'Milk',
           sku: uuid.v4(),
           price: "$2.00",
-          sellBy: '1/1/11'
+          weight: "3lbs"
         },
         {
           item: 'Eggs',
           sku: uuid.v4(),
           price: "$1.50",
-          sellBy: '1/1/11'
+          weight: "1lbs"
         },
          {
           item: 'Orange Juice',
           sku: uuid.v4(),
           price: "$3.00",
-          sellBy: '1/1/11'
+          weight: "2lbs"
         }
       ]
     };
   },
 
-  updateName (event) {
-    this.setState({newItem: event.target.value});
+  update (key, value) {
+    var newState = {};
+    newState[key] = value;
+
+    this.setState(newState);
   },
 
-  updatePrice (event) {
-    this.setState({newPrice: Number(event.target.value)});
-  },
+  addItem (e) {
+    e.preventDefault();
 
-  addItem () {
     var updatedList = this.state.list
     updatedList.push({
-      item: this.state.newItem,
+      item: this.state.item,
       sku: uuid.v4(),
-      price: this.state.newPrice
+      price: this.state.price,
+      weight: this.state.weight
     });
 
     this.setState({
@@ -70,9 +73,10 @@ export default React.createClass({
         <Title />
         <Table rowList={this.state.list} removeItem={this.removeItem} />
         <Form
-          updateName={this.updateName}
-          updatePrice={this.updatePrice}
+          update={this.update}
           addItem={this.addItem}
+          row={this.state.list[0]}
+          hideFields={['sku']}
         />
       </div>
     );
