@@ -1,3 +1,69 @@
 body {
-  background: cornsilk;
+  background: white;
+  color: #444;
+  font-family: 'Libre Baskerville', serif;
 }
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+table {
+  padding-top: 30px;
+  width: 100%;
+}
+th {
+  text-align: left;
+  font-weight: bold;
+}
+
+thead tr th {
+  border-bottom: 1px solid #666;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-transform: capitalize;
+}
+
+td {
+  color: #666;
+}
+
+tr {
+  height: 30px;
+}
+.button {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  margin-left: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit{
+  text-decoration: none;
+  background-color: white;
+  padding:  5px;
+  border-radius: 5px;
+  color: #aaa;
+}
+.edit:hover {
+  color: #666;
+}
+
+#app {
+  width: 600px;
+  margin: 0 auto;
+}
+
+input[type="text"] {
+  height: 25px;
+  width: 200px;
+  margin-right: 10px;
+  font-size: 16px;
+  padding-left: 5px;
+  margin-top: 20px;
+}
+

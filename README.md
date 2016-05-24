@@ -19,7 +19,7 @@ This should build all the code in the application and start a server listening o
 
 This will mean your environment is set up correctly and you are ready to start coding!
 
-## The Shopping List
+XX The Shopping List
 
 We'd like you to build a basic shopping list application. It should have the following features:
 
@@ -39,17 +39,17 @@ If testing isn't something you've seen much of yet, it's one of the first things
 ### Store the shopping list
 There are options like [Firebase](https://www.firebase.com/docs/web/libraries/react/) that would allow you to persist the shopping list in the cloud. That might be fun!
 
-### Add features
+XX Add features
 Think of other things a shopping list might need to be it more useful.
 
-## Submitting the finished application
+XX Submitting the finished application
 
 Once you've built your application, submit a pull request to us. If you are new to using git there are [many](https://try.github.io/) [online](https://git-scm.com/documentation) [resources](http://gitimmersion.com/) for learning git. It will be necessary to have some basic working knowledge of git to complete this challenge, and it is a core skill you'll be using as an apprentice (and as a developer).
 
-## Next steps
+XX Next steps
 
 We will review and select candidates to do pairing sessions with me on adding a feature to this application either in person or remotely using [join.me](https://www.join.me/) or something similar. We appreciate you taking the time to complete this challenge. Our commitment to you is that if you submit a pull request, it will get a thorough review and we'll give you specific feedback even if you are not selected to pair with us.
 
-## Help, I'm stuck.
+XX Help, I'm stuck.
 
 We understand that as an apprentice developer, you're new to development. That's ok, in fact, it's more than ok, it's the whole point! If you get stuck along the way, reach out. I'll be checking email regularly. I've set aside a few times to help you either in person at our office or on the phone, on this Friday, March 25. Here's where to [book a time.](https://gaslight-apprenticeship.youcanbook.me/)
