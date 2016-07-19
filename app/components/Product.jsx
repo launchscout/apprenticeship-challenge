@@ -3,9 +3,10 @@ import React from 'react';
 import {DragSource, DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
 import ProductActions from '../actions/ProductActions';
-import Items from './Items.jsx';
 import ItemActions from '../actions/ItemActions';
+// import ProductStore from '../stores/ProductStore';
 import ItemStore from '../stores/ItemStore';
+import Items from './Items.jsx';
 
 const productSource = {
   beginDrag(props) {
@@ -55,7 +56,7 @@ export default class Product extends React.Component {
         >
           <Items
             onValueClick={this.activateItemEdit.bind(null, product.id)}
-            onEdit={this.editItem.bind(null, product.id)} />
+            onEdit={this.editItem.bind(null, this.props.onUpdate, product.id)} />
         </AltContainer>
         <span className="product-delete">
           <button onClick={this.props.onDelete}>x</button>
@@ -63,7 +64,7 @@ export default class Product extends React.Component {
       </div>
     ));
   }
-  editItem(productId, id, value) {
+  editItem(update, productId, id, value) {
     // Don't modify if trying to set an empty value
     if (!value.trim()) {
       ItemActions.update({id, editing: false});
@@ -71,6 +72,11 @@ export default class Product extends React.Component {
     }
     ProductActions.update({id: productId, editing: false});
     ItemActions.update({id, value, editing: false});
+    const item = ItemStore.getItemsByIds([id])[0];
+    if (item.itemType != 'prodName') {
+      update();
+      // Tell shoplist to update total
+    }
   }
   activateItemEdit(productId, id) {
     ProductActions.update({id: productId, editing: true});

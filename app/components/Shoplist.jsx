@@ -1,13 +1,13 @@
 import AltContainer from 'alt-container';
 import React from 'react';
+import {DropTarget} from 'react-dnd';
+import ItemTypes from '../constants/itemTypes';
 import ShoplistActions from '../actions/ShoplistActions';
 import ProductActions from '../actions/ProductActions';
 import ItemActions from '../actions/ItemActions';
-import Products from './Products.jsx';
 import ProductStore from '../stores/ProductStore';
+import Products from './Products.jsx';
 import Editable from './Editable.jsx';
-import {DropTarget} from 'react-dnd';
-import ItemTypes from '../constants/itemTypes';
 import ProdForm from './Form.jsx';
 
 const productTarget = {
@@ -32,6 +32,9 @@ export default class Shoplist extends React.Component {
     return connectDropTarget(
       <div {...props}>
         <div className="shoplist-header" onClick={this.activateShoplistEdit}>
+          <span className="shoplist-total">
+            Total = ${shoplist.total}
+          </span>
           <Editable className="shoplist-name" editing={shoplist.editing}
             value={shoplist.name} onEdit={this.editName} />
           <div className="shoplist-delete">
@@ -39,16 +42,13 @@ export default class Shoplist extends React.Component {
           </div>
         </div>
         <ProdForm addProduct={this.addProduct}/>
-        <table>
-          <tbody>
-            <tr>
-              <td>Qty</td>
-              <td>Product</td>
-              <td>Price</td>
-              <td>Delete</td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <br/>
+          <span className="qty">Qty</span>
+          <span className="prodName"d>Product</span>
+          <span className="price">Price/Qty</span>
+          <span className="product-delete">Delete</span>
+        </div>
         <AltContainer
           stores={[ProductStore]}
           inject={{
@@ -56,15 +56,12 @@ export default class Shoplist extends React.Component {
           }}
         >
           <Products
+            onUpdate={this.updateShoplistTotal}
             onDelete={this.deleteProduct} />
         </AltContainer>
       </div>
     );
   }
-
-  addForm = () => {
-    <ProdForm addProduct={this.addProduct}/>;
-  };
 
   addItem = (product, itemType, value, editing) => {
     // debugger;
@@ -79,8 +76,10 @@ export default class Shoplist extends React.Component {
 
   addProduct = (qty, name, price) => {
     // e.stopPropagation(product);
+    // TODO add error handling if qty and/or price is not a number
     const shoplistId = this.props.shoplist.id;
     const product = ProductActions.create({editing: false});
+    let total = this.props.shoplist.total + qty * price;
     this.addItem(product, 'qty', qty, false);
     this.addItem(product, 'prodName', name, false);
     this.addItem(product, 'price', price, false);
@@ -88,13 +87,17 @@ export default class Shoplist extends React.Component {
       productId: product.id,
       shoplistId
     });
+    ShoplistActions.update({total, id: shoplistId});
   };
 
   deleteProduct = (productId, e) => {
     e.stopPropagation();
     const shoplistId = this.props.shoplist.id;
+    let total = this.props.shoplist.total -
+      ProductStore.getProductLineTotal(productId);
     ShoplistActions.detachFromShoplist({shoplistId, productId});
     ProductActions.delete(productId);
+    ShoplistActions.update({total, id: shoplistId});
   };
 
   editName = (name) => {
@@ -117,7 +120,14 @@ export default class Shoplist extends React.Component {
     ShoplistActions.update({id: shoplistId, editing: true});
   };
 
-  // activateProductEdit(id) {
-  //   ProductActions.update({id, editing: true});
-  // }
+  updateShoplistTotal = () => {
+    const shoplist = this.props.shoplist;
+    let total = 0;
+    for (var i in shoplist.products) {
+      if (shoplist.products[i] !== '') {
+        total = total + ProductStore.getProductLineTotal(shoplist.products[i]);
+      }
+    }
+    ShoplistActions.update({total, id: shoplist.id});
+  };
 }

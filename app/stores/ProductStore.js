@@ -1,6 +1,7 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import ProductActions from '../actions/ProductActions';
+import ItemStore from '../stores/ItemStore';
 
 import Firebase from 'firebase';
 var productData = new Firebase('https://stamates-shopping.firebaseio.com/products');
@@ -17,7 +18,8 @@ class ProductStore {
       this.setState({products: items});
     }.bind(this));
     this.exportPublicMethods({
-      getProductsByIds: this.getProductsByIds.bind(this)
+      getProductsByIds: this.getProductsByIds.bind(this),
+      getProductLineTotal: this.getProductLineTotal.bind(this)
     });
   }
   create(product) {
@@ -68,6 +70,22 @@ class ProductStore {
     return (ids || []).map(
       id => this.products.filter(product => product.id === id)
     ).filter(a => a.length).map(a => a[0]);
+  }
+  getProductLineTotal(productId) {
+    const product = this.products.filter(product => product.id === productId)[0];
+    const items = ItemStore.getItemsByIds(product.items);
+    let qty = 0;
+    let price = 0;
+    for (var i in items) {
+      if (items[i].itemType === 'qty') {
+        qty = items[i].value;
+      } else {
+        if (items[i].itemType === 'price') {
+          price = items[i].value;
+        }
+      }
+    }
+    return (qty * price);
   }
 }
 

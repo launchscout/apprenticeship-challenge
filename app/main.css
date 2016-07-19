@@ -8,30 +8,7 @@ table {
   text-align: center;
 }
 
-.qty {
-  display: inline-block;
-  width: 15%;
-  text-align: center;
-}
-
-.prodName {
-  display: inline-block;
-  width: 35%;
-  text-align: center;
-}
-
-.price {
-  display: inline-block;
-  width: 20%;
-  text-align: center;
-}
-
-.product-delete {
-  display: inline-block;
-  width: 30%;
-  text-align: center;
-}
-
+/*Shoplists*/
 .shoplist {
   /*display: inline-block;*/
   margin: 1em;
@@ -63,11 +40,21 @@ table {
 .shoplist-delete {
   float: right;
   margin-left: 0.5em;
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
 
-.shoplist-header:hover .shoplist-delete {
+/*.shoplist-header:hover .shoplist-delete {
   visibility: visible;
+}*/
+
+.shoplist-delete button:hover {
+  color: red;
+  font-weight: bold;
+}
+
+.shoplist-total {
+  float: left;
+  margin-right: 2.5em;
 }
 
 .add-shoplist, .shoplist-add-product button {
@@ -84,11 +71,7 @@ table {
   border: 0;
 }
 
-.add-product {
-  background-color: #fdfdfd;
-  border: 1px solid #ccc;
-}
-
+/*Products*/
 .products {
   margin: 0.5em;
   padding-left: 0;
@@ -108,19 +91,42 @@ table {
   transition: 0.6s;
 }
 
-.product .value {
-  /* force to use inline-block so that it gets minimum height */
-  display: inline-block;
+.product-add {
+  background-color: rgb(20, 170, 20);
+  width: 15%;
 }
 
-.product .delete {
-  float: right;
-  padding: 0;
-  background-color: #fdfdfd;
-  border: none;
-  cursor: pointer;
-  visibility: hidden;
+.product-add:hover {
+  background-color: rgb(26, 191, 26);
 }
-.product:hover .delete {
-  visibility: visible;
+
+.product-delete {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+}
+
+.product-delete button:hover {
+  color: red;
+  font-weight: bold;
+}
+
+/*Items*/
+
+.qty {
+  display: inline-block;
+  width: 15%;
+  text-align: center;
+}
+
+.prodName {
+  display: inline-block;
+  width: 45%;
+  text-align: center;
+}
+
+.price {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
 }

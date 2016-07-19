@@ -1,8 +1,9 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
+import update from 'react-addons-update';
 import ShoplistActions from '../actions/ShoplistActions';
 // import ProductActions from '../actions/ProductActions';
-import update from 'react-addons-update';
+import ProductStore from '../stores/ProductStore';
 
 import Firebase from 'firebase';
 var listData = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
@@ -22,6 +23,7 @@ class ShoplistStore {
   create(shoplist) {
     const shoplists = this.shoplists;
     shoplist.id = uuid.v4();
+    shoplist.total = 0;
     shoplist.products = shoplist.products || [''];
     this.setState({
       shoplists: shoplists.concat(shoplist)
@@ -69,15 +71,18 @@ class ShoplistStore {
     listData.set(validShoplists);
   }
   attachToShoplist({shoplistId, productId}) {
+    const lineTotal = ProductStore.getProductLineTotal(productId);
     const shoplists = this.shoplists.map(shoplist => {
       if (shoplist.products.includes(productId)) {
         shoplist.products = shoplist.products.filter(product => product !== productId);
+        shoplist.total -= lineTotal;
       }
       if (shoplist.id === shoplistId) {
         if (shoplist.products.includes(productId)) {
           console.warn('Already attached product to shoplist', shoplists);
         } else {
           shoplist.products.push(productId);
+          shoplist.total += lineTotal;
         }
       }
       return shoplist;
@@ -114,9 +119,12 @@ class ShoplistStore {
       });
     } else {
       // get rid of the source
+      const lineTotal = ProductStore.getProductLineTotal(sourceId);
       sourceShoplist.products.splice(sourceProductIndex, 1);
+      sourceShoplist.total -= lineTotal;
       // and move it to target
       targetShoplist.products.splice(targetProductIndex, 0, sourceId);
+      targetShoplist.total += lineTotal;
     }
     this.setState({shoplists});
     listData.set(shoplists);
