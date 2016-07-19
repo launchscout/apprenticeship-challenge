@@ -136,7 +136,6 @@ if(TARGET === 'build' || TARGET === 'stats') {
     },
     output: {
       path: PATHS.build,
-      publicPath: '/apprenticeship-stamates/'
       filename: '[name].[chunkhash].js',
       chunkFilename: '[chunkhash].js'
     },
