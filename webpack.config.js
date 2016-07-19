@@ -38,6 +38,7 @@ const common = {
   output: {
     path: PATHS.build,
     // Output using entry name
+    publicPath: '/shopping_app/'
     filename: '[name].js'
   },
   module: {
