@@ -38,7 +38,6 @@ const common = {
   output: {
     path: PATHS.build,
     // Output using entry name
-    publicPath: '/shopping-app/'
     filename: '[name].js'
   },
   module: {
@@ -137,6 +136,7 @@ if(TARGET === 'build' || TARGET === 'stats') {
     },
     output: {
       path: PATHS.build,
+      publicPath: '/shopping-app/'
       filename: '[name].[chunkhash].js',
       chunkFilename: '[chunkhash].js'
     },
