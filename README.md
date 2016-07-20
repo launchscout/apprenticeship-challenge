@@ -15,7 +15,7 @@ This is a basic shopping list app that allows for the following:
 * Checkout on list to complete the shopping list (store in history)
 * Autocomplete/look-ahead search to pull up previous products from product history
 
-## Instructions
+## Instructions to run
 Clone the repo or download, cd into the base directory and run the following
 ```
 npm install
@@ -23,3 +23,28 @@ npm start
 ```
 This will startup an instance of the app running on your machine at http://localhost:8080/
 **Note:** This requires that node and npm be installed on your machine
+
+## Additional options
+Build a minified and chunked version for deployment on webserver.
+```
+npm run build
+```
+Create a stats.json file for the build
+```
+npm run stats
+```
+
+Deploy a build version to be run on GitHub's gh-pages
+```
+npm run deploy
+```
+
+Run tests on the application
+```
+npm run test
+```
+
+Run linting programs to identify syntax issues in code
+```
+npm run lint
+```
