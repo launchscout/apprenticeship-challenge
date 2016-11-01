@@ -1,3 +1,20 @@
 body {
-  background: cornsilk;
+	background: cornsilk;
+	font-family: Helvetica;
+	padding-left: 21px;
+}
+
+button {
+	border: 0;
+	border-radius: 5px;
+	font-size: 16px;
+	padding: 12px;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	list-style: none;
 }

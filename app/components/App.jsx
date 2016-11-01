@@ -1,8 +1,12 @@
 import React from 'react';
-import Note from './Note.jsx';
+import ShoppingListApp from './ShoppingListApp/ShoppingListApp';
 
 export default class App extends React.Component {
   render() {
-    return <Note />;
+		return (
+			<div>
+				<ShoppingListApp />
+			</div>
+		);
   }
 }

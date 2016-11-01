@@ -1,3 +1,12 @@
+# To run tests
+Tests use Jest and Enzyme.
+```
+$ npm test
+```
+
+This app uses the LocalStorage API to store data.
+
+
 # Gaslight Apprenticeship Challenge
 
 Welcome to the Gaslight Apprenticeship challenge. Your mission, should you choose to accept
