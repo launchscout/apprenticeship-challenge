@@ -1,3 +1,10 @@
+# To run tests
+Tests use Jest and Enzyme.
+```
+$ npm test
+```
+
+
 # Gaslight Apprenticeship Challenge
 
 Welcome to the Gaslight Apprenticeship challenge. Your mission, should you choose to accept
