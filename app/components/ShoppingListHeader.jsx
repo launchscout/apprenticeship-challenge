@@ -35,7 +35,6 @@ class ShoppingListHeader extends React.Component {
 	}
 
 	handleTitleUpdate(title) {
-		console.log('From Shopping List Header: ' + title);
 		this.props.editHeader(title);
 		this.toggleEditHeader();
 	}
@@ -64,7 +63,11 @@ class ShoppingListHeader extends React.Component {
 		return (
 			<div className="ShoppingList_Header">
 				{header}
-				<button onClick={this.toggleAddItemBox}>Add</button>
+				<button
+					className="button_add"
+					onClick={this.toggleAddItemBox}>
+						Add
+				</button>
 				{editForm}
 			</div>
 		);

@@ -1,9 +1,84 @@
 body {
-  background: cornsilk;
+	background: cornsilk;
+	font-family: Helvetica;
+	padding-left: 21px;
+}
+
+button {
+	border: 0;
+	border-radius: 5px;
+	font-size: 16px;
+	padding: 12px;
+}
+
+.ShoppingList_Header h1 {
+	font-size: 28px;
+	font-weight: 300;
+}
+
+.button_add {
+	background-color: #03A9F4;
+}
+
+.button_delete {
+	background-color: #F44336;
+}
+
+.ShoppingList_EditHeader input[type="text"] {
+	border: 0;
+	font-size: 28px;
+	font-weight: 300;
+	outline: none;
+}
+
+.ShoppingList ul {
+	padding: 0;
+}
+
+.ShoppingList li {
+	list-style: none;
+	margin-bottom: 12px;
 }
 
 .ShoppingItem {
 	background-color: white;
 	border-radius: 5px;
+	padding: 8px;
 	width: 250px;
+}
+
+.ShoppingItem:hover {
+	background-color: lightgrey;
+}
+
+.ShoppingItem_Info_Name {
+	font-size: 21px;
+	margin-top: 8px;
+	margin-bottom: 0;
+}
+
+.ShoppingItem_Info_Price {
+	font-family: "Times New Roman";
+	font-size: 16px;
+	margin-top: 0;
+}
+
+.ShoppingItem_Info_SKU {
+	color: gray;
+	font-size: 12px;
+}
+
+.ShoppingItem_Buttons button:first-child {
+	margin-right: 12px;
+}
+
+.EditBox h1 {
+	font-size: 21px;
+	font-weight: 300;
+}
+
+.EditBox input {
+	font-size: 16px;
+	margin-bottom: 8px;
+	width: 80%;
 }

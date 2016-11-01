@@ -67,7 +67,9 @@ class EditBox extends React.Component {
 					placeholder="Price"
 					onChange={this.handlePriceChange}
 					value={this.state.price} />
-				<button onClick={this.handleAddClick}>Add Item</button>
+				<button
+					className="button_add"
+					onClick={this.handleAddClick}>Add Item</button>
 			</div>
 		);
 	}

@@ -28,7 +28,11 @@ class EditableHeader extends React.Component {
 					placeholder="List Title"
 					onChange={this.handleTitleChange}
 					value={this.state.title} />
-				<button onClick={this.handleTitleUpdate}>Update</button>
+				<button
+					className="button_add"
+					onClick={this.handleTitleUpdate}>
+						Update
+				</button>
 			</div>
 		);
 	}
