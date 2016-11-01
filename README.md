@@ -4,6 +4,8 @@ Tests use Jest and Enzyme.
 $ npm test
 ```
 
+This app uses the LocalStorage API to store data.
+
 
 # Gaslight Apprenticeship Challenge
 
