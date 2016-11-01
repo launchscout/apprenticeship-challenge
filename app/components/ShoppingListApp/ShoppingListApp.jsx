@@ -1,6 +1,6 @@
 import React from 'react';
-import ShoppingListHeader from './ShoppingListHeader';
-import ShoppingList from './ShoppingList';
+import ShoppingListHeader from '../ShoppingListHeader/ShoppingListHeader';
+import ShoppingList from '../ShoppingList/ShoppingList';
 
 class ShoppingListApp extends React.Component {
 	constructor(props) {
@@ -35,7 +35,6 @@ class ShoppingListApp extends React.Component {
 	}
 
 	editHeader(title) {
-		console.log('Shopping List App: ' + title);
 		this.setState({ title: title });
 	}
 

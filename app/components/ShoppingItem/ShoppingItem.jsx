@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import ShoppingItemInfo from './ShoppingItemInfo';
-import ShoppingItemButtons from './ShoppingItemButtons';
-import EditBox from './EditBox';
+import ShoppingItemInfo from '../ShoppingItemInfo/ShoppingItemInfo';
+import ShoppingItemButtons from '../ShoppingItemButtons/ShoppingItemButtons';
+import EditBox from '../EditBox/EditBox';
 
 class ShoppingItem extends React.Component {
 	constructor(props) {
@@ -14,18 +14,19 @@ class ShoppingItem extends React.Component {
 		this.toggleEditForm = this.toggleEditForm.bind(this);
 		this.handleEditClick = this.handleEditClick.bind(this);
 		this.handleDeleteClick = this.handleDeleteClick.bind(this);
+		this.renderEditBox = this.renderEditBox.bind(this);
+		this.renderShoppingItemInfo = this.renderShoppingItemInfo.bind(this);
 	}
 
 	toggleEditForm() {
-		this.setState({
-			isEditing: !this.state.isEditing
-		});
+		this.setState({ isEditing: !this.state.isEditing });
 	}
 
 	handleEditClick(newItem) {
 		const updatedItem = Object.assign({}, newItem, {
 			targetSku: this.props.sku
 		});
+
 		this.props.editItem(updatedItem);
 		this.toggleEditForm();
 	}
@@ -34,36 +35,41 @@ class ShoppingItem extends React.Component {
 		this.props.deleteItem(this.props.sku);
 	}
 
-	render() {
+	renderEditBox() {
 		const { name, price, sku } = this.props;
 
-		let editForm;
-		if(this.state.isEditing) {
-			editForm = (
-				<EditBox
-					title="Updating Item"
-					addItem={this.handleEditClick}
+		return (
+			<EditBox
+				title="Updating Item"
+				addItem={this.handleEditClick}
+				name={name}
+				price={price}
+				sku={sku} />
+		);
+	}
+
+	renderShoppingItemInfo() {
+		const { name, price, sku } = this.props;
+
+		return (
+			<div>
+				<ShoppingItemInfo
 					name={name}
 					price={price}
 					sku={sku} />
-			);
-		} else {
-			editForm = (
-				<div>
-					<ShoppingItemInfo
-						name={name}
-						price={price}
-						sku={sku} />
-					<ShoppingItemButtons
-						editItem={this.toggleEditForm}
-						deleteItem={this.handleDeleteClick} />
-				</div>
-			);
-		}
+				<ShoppingItemButtons
+					editItem={this.toggleEditForm}
+					deleteItem={this.handleDeleteClick} />
+			</div>
+		);
+	}
 
+	render() {
 		return (
-			<div className="ShoppingItem">
-				{editForm}
+			<div>
+				{ this.state.isEditing ?
+					this.renderEditBox() :
+					this.renderShoppingItemInfo() }
 			</div>
 		);
 	}

@@ -51,23 +51,6 @@ button {
 	background-color: lightgrey;
 }
 
-.ShoppingItem_Info_Name {
-	font-size: 21px;
-	margin-top: 8px;
-	margin-bottom: 0;
-}
-
-.ShoppingItem_Info_Price {
-	font-family: "Times New Roman";
-	font-size: 16px;
-	margin-top: 0;
-}
-
-.ShoppingItem_Info_SKU {
-	color: gray;
-	font-size: 12px;
-}
-
 .ShoppingItem_Buttons button:first-child {
 	margin-right: 12px;
 }

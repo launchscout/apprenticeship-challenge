@@ -22,14 +22,13 @@ class EditableHeader extends React.Component {
 
 	render() {
 		return (
-			<div className="ShoppingList_EditHeader">
+			<div>
 				<input
 					type="text"
 					placeholder="List Title"
 					onChange={this.handleTitleChange}
 					value={this.state.title} />
 				<button
-					className="button_add"
 					onClick={this.handleTitleUpdate}>
 						Update
 				</button>

@@ -14,7 +14,6 @@ class EditBox extends React.Component {
 		this.handleSkuChange = this.handleSkuChange.bind(this);
 		this.handlePriceChange = this.handlePriceChange.bind(this);
 		this.handleAddClick = this.handleAddClick.bind(this);
-		this.isMissingInfo = this.isMissingInfo.bind(this);
 	}
 
 	handleNameChange(e) {
@@ -30,11 +29,6 @@ class EditBox extends React.Component {
 	}
 
 	handleAddClick() {
-		if(this.isMissingInfo()) {
-			alert('Missing information');
-			return;
-		}
-
 		const newItem = {
 			name: this.state.name,
 			sku: this.state.sku,
@@ -42,10 +36,6 @@ class EditBox extends React.Component {
 		};
 
 		this.props.addItem(newItem);
-	}
-
-	isMissingInfo() {
-		return (!this.state.name || !this.state.sku);
 	}
 
 	render() {
@@ -68,8 +58,9 @@ class EditBox extends React.Component {
 					onChange={this.handlePriceChange}
 					value={this.state.price} />
 				<button
-					className="button_add"
-					onClick={this.handleAddClick}>Add Item</button>
+					onClick={this.handleAddClick}>
+						Add Item
+				</button>
 			</div>
 		);
 	}

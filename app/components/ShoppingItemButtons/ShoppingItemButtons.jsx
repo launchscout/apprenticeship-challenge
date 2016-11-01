@@ -2,14 +2,12 @@ import React, { PropTypes } from 'react';
 
 const ShoppingItemButtons = ({ editItem, deleteItem }) => {
 	return (
-		<div className="ShoppingItem_Buttons">
+		<div>
 			<button
-				className="button_add"
 				onClick={editItem}>
 				Edit
 			</button>
 			<button
-				className="button_delete"
 				onClick={deleteItem}>
 				Delete
 			</button>

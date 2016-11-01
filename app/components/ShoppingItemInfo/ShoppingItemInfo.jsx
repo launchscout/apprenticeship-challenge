@@ -1,11 +1,16 @@
 import React, { PropTypes } from 'react';
+import styles from './style';
 
 const ShoppingItemInfo = ({ name, price, sku }) => {
+	const itemNameStyle = styles.itemName;
+	const itemPriceStyle = styles.itemPrice;
+	const itemSkuStyle = styles.itemSku;
+
 	return (
-		<div className="ShoppingItem_Info">
-			<p className="ShoppingItem_Info_Name">{name}</p>
-			<p className="ShoppingItem_Info_Price">${price}</p>
-			<p className="ShoppingItem_Info_SKU">SKU: {sku}</p>
+		<div>
+			<p style={itemNameStyle}>{name}</p>
+			<p style={itemPriceStyle}>${price.toFixed(2)}</p>
+			<p style={itemSkuStyle}>SKU: {sku}</p>
 		</div>
 	);
 };

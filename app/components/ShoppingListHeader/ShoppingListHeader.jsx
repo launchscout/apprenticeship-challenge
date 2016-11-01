@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import EditableHeader from './EditableHeader';
-import EditBox from './EditBox';
+import EditableHeader from '../EditableHeader/EditableHeader';
+import EditBox from '../EditBox/EditBox';
 
 class ShoppingListHeader extends React.Component {
 	constructor(props) {
@@ -15,6 +15,7 @@ class ShoppingListHeader extends React.Component {
 		this.toggleAddItemBox = this.toggleAddItemBox.bind(this);
 		this.handleAddClick = this.handleAddClick.bind(this);
 		this.handleTitleUpdate = this.handleTitleUpdate.bind(this);
+		this.getHeader = this.getHeader.bind(this);
 	}
 
 	toggleEditHeader() {
@@ -39,36 +40,35 @@ class ShoppingListHeader extends React.Component {
 		this.toggleEditHeader();
 	}
 
-	render() {
-		let editForm;
-		if(this.state.isAddingItem) {
-			editForm = (
-				<EditBox
-					title="Adding Item"
-					addItem={this.handleAddClick} />
-			);
-		}
-
-		let header;
+	getHeader() {
 		if(this.state.isEditingHeader) {
-			header = (
+			return (
 				<EditableHeader
 					title={this.props.title}
 					updateTitle={this.handleTitleUpdate} />
 			);
 		} else {
-			header = <h1 onClick={this.toggleEditHeader}>{this.props.title}</h1>;
+			return (
+				<h1 onClick={this.toggleEditHeader}>
+					{this.props.title}
+				</h1>
+			);
 		}
+	}
 
+	render() {
 		return (
 			<div className="ShoppingList_Header">
-				{header}
+				{this.getHeader()}
 				<button
 					className="button_add"
 					onClick={this.toggleAddItemBox}>
 						Add
 				</button>
-				{editForm}
+				{ this.state.isAddingItem &&
+				<EditBox
+					title="Adding Item"
+					addItem={this.handleAddClick} />}
 			</div>
 		);
 	}
