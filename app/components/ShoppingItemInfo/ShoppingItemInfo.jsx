@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import AmazonButton from '../AmazonButton/AmazonButton';
 import styles from './style';
 
 const ShoppingItemInfo = ({ name, price, sku }) => {
@@ -11,6 +12,7 @@ const ShoppingItemInfo = ({ name, price, sku }) => {
 			<p style={itemNameStyle}>{name}</p>
 			<p style={itemPriceStyle}>${price.toFixed(2)}</p>
 			<p style={itemSkuStyle}>SKU: {sku}</p>
+			<AmazonButton item={name} />
 		</div>
 	);
 };
