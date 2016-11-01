@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 
-const ShoppingItemButtons = ({ editTodo, deleteTodo }) => {
+const ShoppingItemButtons = ({ editItem, deleteItem }) => {
 	return (
 		<div className="ShoppingItem_Buttons">
-			<button onClick={editTodo}>
+			<button onClick={editItem}>
 				Edit
 			</button>
-			<button onClick={deleteTodo}>
+			<button onClick={deleteItem}>
 				Delete
 			</button>
 		</div>
@@ -14,8 +14,8 @@ const ShoppingItemButtons = ({ editTodo, deleteTodo }) => {
 };
 
 ShoppingItemButtons.propTypes = {
-	editTodo: PropTypes.func.isRequired,
-	deleteTodo: PropTypes.func.isRequired
+	editItem: PropTypes.func.isRequired,
+	deleteItem: PropTypes.func.isRequired
 };
 
 export default ShoppingItemButtons;

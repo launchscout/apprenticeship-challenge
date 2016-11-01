@@ -3,7 +3,7 @@ import ShoppingItem from './ShoppingItem';
 
 class ShoppingList extends React.Component {
 	render() {
-		const { editTodo, deleteTodo } = this.props;
+		const { editItem, deleteItem } = this.props;
 
 		const shoppingList = this.props.list.map((item) => (
 			<li key={item.sku}>
@@ -11,8 +11,8 @@ class ShoppingList extends React.Component {
 					name={item.name}
 					sku={item.sku}
 					price={item.price}
-					editTodo={editTodo}
-					deleteTodo={deleteTodo}
+					editItem={editItem}
+					deleteItem={deleteItem}
 				/>
 			</li>
 		));
@@ -29,8 +29,8 @@ class ShoppingList extends React.Component {
 
 ShoppingList.propTypes = {
 	list: PropTypes.array.isRequired,
-	editTodo: PropTypes.func.isRequired,
-	deleteTodo: PropTypes.func.isRequired
+	editItem: PropTypes.func.isRequired,
+	deleteItem: PropTypes.func.isRequired
 };
 
 export default ShoppingList;

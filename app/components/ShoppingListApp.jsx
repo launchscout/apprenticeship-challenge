@@ -1,4 +1,5 @@
 import React from 'react';
+import ShoppingListHeader from './ShoppingListHeader';
 import ShoppingList from './ShoppingList';
 
 class ShoppingListApp extends React.Component {
@@ -14,15 +15,30 @@ class ShoppingListApp extends React.Component {
 			]
 		};
 
-		this.editTodo = this.editTodo.bind(this);
-		this.deleteTodo = this.deleteTodo.bind(this);
+		this.addItem = this.addItem.bind(this);
+		this.editItem = this.editItem.bind(this);
+		this.deleteItem = this.deleteItem.bind(this);
 	}
 
-	editTodo(sku) {
+	addItem({ name, sku, price }) {
+		const newItem = {
+			name,
+			sku,
+			price
+		};
+		const newList = this.state.list.slice();
+		newList.push(newItem);
+
+		this.setState({ list: newList });
+	}
+
+	editItem({ targetSku, name, sku, price }) {
 		const newList = this.state.list.map((item) => {
-			if(item.sku === sku) {
+			if(item.sku === targetSku) {
 				return Object.assign({}, item, {
-					name: 'Hello World'
+					name,
+					price,
+					sku
 				});
 			} else {
 				return item;
@@ -32,7 +48,7 @@ class ShoppingListApp extends React.Component {
 		this.setState({ list: newList });
 	}
 
-	deleteTodo(sku) {
+	deleteItem(sku) {
 		const newList = this.state.list.filter((item) => item.sku !== sku);
 
 		this.setState({ list: newList });
@@ -40,10 +56,13 @@ class ShoppingListApp extends React.Component {
 
 	render() {
 		return (
-			<ShoppingList
-				list={this.state.list}
-				editTodo={this.editTodo}
-				deleteTodo={this.deleteTodo} />
+			<div>
+				<ShoppingListHeader addItem={this.addItem} />
+				<ShoppingList
+					list={this.state.list}
+					editItem={this.editItem}
+					deleteItem={this.deleteItem} />
+			</div>
 		);
 	}
 }
