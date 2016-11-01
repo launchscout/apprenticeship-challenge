@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import ShoppingItemInfo from '../ShoppingItemInfo/ShoppingItemInfo';
 import ShoppingItemButtons from '../ShoppingItemButtons/ShoppingItemButtons';
 import EditBox from '../EditBox/EditBox';
+import styles from './style';
 
 class ShoppingItem extends React.Component {
 	constructor(props) {
@@ -52,7 +53,7 @@ class ShoppingItem extends React.Component {
 		const { name, price, sku } = this.props;
 
 		return (
-			<div>
+			<div style={styles.container}>
 				<ShoppingItemInfo
 					name={name}
 					price={price}

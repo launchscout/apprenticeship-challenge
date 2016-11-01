@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
+import styles from './style';
 
 const ShoppingItemButtons = ({ editItem, deleteItem }) => {
 	return (
-		<div>
+		<div style={styles.container}>
 			<button
+				style={styles.editButton}
 				onClick={editItem}>
 				Edit
 			</button>
 			<button
+				style={styles.deleteButton}
 				onClick={deleteItem}>
 				Delete
 			</button>

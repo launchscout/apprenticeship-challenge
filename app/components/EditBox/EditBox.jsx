@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import styles from './style';
 
 class EditBox extends React.Component {
 	constructor(props) {
@@ -40,24 +41,28 @@ class EditBox extends React.Component {
 
 	render() {
 		return (
-			<div className="EditBox">
+			<div style={styles.container}>
 				<h1>{this.props.title}</h1>
 				<input
+					style={styles.input}
 					type="text"
 					placeholder="Name"
 					onChange={this.handleNameChange}
 					value={this.state.name} />
 				<input
+					style={styles.input}
 					type="text"
 					placeholder="SKU"
 					onChange={this.handleSkuChange}
 					value={this.state.sku} />
 				<input
+					style={styles.input}
 					type="number"
 					placeholder="Price"
 					onChange={this.handlePriceChange}
 					value={this.state.price} />
 				<button
+					style={styles.button}
 					onClick={this.handleAddClick}>
 						Add Item
 				</button>

@@ -11,57 +11,10 @@ button {
 	padding: 12px;
 }
 
-.ShoppingList_Header h1 {
-	font-size: 28px;
-	font-weight: 300;
-}
-
-.button_add {
-	background-color: #03A9F4;
-}
-
-.button_delete {
-	background-color: #F44336;
-}
-
-.ShoppingList_EditHeader input[type="text"] {
-	border: 0;
-	font-size: 28px;
-	font-weight: 300;
-	outline: none;
-}
-
-.ShoppingList ul {
+ul {
 	padding: 0;
 }
 
-.ShoppingList li {
+li {
 	list-style: none;
-	margin-bottom: 12px;
-}
-
-.ShoppingItem {
-	background-color: white;
-	border-radius: 5px;
-	padding: 8px;
-	width: 250px;
-}
-
-.ShoppingItem:hover {
-	background-color: lightgrey;
-}
-
-.ShoppingItem_Buttons button:first-child {
-	margin-right: 12px;
-}
-
-.EditBox h1 {
-	font-size: 21px;
-	font-weight: 300;
-}
-
-.EditBox input {
-	font-size: 16px;
-	margin-bottom: 8px;
-	width: 80%;
 }

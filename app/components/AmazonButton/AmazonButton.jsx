@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import styles from './style';
 
 const AmazonButton = ({ item }) => {
 	const keyword = item.split(' ').join('+');
@@ -7,9 +8,10 @@ const AmazonButton = ({ item }) => {
 	return (
 		<div>
 			<a
+				style={styles.link}
 				target="_blank"
 				href={href}>
-					Amazon
+					Find on Amazon
 			</a>
 		</div>
 	);

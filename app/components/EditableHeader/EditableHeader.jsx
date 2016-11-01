@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import styles from './style';
 
 class EditableHeader extends React.Component {
 	constructor(props) {
@@ -24,6 +25,7 @@ class EditableHeader extends React.Component {
 		return (
 			<div>
 				<input
+					style={styles.input}
 					type="text"
 					placeholder="List Title"
 					onChange={this.handleTitleChange}

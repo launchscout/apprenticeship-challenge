@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import EditableHeader from '../EditableHeader/EditableHeader';
 import EditBox from '../EditBox/EditBox';
+import styles from './style';
 
 class ShoppingListHeader extends React.Component {
 	constructor(props) {
@@ -49,8 +50,10 @@ class ShoppingListHeader extends React.Component {
 			);
 		} else {
 			return (
-				<h1 onClick={this.toggleEditHeader}>
-					{this.props.title}
+				<h1
+					style={styles.header}
+					onClick={this.toggleEditHeader}>
+						{this.props.title}
 				</h1>
 			);
 		}
@@ -61,7 +64,7 @@ class ShoppingListHeader extends React.Component {
 			<div className="ShoppingList_Header">
 				{this.getHeader()}
 				<button
-					className="button_add"
+					style={styles.button}
 					onClick={this.toggleAddItemBox}>
 						Add
 				</button>
