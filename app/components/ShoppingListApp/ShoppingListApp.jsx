@@ -1,25 +1,37 @@
 import React from 'react';
 import ShoppingListHeader from '../ShoppingListHeader/ShoppingListHeader';
 import ShoppingList from '../ShoppingList/ShoppingList';
+import Storage from '../../utility/storage';
 
 class ShoppingListApp extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			title: 'New Shopping List!',
-			list: [
-				{ name: 'DVD Player', price: 19.99, sku: 'ab390812bas' },
-				{ name: 'Teddy Bear', price: 7.20, sku: '2b09128hafsas' },
-				{ name: 'Baseball Bat', price: 12.55, sku: 'a1208savk012' },
-				{ name: 'DVD', price: 29.00, sku: 'ab1028172has' },
-			]
+			title: 'Shopping List',
+			list: []
 		};
 
+		this.updateStorage = this.updateStorage.bind(this);
 		this.addItem = this.addItem.bind(this);
 		this.editHeader = this.editHeader.bind(this);
 		this.editItem = this.editItem.bind(this);
 		this.deleteItem = this.deleteItem.bind(this);
+	}
+
+	componentDidMount() {
+		const data = Storage.get();
+		this.setState({
+			list: data.list,
+			title: data.title
+		});
+	}
+
+	updateStorage() {
+		Storage.save({
+			list: this.state.list,
+			title: this.state.title
+		});
 	}
 
 	addItem({ name, sku, price }) {
@@ -31,11 +43,11 @@ class ShoppingListApp extends React.Component {
 		const newList = this.state.list.slice();
 		newList.push(newItem);
 
-		this.setState({ list: newList });
+		this.setState({ list: newList }, this.updateStorage);
 	}
 
 	editHeader(title) {
-		this.setState({ title: title });
+		this.setState({ title: title }, this.updateStorage);
 	}
 
 	editItem({ targetSku, name, sku, price }) {
@@ -51,13 +63,13 @@ class ShoppingListApp extends React.Component {
 			}
 		});
 
-		this.setState({ list: newList });
+		this.setState({ list: newList }, this.updateStorage);
 	}
 
 	deleteItem(sku) {
 		const newList = this.state.list.filter((item) => item.sku !== sku);
 
-		this.setState({ list: newList });
+		this.setState({ list: newList }, this.updateStorage);
 	}
 
 	render() {

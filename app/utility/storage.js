@@ -12,8 +12,8 @@ const Storage = (() => {
 		const title = JSON.parse(localStorage.getItem(SHOPPING_LIST_NAME));
 
 		return {
-			list,
-			title
+			list: list || [],
+			title: title || 'Shopping List'
 		};
 	};
 
