@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import EditableHeader from './EditableHeader';
 import EditBox from './EditBox';
 
 class ShoppingListHeader extends React.Component {
@@ -6,27 +7,42 @@ class ShoppingListHeader extends React.Component {
 		super(props);
 
 		this.state = {
-			isEditing: false
+			isAddingItem: false,
+			isEditingHeader: false
 		};
 
-		this.toggleEditForm = this.toggleEditForm.bind(this);
+		this.toggleEditHeader = this.toggleEditHeader.bind(this);
+		this.toggleAddItemBox = this.toggleAddItemBox.bind(this);
 		this.handleAddClick = this.handleAddClick.bind(this);
+		this.handleTitleUpdate = this.handleTitleUpdate.bind(this);
 	}
 
-	toggleEditForm() {
+	toggleEditHeader() {
 		this.setState({
-			isEditing: !this.state.isEditing
+			isEditingHeader: !this.state.isEditingHeader
+		});
+	}
+
+	toggleAddItemBox() {
+		this.setState({
+			isAddingItem: !this.state.isAddingItem
 		});
 	}
 
 	handleAddClick(newItem) {
 		this.props.addItem(newItem);
-		this.toggleEditForm();
+		this.toggleAddItemBox();
+	}
+
+	handleTitleUpdate(title) {
+		console.log('From Shopping List Header: ' + title);
+		this.props.editHeader(title);
+		this.toggleEditHeader();
 	}
 
 	render() {
 		let editForm;
-		if(this.state.isEditing) {
+		if(this.state.isAddingItem) {
 			editForm = (
 				<EditBox
 					title="Adding Item"
@@ -34,10 +50,21 @@ class ShoppingListHeader extends React.Component {
 			);
 		}
 
+		let header;
+		if(this.state.isEditingHeader) {
+			header = (
+				<EditableHeader
+					title={this.props.title}
+					updateTitle={this.handleTitleUpdate} />
+			);
+		} else {
+			header = <h1 onClick={this.toggleEditHeader}>{this.props.title}</h1>;
+		}
+
 		return (
 			<div className="ShoppingList_Header">
-				<h1>Shopping List</h1>
-				<button onClick={this.toggleEditForm}>Add</button>
+				{header}
+				<button onClick={this.toggleAddItemBox}>Add</button>
 				{editForm}
 			</div>
 		);
@@ -45,7 +72,9 @@ class ShoppingListHeader extends React.Component {
 };
 
 ShoppingListHeader.propTypes = {
-	addItem: PropTypes.func.isRequired
+	addItem: PropTypes.func.isRequired,
+	editHeader: PropTypes.func.isRequired,
+	title: PropTypes.string.isRequired
 };
 
 export default ShoppingListHeader;

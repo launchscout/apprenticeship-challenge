@@ -7,6 +7,7 @@ class ShoppingListApp extends React.Component {
 		super(props);
 
 		this.state = {
+			title: 'New Shopping List!',
 			list: [
 				{ name: 'DVD Player', price: 19.99, sku: 'ab390812bas' },
 				{ name: 'Teddy Bear', price: 7.20, sku: '2b09128hafsas' },
@@ -16,6 +17,7 @@ class ShoppingListApp extends React.Component {
 		};
 
 		this.addItem = this.addItem.bind(this);
+		this.editHeader = this.editHeader.bind(this);
 		this.editItem = this.editItem.bind(this);
 		this.deleteItem = this.deleteItem.bind(this);
 	}
@@ -30,6 +32,11 @@ class ShoppingListApp extends React.Component {
 		newList.push(newItem);
 
 		this.setState({ list: newList });
+	}
+
+	editHeader(title) {
+		console.log('Shopping List App: ' + title);
+		this.setState({ title: title });
 	}
 
 	editItem({ targetSku, name, sku, price }) {
@@ -57,7 +64,10 @@ class ShoppingListApp extends React.Component {
 	render() {
 		return (
 			<div>
-				<ShoppingListHeader addItem={this.addItem} />
+				<ShoppingListHeader
+					title={this.state.title}
+					editHeader={this.editHeader}
+					addItem={this.addItem} />
 				<ShoppingList
 					list={this.state.list}
 					editItem={this.editItem}
