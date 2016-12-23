@@ -57,6 +57,16 @@ if(TARGET === 'start' || !TARGET) {
       host: process.env.HOST,
       port: process.env.PORT
     },
+    module: {
+      loaders: [
+        // Define development specific Sass setup
+        {
+          test: /\.(scss|sass)$/,
+          loaders: ['style', 'css', 'sass'],
+          include: PATHS.style
+        }
+      ]
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new NpmInstallPlugin({
