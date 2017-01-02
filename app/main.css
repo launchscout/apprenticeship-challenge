@@ -1,3 +1,104 @@
+*{
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #21212a;
+    overflow-y: scroll;
+}
+
 body {
-  background: cornsilk;
+    max-width: 1200px;
+    margin: auto;
+}
+
+#app{
+    padding: 50px 15px;
+}
+.header{
+    background-color: #353740;
+}
+.button{
+    background-color: #353740;
+    border: 2px solid #353740;
+    border-radius: .25rem;
+    cursor: pointer;
+    margin: .5rem 0;
+    padding: .6rem;
+    color: #cacaca;
+}
+.button:hover{
+    background: transparent;
+    border-color: #353740;
+    box-shadow: 0 0 0.3em .2em rgba(0, 0, 0, .25);
+    transition: .2s;
+}
+
+.taskgroup {
+    margin: 0.5em 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.task {
+    overflow: auto;
+
+    border-radius: .25rem;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+
+    max-width: 100%;
+    width: 450px;
+    background-color: #fdfdfd;
+    box-shadow: 0 0 0.3em .03em rgba(0, 0, 0, .3);
+
+    position: relative;
+}
+
+.task:hover {
+    box-shadow: 0 0 0.6em .6em rgba(0, 0, 0, .4);
+    transition: .2s;
+}
+
+.task input,
+.task span{
+    padding: 10px !important;
+    margin: 0;
+    border: none;
+    outline: none;
+
+    font: 13.3333px Arial;
+    width: 90%;
+}
+
+.task .value {
+    /* force to use inline-block so that it gets minimum height */
+    display: inline-block;
+}
+
+.task .editable {
+}
+
+.task .delete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    
+
+    background-color: #fd422e;
+    color: #fff;
+    
+    border-radius: 100%;
+
+    cursor: pointer;
+
+    visibility: hidden;
+}
+
+.task:hover .delete {
+    visibility: visible;
 }
