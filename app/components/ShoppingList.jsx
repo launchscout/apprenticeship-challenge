@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Task from './Task.jsx';
+import Item from './Item.jsx';
 import Editable from './Editable';
 
 
@@ -8,16 +8,17 @@ export default ({
     notes,
     onNoteClick=() => {}, onEdit=() => {}, onDelete=() => {}
 }) => (
-    <ul className="taskgroup">{notes.map(({id, editing, task}) =>
+    <ul className="shoppinglist">{notes.map(({id, editing, task}) =>
         <li key={id}>
-            <Task className="task" onClick={onNoteClick.bind(null, id)}>
+            <Item className="item" onClick={onNoteClick.bind(null, id)}>
                 <Editable
                     className="editable"
                     editing={editing}
                     value={task}
+                    placeholder="Click to edit"
                     onEdit={onEdit.bind(null, id)} />
-                <button className="delete" onClick={onDelete.bind(null, id)}>x</button>
-            </Task>
+                <button className="delete" onClick={onDelete.bind(null, id)}>X</button>
+            </Item>
         </li>
     )}</ul>
 )

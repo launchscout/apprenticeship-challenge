@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'uuid';
-import Task from './TaskGroup.jsx';
+import Item from './ShoppingList.jsx';
 
 
 export default class App extends React.Component {
@@ -18,8 +18,8 @@ export default class App extends React.Component {
 
         return (
             <div>
-                <button className="button"  onClick={this.addNote}>+ Add Task</button>
-                <Task
+                <button className="button"  onClick={this.addNote}>+ Add Item</button>
+                <Item
                     notes={task}
                     onNoteClick={this.activateNoteEdit}
                     onEdit={this.editNote}

@@ -34,13 +34,13 @@ body {
     transition: .2s;
 }
 
-.taskgroup {
+.shoppinglist {
     margin: 0.5em 0;
     padding-left: 0;
     list-style: none;
 }
 
-.task {
+.item {
     overflow: auto;
 
     border-radius: .25rem;
@@ -49,56 +49,61 @@ body {
 
     max-width: 100%;
     width: 450px;
-    background-color: #fdfdfd;
+    background-color: #efefef;
     box-shadow: 0 0 0.3em .03em rgba(0, 0, 0, .3);
 
     position: relative;
 }
 
-.task:hover {
+.item:hover {
+    background-color: #fdfdfd;
     box-shadow: 0 0 0.6em .6em rgba(0, 0, 0, .4);
     transition: .2s;
 }
 
-.task input,
-.task span{
+.item input,
+.item span{
     padding: 10px !important;
     margin: 0;
     border: none;
     outline: none;
 
+    background: transparent;
+
     font: 13.3333px Arial;
     width: 90%;
 }
 
-.task .value {
+.item .value {
     /* force to use inline-block so that it gets minimum height */
     display: inline-block;
 }
 
-.task .editable {
+.item .editable {
 }
 
-.task .delete {
+.item .delete {
     position: absolute;
     top: 5px;
     right: 5px;
 
-    padding: 5px 10px;
+    padding: 7px 10px;
     border: none;
     outline: none;
-    
 
-    background-color: #fd422e;
+
+    background-color: transparent;
     color: #fff;
-    
+
     border-radius: 100%;
 
     cursor: pointer;
+    transition: .2s;
 
     visibility: hidden;
 }
 
-.task:hover .delete {
+.item:hover .delete {
+    background-color: #fd422e;
     visibility: visible;
 }
